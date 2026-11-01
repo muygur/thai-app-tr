@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/organic-76e4e2f1-163a-4b01-b1db-cf1fb5b41500/styles.css">
+<script src="_ds/organic-76e4e2f1-163a-4b01-b1db-cf1fb5b41500/_ds_bundle.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Corben:wght@700&family=Figtree:wght@400;600;700&display=swap">
+<style>
+  body { margin:0; background:#f5ead8; }
+  a { color:#8c491a; }
+  a:hover { color:#c67139; }
+</style>
+</helmet>
+
+<div style="max-width:1080px;margin:0 auto;padding:56px 28px 90px;font-family:Figtree,system-ui,sans-serif;color:#201e1d">
+
+  <div style="font:600 12px Figtree,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#8c491a">Nuad Ankara &middot; status review</div>
+  <h1 style="font-family:Corben,serif;font-weight:700;font-size:clamp(34px,5vw,54px);line-height:1.05;margin:12px 0 0;max-width:20ch">What we have, and what stands between it and a pilot</h1>
+  <p style="max-width:62ch;font-size:16px;line-height:1.55;color:rgba(32,30,29,.72);margin:18px 0 0;text-wrap:pretty">Every screen below exists in the prototype unless it is marked otherwise. Open <a href="Nuad Ankara App.dc.html">Nuad Ankara App</a> to click through them; the Admin console has a States tab that forces the empty, offline and error variants.</p>
+
+  <div style="display:flex;flex-wrap:wrap;gap:10px;margin:28px 0 0">
+    <span style="display:inline-flex;align-items:center;gap:8px;padding:8px 15px;border-radius:999px;background:#e1eecc;font:600 12px Figtree,sans-serif;color:#3d472b"><span style="width:8px;height:8px;border-radius:999px;background:#56633f"></span>Designed and clickable</span>
+    <span style="display:inline-flex;align-items:center;gap:8px;padding:8px 15px;border-radius:999px;background:#f3e2c2;font:600 12px Figtree,sans-serif;color:#7a4a12"><span style="width:8px;height:8px;border-radius:999px;background:#c67139"></span>Designed, but fake underneath</span>
+    <span style="display:inline-flex;align-items:center;gap:8px;padding:8px 15px;border-radius:999px;background:#ffe1d0;font:600 12px Figtree,sans-serif;color:#8c491a"><span style="width:8px;height:8px;border-radius:999px;background:#8c491a"></span>Not designed yet</span>
+  </div>
+
+  <div style="margin:40px 0 0;padding:26px 28px;border-radius:30px;background:#ebddc5">
+    <h2 style="font-family:Corben,serif;font-weight:700;font-size:22px;margin:0 0 4px">Decisions you just locked</h2>
+    <p style="font-size:13px;color:rgba(32,30,29,.6);margin:0 0 18px">These shape everything in the gap list.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px">
+      <div style="padding:16px 18px;border-radius:22px;background:#f5ead8">
+        <div style="font:600 11px Figtree,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:#8c491a">Money</div>
+        <div style="font-size:14px;line-height:1.45;margin-top:6px">Cash to the therapist. The app takes nothing and records nothing.</div>
+      </div>
+      <div style="padding:16px 18px;border-radius:22px;background:#f5ead8">
+        <div style="font:600 11px Figtree,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:#8c491a">Sign-in</div>
+        <div style="font-size:14px;line-height:1.45;margin-top:6px">Phone + SMS code, with Apple and Google as alternatives.</div>
+      </div>
+      <div style="padding:16px 18px;border-radius:22px;background:#f5ead8">
+        <div style="font:600 11px Figtree,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:#8c491a">Language</div>
+        <div style="font-size:14px;line-height:1.45;margin-top:6px">Turkish by default, English toggle. The prototype is now in Turkish.</div>
+      </div>
+      <div style="padding:16px 18px;border-radius:22px;background:#f5ead8">
+        <div style="font:600 11px Figtree,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:#8c491a">Launch</div>
+        <div style="font-size:14px;line-height:1.45;margin-top:6px">Invite-only pilot, around twenty therapists.</div>
+      </div>
+    </div>
+  </div>
+
+  <h2 style="font-family:Corben,serif;font-weight:700;font-size:30px;margin:60px 0 6px">Client side</h2>
+  <p style="font-size:14px;color:rgba(32,30,29,.6);margin:0 0 22px">Fourteen screens. The full path from opening the app to rating a finished session.</p>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px">
+    <sc-for list="{{ client }}" as="s" hint-placeholder-count="14">
+      <div style="padding:18px 20px;border-radius:26px;background:#ebddc5;display:flex;flex-direction:column;gap:7px">
+        <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px">
+          <h3 style="font-family:Corben,serif;font-weight:700;font-size:17px;margin:0;line-height:1.2">{{ s.name }}</h3>
+          <span style="flex:none;width:9px;height:9px;border-radius:999px;margin-top:6px;background: {{ s.dot }}"></span>
+        </div>
+        <div style="font-size:13px;line-height:1.5;color:rgba(32,30,29,.72)">{{ s.note }}</div>
+      </div>
+    </sc-for>
+  </div>
+
+  <h2 style="font-family:Corben,serif;font-weight:700;font-size:30px;margin:56px 0 6px">Therapist side</h2>
+  <p style="font-size:14px;color:rgba(32,30,29,.6);margin:0 0 22px">Onboarding, certificate proof, and the request inbox.</p>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px">
+    <sc-for list="{{ therapist }}" as="s" hint-placeholder-count="10">
+      <div style="padding:18px 20px;border-radius:26px;background:#ebddc5;display:flex;flex-direction:column;gap:7px">
+        <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px">
+          <h3 style="font-family:Corben,serif;font-weight:700;font-size:17px;margin:0;line-height:1.2">{{ s.name }}</h3>
+          <span style="flex:none;width:9px;height:9px;border-radius:999px;margin-top:6px;background: {{ s.dot }}"></span>
+        </div>
+        <div style="font-size:13px;line-height:1.5;color:rgba(32,30,29,.72)">{{ s.note }}</div>
+      </div>
+    </sc-for>
+  </div>
+
+  <h2 style="font-family:Corben,serif;font-weight:700;font-size:30px;margin:56px 0 6px">Shared and behind the scenes</h2>
+  <p style="font-size:14px;color:rgba(32,30,29,.6);margin:0 0 22px">Chat, moderation, and the admin console.</p>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px">
+    <sc-for list="{{ shared }}" as="s" hint-placeholder-count="9">
+      <div style="padding:18px 20px;border-radius:26px;background:#ebddc5;display:flex;flex-direction:column;gap:7px">
+        <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px">
+          <h3 style="font-family:Corben,serif;font-weight:700;font-size:17px;margin:0;line-height:1.2">{{ s.name }}</h3>
+          <span style="flex:none;width:9px;height:9px;border-radius:999px;margin-top:6px;background: {{ s.dot }}"></span>
+        </div>
+        <div style="font-size:13px;line-height:1.5;color:rgba(32,30,29,.72)">{{ s.note }}</div>
+      </div>
+    </sc-for>
+  </div>
+
+  <h2 style="font-family:Corben,serif;font-weight:700;font-size:30px;margin:64px 0 6px">The gaps, in the order I would close them</h2>
+  <p style="font-size:14px;color:rgba(32,30,29,.6);margin:0 0 22px;max-width:60ch">The first four pilot blockers are now in the prototype. The rest are not designed yet and can follow once the pilot starts.</p>
+  <div style="display:flex;flex-direction:column;gap:12px">
+    <sc-for list="{{ gaps }}" as="g" hint-placeholder-count="9">
+      <div style="display:flex;gap:18px;align-items:flex-start;padding:20px 24px;border-radius:28px;background: {{ g.bg }}">
+        <div style="flex:none;width:38px;height:38px;border-radius:999px;display:flex;align-items:center;justify-content:center;font:700 15px Figtree,sans-serif;background: {{ g.numBg }};color: {{ g.numFg }}">{{ g.n }}</div>
+        <div style="flex:1;min-width:0">
+          <div style="display:flex;flex-wrap:wrap;align-items:baseline;gap:10px">
+            <h3 style="font-family:Corben,serif;font-weight:700;font-size:19px;margin:0">{{ g.name }}</h3>
+            <span style="padding:4px 11px;border-radius:999px;font:600 11px Figtree,sans-serif;background: {{ g.tagBg }};color: {{ g.tagFg }}">{{ g.tag }}</span>
+          </div>
+          <div style="font-size:14px;line-height:1.55;color:rgba(32,30,29,.75);margin-top:7px;max-width:70ch;text-wrap:pretty">{{ g.note }}</div>
+          <div style="font-size:13px;line-height:1.5;color:#8c491a;margin-top:8px">{{ g.screens }}</div>
+        </div>
+      </div>
+    </sc-for>
+  </div>
+
+  <div style="margin:56px 0 0;padding:30px 32px;border-radius:32px;background:#e1eecc">
+    <h2 style="font-family:Corben,serif;font-weight:700;font-size:24px;margin:0 0 10px;color:#2f3a20">What cash-only removes from the problem</h2>
+    <p style="font-size:15px;line-height:1.6;color:#3d472b;margin:0;max-width:66ch;text-wrap:pretty">No card capture, no refunds, no payout accounts, no marketplace tax handling, no PCI scope. It also removes the enforcement behind cancellation: a client who cancels late costs the therapist an hour and pays nothing. For a twenty-therapist invite pilot that is acceptable, handled by a visible cancellation policy and the therapist's ability to report. It stops being acceptable the moment you open the city.</p>
+  </div>
+
+  <div style="margin:18px 0 0;padding:30px 32px;border-radius:32px;background:#ebddc5">
+    <h2 style="font-family:Corben,serif;font-weight:700;font-size:24px;margin:0 0 10px">Suggested next two pieces of work</h2>
+    <p style="font-size:15px;line-height:1.6;color:rgba(32,30,29,.78);margin:0 0 6px;max-width:66ch">You picked auth and the availability editor. Those are the right two: the availability editor makes the client's time slots real, and auth is the entry every other screen assumes. Both are small, self-contained additions to the existing prototype. Say go and I'll build them into <a href="Nuad Ankara App.dc.html">Nuad Ankara App</a> — roughly seven new screens between them.</p>
+  </div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1080}}">
+const GREEN = '#56633f', AMBER = '#c67139', RED = '#8c491a';
+
+class Component extends DCLogic {
+  renderVals() {
+    const S = (name, note, dot) => ({ name, note, dot });
+    return {
+      client: [
+        S('Home', 'Greeting, discipline chips, your regular therapists, discover list. Has a designed empty state when filters match nothing.', GREEN),
+        S('Map', 'Pins carry therapist photo and first name. Tapping a pin raises a card with time and price.', AMBER),
+        S('Filters sheet', 'Discipline, availability, price per 60 min, and where the session happens.', GREEN),
+        S('Therapist profile', 'Photo, rating, approved credentials, disciplines, price, reviews. Entry point to booking.', GREEN),
+        S('Booking request', 'Treatment, duration, day, time. Duration arrives prefilled when you tap Book again.', AMBER),
+        S('Request sent', 'Confirmation that the therapist has to accept before anything is fixed.', GREEN),
+        S('Bookings list', 'Requests and history in one list across five statuses, with chat and review actions inline.', GREEN),
+        S('Bookings empty', 'First-run state for a client who has never booked.', GREEN),
+        S('Booking detail', 'Full record of one booking plus the actions available in its current state.', GREEN),
+        S('Cancel sheet', 'Confirms a cancellation. Carries no policy or fee copy yet.', AMBER),
+        S('Review', 'Stars, per-rating lines, tags, optional note. Opens after a session is marked finished.', GREEN),
+        S('You / settings', 'Name, district, language row, admin console entry, become-a-therapist entry.', AMBER),
+        S('Role switch', 'Client and Therapist segmented control, one tap once both profiles exist, unread badges per role.', GREEN),
+        S('Client tab bar', 'Home, Map, Bookings, You, with an unread badge on Bookings.', GREEN)
+      ],
+      therapist: [
+        S('Onboarding 1', 'Name, photo, and the districts you work in.', GREEN),
+        S('Onboarding 2', 'Disciplines, price per 60 min, years practising.', GREEN),
+        S('Onboarding 3', 'Service area, travel radius for home visits, which clients you accept.', GREEN),
+        S('Requests inbox', 'Incoming requests with accept, decline, and propose-another-time.', GREEN),
+        S('Inbox empty', 'State for a therapist with nothing waiting.', GREEN),
+        S('Decline sheet', 'Reason for declining, sent to the client.', GREEN),
+        S('Propose new time sheet', 'Counter-offer a different slot instead of declining outright.', GREEN),
+        S('Certificates tab', 'Uploaded certificates and their verification status.', GREEN),
+        S('Certificate upload', 'Pick a photo or file, then review the fields read off it before submitting.', AMBER),
+        S('Therapist profile tab', 'How the therapist sees their own listing. Availability is shown but cannot be edited.', AMBER),
+        S('Therapist tab bar', 'Requests, Certificates, Profile, with an unread badge on Requests.', GREEN)
+      ],
+      shared: [
+        S('Chat thread', 'Opens only after the therapist accepts. Messages, attachments, session actions.', GREEN),
+        S('Chat menu', 'View the booking, mark the session finished (therapist), report or block.', GREEN),
+        S('Attach sheet', 'Photo, location, or file into a thread.', AMBER),
+        S('Report and block', 'Reason capture, closes the thread. Reaches the admin Reports queue.', GREEN),
+        S('Offline banner', 'Sits above the tab bar with a retry, on every screen.', GREEN),
+        S('Send failure', 'A message that did not go out, with retry.', GREEN),
+        S('Admin: certificates', 'Scan of the document, the extracted fields, approve or reject with stated consequences.', GREEN),
+        S('Admin: reports', 'Reported accounts with suspend, warn, or dismiss.', GREEN),
+        S('Admin: states', 'Prototype-only switches that force empty, offline and error states in the real flows.', GREEN)
+      ],
+      gaps: (() => {
+        const rows = [
+          ['Sign-in and phone verification', 'Designed', 'Every screen in the prototype assumes somebody is already signed in. Needs a welcome screen, phone entry with a +90 country field, the six-digit SMS code screen with resend and a wrong-code state, Apple and Google buttons, and what happens when the code never arrives.', 'About five screens.'],
+          ['Therapist availability editor', 'Designed', 'The therapist can see their hours but not set them. Until this exists the time slots a client picks from are invented, so a client can book an hour the therapist was never free. Needs weekly recurring hours, a way to block a specific day, and a lead-time setting so nobody books ten minutes out.', 'Two screens plus a sheet.'],
+          ['Turkish, with an English toggle', 'Designed', 'The prototype is entirely English for an Ankara pilot. This is not only translation: Turkish copy runs longer, so buttons and tab labels need rechecking, and dates, currency and the phone format all change. The Language row in settings already exists as a hook.', 'No new screens, a pass over all of them.'],
+          ['Consent, terms, and KVKK notice', 'Designed', 'Turkish data law requires a stated purpose and consent before you process personal data, and the app stores health-adjacent information, ID documents and location. Also needed before either app store will accept a submission. Sits inside sign-up.', 'Two screens and one link-out.'],
+          ['Cancellation policy, written down', 'Soon after', 'With cash there is nothing to charge, so the rule is social: how late is too late, what the client sees when they cancel inside that window, what the therapist sees, and whether repeat late cancellations get flagged to you.', 'Copy on existing screens, plus a policy page.'],
+          ['Notifications', 'Soon after', 'A request the therapist does not see within the hour is a lost booking. Needs the push permission ask at the right moment, the message wording for each event, an in-app list, and quiet hours so nobody is woken at 2am.', 'One screen plus a written message table.'],
+          ['Therapist earnings and history', 'After pilot', 'With cash there is no money to report, but a therapist still wants to see how many sessions they did this month and what they earned. Low risk to defer.', 'One screen.'],
+          ['Safety during home visits', 'After pilot', 'You have report-and-block, which works after something has gone wrong. Sharing a session with a friend, an emergency contact, and a check-in after the session all work during. Twenty vetted therapists is a reasonable reason to wait, not a reason to skip.', 'Two screens.'],
+          ['Certificate expiry and re-checks', 'After pilot', 'What happens when a live therapist\u2019s certificate is later rejected or lapses. Today approval is a one-way door.', 'Admin states plus one notice.']
+        ];
+        const tone = t => t === 'Designed'
+          ? { bg: '#e1eecc', numBg: '#56633f', numFg: '#f5ead8', tagBg: '#56633f', tagFg: '#f5ead8' }
+          : t === 'Pilot blocker'
+          ? { bg: '#f7dfcc', numBg: '#8c491a', numFg: '#f5ead8', tagBg: '#8c491a', tagFg: '#f5ead8' }
+          : t === 'Soon after'
+          ? { bg: '#f0e3c8', numBg: '#c67139', numFg: '#f5ead8', tagBg: '#f5ead8', tagFg: '#8c491a' }
+          : { bg: '#ebddc5', numBg: '#e1eecc', numFg: '#3d472b', tagBg: '#f5ead8', tagFg: 'rgba(32,30,29,.6)' };
+        return rows.map(([name, tag, note, screens], i) => ({ n: i + 1, name, tag, note, screens, ...tone(tag) }));
+      })()
+    };
+  }
+}
+</script>
+</body>
+</html>
