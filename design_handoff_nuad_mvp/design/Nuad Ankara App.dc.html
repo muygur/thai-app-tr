@@ -1,0 +1,2112 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics><link rel="stylesheet" href="_ds/organic-76e4e2f1-163a-4b01-b1db-cf1fb5b41500/styles.css"><script src="_ds/organic-76e4e2f1-163a-4b01-b1db-cf1fb5b41500/_ds_bundle.js"></script><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Corben:wght@700&display=swap"><style>:root{--font-heading:"Corben",Georgia,serif;--font-heading-weight:700}body{margin:0;background:#e9dcc4;display:flex;justify-content:center;padding:32px 0}.ph{background:repeating-linear-gradient(135deg,#e6d8bf 0 7px,#d5c7ad 7px 14px);display:flex;align-items:flex-start;justify-content:flex-start;overflow:hidden}.ph span{font:9px ui-monospace,Menlo,monospace;color:rgba(32,30,29,.5);padding:5px 6px}.lu{width:22px;height:22px;stroke:currentColor;stroke-width:2.75;stroke-linecap:round;stroke-linejoin:round;fill:none;display:block;flex:none}.scr::-webkit-scrollbar{display:none}.scr{scrollbar-width:none}</style></helmet>
+
+<x-import component-from-global-scope="IOSDevice" from="./ios-frame.jsx" hint-size="402px,874px">
+<div style="position:relative;z-index:0;height:100%;background:#f5ead8;overflow:hidden;font-family:Figtree,system-ui,sans-serif">
+
+<sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+<div style="height:100%;display:flex;flex-direction:column">
+  <div class="scr" style="flex:1;min-height:0;overflow:auto">
+    <div style="position:relative;height:250px">
+      <div class="ph washed" style="position:absolute;inset:0;border-radius:0 0 40px 40px"><span style="padding-top:118px">hero — hands, mat, warm light</span></div>
+      <div style="position:absolute;left:0;right:0;bottom:0;top:38%;border-radius:0 0 40px 40px;background:linear-gradient(to top,rgba(32,30,29,.74),rgba(32,30,29,0))"></div>
+      <div style="position:absolute;top:64px;left:22px;right:22px;display:flex;gap:8px;align-items:center">
+        <div style="flex:1;min-height:44px;display:flex;align-items:center;gap:9px;padding:0 18px;border-radius:999px;background:rgba(245,234,216,.94);font-size:14px;color:rgba(32,30,29,.55)"><svg class="lu" viewBox="0 0 24 24" style="width:17px;height:17px"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>Terapist veya disiplin ara</div>
+        <div onClick="{{ openFilters }}" style="width:44px;height:44px;border-radius:999px;background:rgba(245,234,216,.94);display:flex;align-items:center;justify-content:center;color:#8c491a;cursor:pointer"><svg class="lu" viewBox="0 0 24 24" style="width:19px;height:19px"><path d="M3 6h18"></path><path d="M3 12h18"></path><path d="M3 18h18"></path><circle cx="8" cy="6" r="2"></circle><circle cx="16" cy="12" r="2"></circle><circle cx="10" cy="18" r="2"></circle></svg></div>
+      </div>
+      <div style="position:absolute;left:22px;right:22px;bottom:24px">
+        <div style="font:600 11px Figtree,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:#ffc6a5">Ankara · bugün {{ verifiedCount }} terapist</div>
+        <h2 style="font-size:30px;color:#f5ead8;margin:8px 0 0;max-width:280px">Güvenebileceğin eller</h2>
+      </div>
+    </div>
+
+    <div class="scr" style="display:flex;gap:8px;padding:18px 22px 0;overflow-x:auto">
+      <sc-for list="{{ chips }}" as="c" hint-placeholder-count="6">
+        <span onClick="{{ c.pick }}" style="flex:none;white-space:nowrap;padding:8px 15px;font-size:12px;border-radius:999px;cursor:pointer;background: {{ c.bg }};color: {{ c.fg }}">{{ c.label }}</span>
+      </sc-for>
+    </div>
+
+    <div style="padding:22px 0 0">
+      <div style="display:flex;justify-content:space-between;align-items:baseline;padding:0 22px 12px"><h5 style="margin:0;font-size:15px">Terapistlerin</h5><span style="font-size:12px;color:#8c491a">Tümü (6)</span></div>
+      <div class="scr" style="display:flex;gap:14px;padding:0 22px;overflow-x:auto">
+        <sc-for list="{{ regulars }}" as="r" hint-placeholder-count="4">
+          <div onClick="{{ r.open }}" style="flex:none;display:flex;flex-direction:column;align-items:center;gap:7px;width:78px;cursor:pointer">
+            <div class="ph" style="width:70px;height:70px;border-radius:999px"><span>face</span></div>
+            <div style="font:600 12px Figtree,sans-serif;text-align:center">{{ r.short }}</div>
+            <div style="font-size:10px;color:rgba(32,30,29,.5)">{{ r.visitLine }}</div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+
+    <div style="display:flex;justify-content:space-between;align-items:baseline;padding:24px 22px 12px"><h5 style="margin:0;font-size:15px">{{ discHeading }}</h5><span style="font-size:12px;color:rgba(32,30,29,.5)">{{ listCount }}</span></div>
+
+    <sc-if value="{{ listEmpty }}" hint-placeholder-val="{{ false }}">
+      <div style="margin:8px 22px 26px;padding:30px 24px;border-radius:30px;background:#ebddc5;text-align:center">
+        <div style="width:66px;height:66px;border-radius:999px;background:#f5ead8;color:#8c491a;display:flex;align-items:center;justify-content:center;margin:0 auto 14px"><svg class="lu" viewBox="0 0 24 24" style="width:28px;height:28px"><circle cx="11" cy="11" r="7"></circle><path d="m21 21-4.3-4.3"></path></svg></div>
+        <h3 style="margin:0 0 6px;font-size:20px">Bu filtrelere uyan kimse yok</h3>
+        <p style="margin:0 0 16px;font-size:13px;color:rgba(32,30,29,.6)">{{ emptyHint }}</p>
+        <button onClick="{{ resetFilters }}" class="btn btn-secondary" style="padding:11px 22px">Filtreleri temizle</button>
+      </div>
+    </sc-if>
+    <div style="display:flex;flex-direction:column;gap:16px;padding:0 22px 120px">
+      <sc-for list="{{ list }}" as="t" hint-placeholder-count="3">
+        <div onClick="{{ t.open }}" style="flex:none;border-radius:30px;background:#ebddc5;overflow:hidden;cursor:pointer">
+          <div style="position:relative">
+            <div class="ph washed" style="height:132px"><span>treatment room</span></div>
+            <span style="position:absolute;top:12px;left:12px;display:flex;align-items:center;gap:5px;padding:6px 12px;border-radius:999px;background:#7a8a5e;color:#f5ead8;font-size:11px"><svg class="lu" viewBox="0 0 24 24" style="width:13px;height:13px"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>{{ t.next }}</span>
+          </div>
+          <div style="padding:14px 16px 16px;display:flex;flex-direction:column;gap:6px">
+            <div style="display:flex;justify-content:space-between;align-items:baseline;gap:10px">
+              <div style="font-family:Corben,serif;font-weight:700;font-size:19px">{{ t.name }}</div>
+              <div style="font:600 14px Figtree,sans-serif">{{ t.price }}</div>
+            </div>
+            <div style="font-size:13px;color:rgba(32,30,29,.65)">{{ t.discText }} · {{ t.district }}</div>
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-top:4px">
+              <div style="font-size:12px;color:rgba(32,30,29,.5)">{{ t.meta }}</div>
+              <button onClick="{{ t.request }}" class="btn btn-primary" style="padding:9px 18px">İstek gönder</button>
+            </div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isMap }}" hint-placeholder-val="{{ false }}">
+<div style="height:100%;position:relative;background:#e3d6bd">
+  <div style="position:absolute;inset:0">
+    <div style="position:absolute;left:-40px;top:90px;width:210px;height:170px;border-radius:34px;background:#d9cdb2"></div>
+    <div style="position:absolute;right:-30px;top:150px;width:190px;height:210px;border-radius:34px;background:#d9cdb2"></div>
+    <div style="position:absolute;left:40px;top:330px;width:150px;height:150px;border-radius:34px;background:#dcd3c4"></div>
+    <div style="position:absolute;right:20px;top:400px;width:170px;height:120px;border-radius:34px;background:#d9cdb2"></div>
+    <div style="position:absolute;left:70px;top:520px;width:260px;height:160px;border-radius:40px;background:#ccdbb2;opacity:.75"></div>
+    <div style="position:absolute;left:0;right:0;top:290px;height:22px;background:#f0e6d3"></div>
+    <div style="position:absolute;top:0;bottom:0;left:206px;width:20px;background:#f0e6d3"></div>
+    <div style="position:absolute;left:0;right:0;top:500px;height:14px;background:#f0e6d3"></div>
+  </div>
+
+  <div style="position:absolute;top:60px;left:18px;right:18px;display:flex;flex-direction:column;gap:10px;z-index:3">
+    <div style="display:flex;gap:8px;align-items:center">
+      <div style="flex:1;min-height:46px;display:flex;align-items:center;gap:9px;padding:0 18px;border-radius:999px;background:#f5ead8;box-shadow:0 3px 10px rgba(46,43,37,.16);font-size:14px;color:rgba(32,30,29,.55)"><svg class="lu" viewBox="0 0 24 24" style="width:17px;height:17px"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>Çankaya, Ankara</div>
+      <div style="width:46px;height:46px;border-radius:999px;background:#f5ead8;box-shadow:0 3px 10px rgba(46,43,37,.16);display:flex;align-items:center;justify-content:center;color:#8c491a;cursor:pointer"><svg class="lu" viewBox="0 0 24 24" style="width:20px;height:20px"><path d="M2 12h3"></path><path d="M19 12h3"></path><path d="M12 2v3"></path><path d="M12 19v3"></path><circle cx="12" cy="12" r="7"></circle><circle cx="12" cy="12" r="3"></circle></svg></div>
+    </div>
+    <div class="scr" style="display:flex;gap:7px;overflow-x:auto">
+      <span onClick="{{ openFilters }}" style="flex:none;white-space:nowrap;display:flex;align-items:center;gap:6px;padding:8px 14px;border-radius:999px;background:#f5ead8;font:600 12px Figtree,sans-serif;box-shadow:0 1px 2px rgba(46,43,37,.14);cursor:pointer"><svg class="lu" viewBox="0 0 24 24" style="width:14px;height:14px;color:#8c491a"><path d="M3 6h18"></path><path d="M3 12h18"></path><path d="M3 18h18"></path><circle cx="8" cy="6" r="2"></circle><circle cx="16" cy="12" r="2"></circle><circle cx="10" cy="18" r="2"></circle></svg>Filtreler</span>
+      <sc-for list="{{ chips }}" as="c" hint-placeholder-count="6">
+        <span onClick="{{ c.pick }}" style="flex:none;white-space:nowrap;padding:8px 14px;font-size:12px;border-radius:999px;cursor:pointer;box-shadow:0 1px 2px rgba(46,43,37,.14);background: {{ c.bg }};color: {{ c.fg }}">{{ c.label }}</span>
+      </sc-for>
+    </div>
+  </div>
+
+  <sc-for list="{{ pins }}" as="p" hint-placeholder-count="4">
+    <div onClick="{{ p.pick }}" style="position:absolute;z-index:2;display:flex;flex-direction:column;align-items:center;gap:5px;cursor:pointer;left: {{ p.left }};top: {{ p.top }};opacity: {{ p.opacity }}">
+      <div class="ph washed" style="width: {{ p.size }};height: {{ p.size }};border-radius:999px;border:3px solid {{ p.ring }};box-shadow: {{ p.shadow }}"></div>
+      <span style="padding:3px 10px;border-radius:999px;font:600 11px Figtree,sans-serif;white-space:nowrap;background: {{ p.bg }};color: {{ p.fg }};box-shadow:0 2px 8px rgba(46,43,37,.16)">{{ p.short }}</span>
+    </div>
+  </sc-for>
+
+  <sc-if value="{{ mapSel }}" hint-placeholder-val="{{ false }}">
+  <div style="position:absolute;left:18px;right:18px;bottom:112px;z-index:4;display:flex;gap:12px;align-items:center;padding:12px;border-radius:28px;background:#f5ead8;box-shadow:0 12px 32px rgba(46,43,37,.24)">
+    <div class="ph washed" style="width:58px;height:58px;border-radius:999px;flex:none"><span>face</span></div>
+    <div style="flex:1;min-width:0">
+      <div style="font-family:Corben,serif;font-weight:700;font-size:16px">{{ mapSel.name }}</div>
+      <div style="font-size:12px;color:rgba(32,30,29,.6)">{{ mapSel.nextLine }}</div>
+      <div style="font-size:12px;color:rgba(32,30,29,.6)">{{ mapSel.discText }} · {{ mapSel.dist }}</div>
+    </div>
+    <button onClick="{{ mapSel.open }}" class="btn btn-primary" style="padding:9px 16px">Gör</button>
+  </div>
+  </sc-if>
+
+  <div style="position:absolute;left:0;right:0;bottom:96px;z-index:1;padding:0 18px">
+    <div onClick="{{ showMapList }}" style="display:flex;align-items:center;justify-content:center;gap:8px;padding:11px;border-radius:999px;background:#201e1d;color:#f5ead8;font:600 12px Figtree,sans-serif;box-shadow:0 6px 18px rgba(46,43,37,.28);cursor:pointer">
+      <svg class="lu" viewBox="0 0 24 24" style="width:15px;height:15px"><path d="M3 6h18"></path><path d="M3 12h18"></path><path d="M3 18h18"></path></svg>Yakında {{ listCount }} · liste
+    </div>
+  </div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isBookings }}" hint-placeholder-val="{{ false }}">
+<div style="height:100%;display:flex;flex-direction:column">
+  <div style="padding:70px 22px 6px"><h2 style="font-size:30px;margin:0">Randevular</h2></div>
+  <div class="scr" style="flex:1;min-height:0;overflow:auto;padding:14px 22px 120px;display:flex;flex-direction:column;gap:12px">
+    <sc-if value="{{ bookingsEmpty }}" hint-placeholder-val="{{ false }}">
+      <div style="padding:34px 24px;border-radius:30px;background:#ebddc5;text-align:center">
+        <div style="width:66px;height:66px;border-radius:999px;background:#f5ead8;color:#8c491a;display:flex;align-items:center;justify-content:center;margin:0 auto 14px"><svg class="lu" viewBox="0 0 24 24" style="width:28px;height:28px"><rect x="3" y="4" width="18" height="18" rx="2"></rect><path d="M16 2v4"></path><path d="M8 2v4"></path><path d="M3 10h18"></path></svg></div>
+        <h3 style="margin:0 0 6px;font-size:20px">Henüz randevun yok</h3>
+        <p style="margin:0 0 16px;font-size:13px;color:rgba(32,30,29,.6)">Yakınında birini bul ve istek gönder. Terapistler genellikle iki saat içinde yanıt verir.</p>
+        <button onClick="{{ goHome }}" class="btn btn-primary" style="padding:12px 24px;white-space:nowrap">Terapistlere göz at</button>
+      </div>
+    </sc-if>
+    <sc-for list="{{ requests }}" as="b" hint-placeholder-count="3">
+      <div onClick="{{ b.open }}" style="flex:none;display:flex;gap:13px;padding:14px;border-radius:28px;background:#ebddc5;cursor:pointer">
+        <div class="ph washed" style="width:62px;height:62px;border-radius:999px;flex:none"><span>face</span></div>
+        <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:5px">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;gap:8px">
+            <div style="font-family:Corben,serif;font-weight:700;font-size:17px">{{ b.name }}</div>
+            <div style="font:600 13px Figtree,sans-serif">{{ b.price }}</div>
+          </div>
+          <div style="font-size:12px;color:rgba(32,30,29,.65)">{{ b.when }} · {{ b.dur }}</div>
+          <div style="font-size:12px;color:rgba(32,30,29,.5)">{{ b.disc }} · {{ b.district }}</div>
+          <div style="margin-top:3px;display:flex;align-items:center;gap:9px">
+            <span style="display:inline-flex;padding:4px 11px;border-radius:999px;font-size:11px;background: {{ b.tagBg }};color: {{ b.tagFg }}">{{ b.status }}</span>
+            <sc-if value="{{ b.canChat }}" hint-placeholder-val="{{ false }}">
+              <span onClick="{{ b.openChat }}" style="display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border-radius:999px;font:600 11px Figtree,sans-serif;background:#f5ead8;color:#8c491a;cursor:pointer"><svg class="lu" viewBox="0 0 24 24" style="width:13px;height:13px"><path d="M12 20a8 8 0 1 0-6.9-3.95L4 21l4.95-1.1A8 8 0 0 0 12 20"></path></svg>Mesaj</span>
+            </sc-if>
+            <sc-if value="{{ b.canReview }}" hint-placeholder-val="{{ false }}">
+              <span onClick="{{ b.review }}" style="display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border-radius:999px;font:600 11px Figtree,sans-serif;background:#c67139;color:#f5ead8;cursor:pointer">Değerlendir</span>
+            </sc-if>
+            <sc-if value="{{ b.reviewed }}" hint-placeholder-val="{{ false }}">
+              <span style="font-size:11px;color:rgba(32,30,29,.5)">Puanın {{ b.starText }}</span>
+            </sc-if>
+          </div>
+        </div>
+      </div>
+    </sc-for>
+  </div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isYou }}" hint-placeholder-val="{{ false }}">
+<div style="height:100%;display:flex;flex-direction:column">
+  <div style="padding:70px 22px 0;display:flex;align-items:center;gap:14px">
+    <div class="ph" style="width:66px;height:66px;border-radius:999px"><span>face</span></div>
+    <div><h2 style="font-size:26px;margin:0">Mira Yıldız</h2><div style="font-size:13px;color:rgba(32,30,29,.55)">Çankaya, Ankara</div></div>
+  </div>
+  <sc-if value="{{ hasTherapist }}" hint-placeholder-val="{{ false }}">
+    <div style="margin:20px 22px 0;padding:5px;border-radius:999px;background:#ebddc5;display:flex;gap:4px">
+      <div style="flex:1;text-align:center;padding:11px 0;border-radius:999px;font:600 13px Figtree,sans-serif;background:#c67139;color:#f5ead8">Müşteri</div>
+      <div onClick="{{ toTherapist }}" style="flex:1;display:flex;align-items:center;justify-content:center;gap:7px;padding:11px 0;border-radius:999px;font:600 13px Figtree,sans-serif;color:rgba(32,30,29,.6);cursor:pointer">Terapist<sc-if value="{{ tBadge }}" hint-placeholder-val="{{ false }}"><span style="min-width:18px;height:18px;padding:0 5px;box-sizing:border-box;border-radius:999px;background:#c67139;color:#f5ead8;font:600 11px Figtree,sans-serif;display:flex;align-items:center;justify-content:center">{{ tBadge }}</span></sc-if></div>
+    </div>
+  </sc-if>
+  <div style="padding:26px 22px 0;display:flex;flex-direction:column;gap:10px">
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:15px 18px;border-radius:24px;background:#ebddc5"><span style="font-size:14px">Kaydedilen terapistler</span><span style="font-size:13px;color:rgba(32,30,29,.5)">6</span></div>
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:15px 18px;border-radius:24px;background:#ebddc5"><span style="font-size:14px">Ödeme</span><span style="font-size:13px;color:rgba(32,30,29,.5)">Nakit, seans sonunda</span></div>
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:15px 18px;border-radius:24px;background:#ebddc5"><span style="font-size:14px">Dil</span><span style="font-size:13px;color:rgba(32,30,29,.5)">Türkçe</span></div>
+    <div onClick="{{ toAdmin }}" style="display:flex;align-items:center;justify-content:space-between;padding:15px 18px;border-radius:24px;background:#ebddc5;cursor:pointer"><span style="font-size:14px">Yönetim paneli <span style="font-size:11px;color:rgba(32,30,29,.45)">dahili</span></span><svg class="lu" viewBox="0 0 24 24" style="width:17px;height:17px;color:#8c491a"><path d="m9 18 6-6-6-6"></path></svg></div>
+    <sc-if value="{{ noTherapist }}" hint-placeholder-val="{{ true }}">
+      <div onClick="{{ toTherapist }}" style="display:flex;align-items:center;justify-content:space-between;padding:15px 18px;border-radius:24px;background:#ebddc5;cursor:pointer"><span style="font-size:14px">Terapist ol</span><svg class="lu" viewBox="0 0 24 24" style="width:17px;height:17px;color:#8c491a"><path d="m9 18 6-6-6-6"></path></svg></div>
+    </sc-if>
+    <div onClick="{{ signOut }}" style="padding:15px 18px;font-size:14px;color:#8c491a;cursor:pointer">Çıkış yap</div>
+  </div>
+</div>
+</sc-if>
+
+<sc-if value="{{ profile }}" hint-placeholder-val="{{ false }}">
+<div class="scr" style="position:absolute;inset:0;z-index:20;background:#f5ead8;overflow:auto">
+  <div style="position:relative;height:290px">
+    <div class="ph washed" style="position:absolute;inset:0;border-radius:0 0 40px 40px"><span style="padding-top:118px">therapist portrait</span></div>
+    <div style="position:absolute;left:0;right:0;bottom:0;top:45%;border-radius:0 0 40px 40px;background:linear-gradient(to top,rgba(32,30,29,.78),rgba(32,30,29,0))"></div>
+    <div onClick="{{ closeProfile }}" style="position:absolute;top:62px;left:20px;width:42px;height:42px;border-radius:999px;background:rgba(245,234,216,.94);display:flex;align-items:center;justify-content:center;cursor:pointer"><svg class="lu" viewBox="0 0 24 24" style="width:20px;height:20px"><path d="m15 18-6-6 6-6"></path></svg></div>
+    <div style="position:absolute;left:22px;right:22px;bottom:22px">
+      <h2 style="font-size:29px;color:#f5ead8;margin:0 0 6px">{{ profile.name }}</h2>
+      <div style="font-size:13px;color:rgba(245,234,216,.85)">{{ profile.discText }} · {{ profile.district }}</div>
+    </div>
+  </div>
+
+  <div style="padding:20px 22px 0;display:flex;gap:10px">
+    <div style="flex:1;padding:12px 14px;border-radius:22px;background:#ebddc5"><div style="font-family:Corben,serif;font-weight:700;font-size:19px">{{ profile.rating }}</div><div style="font-size:11px;color:rgba(32,30,29,.55)">{{ profile.visits }} ziyaret</div></div>
+    <div style="flex:1;padding:12px 14px;border-radius:22px;background:#ebddc5"><div style="font-family:Corben,serif;font-weight:700;font-size:19px">{{ profile.years }}</div><div style="font-size:11px;color:rgba(32,30,29,.55)">deneyim</div></div>
+    <div style="flex:1;padding:12px 14px;border-radius:22px;background:#ebddc5"><div style="font-family:Corben,serif;font-weight:700;font-size:19px">{{ profile.price }}</div><div style="font-size:11px;color:rgba(32,30,29,.55)">başlangıç · 60 dk</div></div>
+  </div>
+
+  <div style="padding:22px 22px 0">
+    <h5 style="margin:0 0 10px;font-size:15px">Onaylı belgeler</h5>
+    <div style="display:flex;flex-direction:column;gap:9px">
+      <sc-for list="{{ profile.credentials }}" as="c" hint-placeholder-count="2">
+        <div style="flex:none;display:flex;align-items:center;gap:11px;padding:13px 15px;border-radius:24px;background:#e1eecc">
+          <svg class="lu" viewBox="0 0 24 24" style="width:20px;height:20px;color:#56633f"><circle cx="12" cy="12" r="10"></circle><path d="m9 12 2 2 4-4"></path></svg>
+          <div style="flex:1;min-width:0"><div style="font:600 13px Figtree,sans-serif">{{ c.title }}</div><div style="font-size:11px;color:#56633f">{{ c.meta }}</div></div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+
+  <div style="padding:22px 22px 0">
+    <h5 style="margin:0 0 10px;font-size:15px">Disiplinler</h5>
+    <div style="display:flex;gap:7px;flex-wrap:wrap">
+      <sc-for list="{{ profile.disciplines }}" as="d" hint-placeholder-count="2">
+        <span class="tag tag-neutral" style="padding:7px 14px;font-size:12px">{{ d }}</span>
+      </sc-for>
+    </div>
+  </div>
+
+  <div style="padding:22px 22px 0">
+    <h5 style="margin:0 0 10px;font-size:15px">Son ziyaretler</h5>
+    <div style="padding:15px 17px;border-radius:26px;background:#ebddc5">
+      <div style="display:flex;align-items:center;gap:6px;color:#8c491a;margin-bottom:6px"><svg class="lu" viewBox="0 0 24 24" style="width:14px;height:14px;fill:currentColor;stroke:none"><circle cx="12" cy="12" r="9"></circle></svg><span style="font:600 12px Figtree,sans-serif">{{ profile.rating }} · Selin K.</span></div>
+      <div style="font-size:13px;color:rgba(32,30,29,.7)">{{ profile.review }}</div>
+    </div>
+  </div>
+
+  <div style="height:120px"></div>
+
+  <div style="position:sticky;bottom:0;padding:14px 22px 30px;background:linear-gradient(to top,#f5ead8 62%,rgba(245,234,216,0));display:flex;gap:10px;align-items:center">
+    <div style="flex:1"><div style="font:600 15px Figtree,sans-serif">{{ profile.price }}</div><div style="font-size:11px;color:rgba(32,30,29,.55)">{{ profile.nextLine }}</div></div>
+    <button onClick="{{ startBooking }}" class="btn btn-primary" style="padding:13px 26px;font-size:15px">Randevu iste</button>
+  </div>
+</div>
+</sc-if>
+
+<sc-if value="{{ booking }}" hint-placeholder-val="{{ false }}">
+<div class="scr" style="position:absolute;inset:0;z-index:30;background:#f5ead8;overflow:auto">
+  <div style="display:flex;align-items:center;gap:12px;padding:62px 22px 0">
+    <div onClick="{{ closeBooking }}" style="width:42px;height:42px;border-radius:999px;background:#ebddc5;display:flex;align-items:center;justify-content:center;cursor:pointer"><svg class="lu" viewBox="0 0 24 24" style="width:20px;height:20px"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg></div>
+    <div><div style="font-family:Corben,serif;font-weight:700;font-size:20px">{{ booking.name }}</div><div style="font-size:12px;color:rgba(32,30,29,.55)">{{ booking.discText }}</div></div>
+  </div>
+
+  <div style="padding:24px 22px 0">
+    <h5 style="margin:0 0 10px;font-size:15px">Uygulama</h5>
+    <div class="scr" style="display:flex;gap:8px;overflow-x:auto">
+      <sc-for list="{{ treatments }}" as="t" hint-placeholder-count="2">
+        <span onClick="{{ t.pick }}" style="flex:none;white-space:nowrap;padding:9px 16px;font-size:13px;border-radius:999px;cursor:pointer;background: {{ t.bg }};color: {{ t.fg }}">{{ t.label }}</span>
+      </sc-for>
+    </div>
+  </div>
+
+  <div style="padding:22px 22px 0">
+    <h5 style="margin:0 0 10px;font-size:15px">Süre</h5>
+    <div style="display:flex;gap:8px">
+      <sc-for list="{{ durations }}" as="d" hint-placeholder-count="3">
+        <span onClick="{{ d.pick }}" style="flex:1;text-align:center;padding:11px 0;font-size:13px;border-radius:999px;cursor:pointer;background: {{ d.bg }};color: {{ d.fg }}">{{ d.label }}</span>
+      </sc-for>
+    </div>
+  </div>
+
+  <div style="padding:22px 22px 0">
+    <h5 style="margin:0 0 10px;font-size:15px">Gün</h5>
+    <div class="scr" style="display:flex;gap:9px;overflow-x:auto">
+      <sc-for list="{{ days }}" as="d" hint-placeholder-count="5">
+        <div onClick="{{ d.pick }}" style="flex:none;width:62px;padding:11px 0;text-align:center;border-radius:22px;cursor:pointer;background: {{ d.bg }};color: {{ d.fg }}">
+          <div style="font-size:11px;opacity:.7">{{ d.dow }}</div>
+          <div style="font-family:Corben,serif;font-weight:700;font-size:18px;margin-top:2px">{{ d.num }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+
+  <div style="padding:22px 22px 0">
+    <h5 style="margin:0 0 10px;font-size:15px">Saat</h5>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:9px">
+      <sc-for list="{{ slots }}" as="s" hint-placeholder-count="8">
+        <div onClick="{{ s.pick }}" style="padding:11px 0;text-align:center;font-size:13px;border-radius:999px;cursor:pointer;background: {{ s.bg }};color: {{ s.fg }};opacity: {{ s.opacity }}">{{ s.label }}</div>
+      </sc-for>
+    </div>
+  </div>
+
+  <div style="padding:22px 22px 0">
+    <h5 style="margin:0 0 10px;font-size:15px">Terapiste not</h5>
+    <textarea value="{{ bNote }}" onChange="{{ onBNote }}" rows="3" placeholder="Belim ağrıyor, omuzlarda nazik olun lütfen." style="width:100%;box-sizing:border-box;resize:none;border:0;outline:none;padding:14px 18px;border-radius:26px;background:#ebddc5;font:400 14px Figtree,sans-serif;line-height:1.45;color:#201e1d"></textarea>
+    <div style="font-size:11px;color:rgba(32,30,29,.5);margin-top:6px;padding-left:6px">Yalnızca bu terapist görür.</div>
+  </div>
+
+  <div style="padding:24px 22px 0">
+    <div style="padding:16px 18px;border-radius:28px;background:#e1eecc;display:flex;flex-direction:column;gap:7px">
+      <div style="display:flex;justify-content:space-between;font-size:13px"><span>{{ booking.treatment }} · {{ booking.dur }}</span><span style="font-weight:600">{{ booking.total }}</span></div>
+      <div style="display:flex;justify-content:space-between;font-size:13px"><span style="color:#56633f">{{ booking.whenLine }}</span><span style="color:#56633f">Nakit, seans sonunda</span></div>
+    </div>
+  </div>
+
+  <div style="height:110px"></div>
+
+  <div style="position:sticky;bottom:0;padding:14px 22px 30px;background:linear-gradient(to top,#f5ead8 62%,rgba(245,234,216,0))">
+    <button onClick="{{ sendRequest }}" class="btn btn-primary btn-block" style="padding:15px 0;font-size:15px">İsteği gönder</button>
+    <div style="text-align:center;font-size:11px;color:rgba(32,30,29,.5);margin-top:9px">{{ booking.name }} 2 saat içinde onaylar. Ücreti seans sonunda nakit ödersin.</div>
+  </div>
+</div>
+</sc-if>
+
+<sc-if value="{{ sent }}" hint-placeholder-val="{{ false }}">
+<div style="position:absolute;inset:0;z-index:40;background:#f5ead8;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 34px;text-align:center">
+  <div style="width:96px;height:96px;border-radius:999px;background:#e1eecc;display:flex;align-items:center;justify-content:center;color:#56633f;margin-bottom:22px"><svg class="lu" viewBox="0 0 24 24" style="width:44px;height:44px"><path d="M20 6 9 17l-5-5"></path></svg></div>
+  <h2 style="font-size:28px;margin:0 0 10px">İstek gönderildi</h2>
+  <p style="font-size:14px;color:rgba(32,30,29,.65);margin:0 0 26px">{{ sent.line }}</p>
+  <button onClick="{{ goBookings }}" class="btn btn-primary" style="padding:13px 28px;font-size:15px">Randevularıma git</button>
+</div>
+</sc-if>
+
+<sc-if value="{{ filtersOpen }}" hint-placeholder-val="{{ false }}">
+<div style="position:absolute;inset:0;z-index:50;background:rgba(46,43,37,.5);display:flex;align-items:flex-end">
+  <div style="width:100%;background:#f5ead8;border-radius:34px 34px 0 0;padding:12px 22px 30px;display:flex;flex-direction:column;gap:18px">
+    <div style="width:44px;height:5px;border-radius:999px;background:rgba(32,30,29,.2);align-self:center"></div>
+    <div style="display:flex;align-items:baseline;justify-content:space-between"><h3 style="margin:0;font-size:23px">Filtreler</h3><span onClick="{{ resetFilters }}" style="font-size:13px;color:#8c491a;cursor:pointer">Sıfırla</span></div>
+
+    <div>
+      <h5 style="margin:0 0 10px;font-size:14px">Disiplin</h5>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <sc-for list="{{ chips }}" as="c" hint-placeholder-count="6">
+          <span onClick="{{ c.pick }}" style="padding:9px 16px;font-size:13px;border-radius:999px;cursor:pointer;background: {{ c.bg }};color: {{ c.fg }}">{{ c.label }}</span>
+        </sc-for>
+      </div>
+    </div>
+
+    <div>
+      <h5 style="margin:0 0 10px;font-size:14px">Müsaitlik</h5>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <sc-for list="{{ availOpts }}" as="a" hint-placeholder-count="3">
+          <span onClick="{{ a.pick }}" style="padding:9px 16px;font-size:13px;border-radius:999px;cursor:pointer;background: {{ a.bg }};color: {{ a.fg }}">{{ a.label }}</span>
+        </sc-for>
+      </div>
+    </div>
+
+    <div>
+      <div style="display:flex;justify-content:space-between;align-items:baseline;margin:0 0 10px"><h5 style="margin:0;font-size:14px">60 dk ücreti</h5><span style="font:600 13px Figtree,sans-serif;color:#8c491a">{{ pMinLabel }} – {{ pMaxLabel }}</span></div>
+      <div style="display:flex;flex-direction:column;gap:6px;padding:12px 16px;border-radius:24px;background:#ebddc5">
+        <div style="display:flex;align-items:center;gap:12px"><span style="width:58px;flex:none;font-size:12px;color:rgba(32,30,29,.6)">En az</span><input type="range" min="500" max="1500" step="50" value="{{ pMin }}" onChange="{{ onPMin }}" style="flex:1;accent-color:#c67139"></div>
+        <div style="display:flex;align-items:center;gap:12px"><span style="width:58px;flex:none;font-size:12px;color:rgba(32,30,29,.6)">En fazla</span><input type="range" min="500" max="1500" step="50" value="{{ pMax }}" onChange="{{ onPMax }}" style="flex:1;accent-color:#c67139"></div>
+      </div>
+    </div>
+
+    <div>
+      <h5 style="margin:0 0 10px;font-size:14px">Nerede</h5>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <sc-for list="{{ placeOpts }}" as="p" hint-placeholder-count="3">
+          <span onClick="{{ p.pick }}" style="padding:9px 16px;font-size:13px;border-radius:999px;cursor:pointer;background: {{ p.bg }};color: {{ p.fg }}">{{ p.label }}</span>
+        </sc-for>
+      </div>
+    </div>
+
+    <button onClick="{{ applyFilters }}" class="btn btn-primary btn-block" style="padding:14px 0;font-size:15px">{{ listCount }} göster</button>
+  </div>
+</div>
+</sc-if>
+
+<sc-if value="{{ ob1 }}" hint-placeholder-val="{{ false }}">
+<div class="scr" style="position:absolute;inset:0;z-index:15;background:#f5ead8;overflow:auto">
+  <div style="display:flex;align-items:center;gap:12px;padding:62px 22px 0">
+    <div onClick="{{ obBack }}" style="width:42px;height:42px;border-radius:999px;background:#ebddc5;display:flex;align-items:center;justify-content:center;cursor:pointer"><svg class="lu" viewBox="0 0 24 24" style="width:20px;height:20px"><path d="m15 18-6-6 6-6"></path></svg></div>
+    <div style="font:600 12px Figtree,sans-serif;color:rgba(32,30,29,.55)">{{ obStepLabel }}</div>
+  </div>
+  <div style="padding:22px 22px 0">
+    <h2 style="font-size:28px;margin:0 0 8px">Kendini tanıt</h2>
+    <p style="font-size:14px;color:rgba(32,30,29,.6);margin:0">Profilinin en üstünde görünür. Hepsini sonra değiştirebilirsin.</p>
+  </div>
+  <div style="padding:24px 22px 0;display:flex;align-items:center;gap:16px">
+    <div class="ph" style="width:84px;height:84px;border-radius:999px"><span style="padding-top:34px">add photo</span></div>
+    <div style="flex:1;display:flex;flex-direction:column;gap:9px">
+      <div style="padding:12px 16px;border-radius:999px;background:#ebddc5;font-size:14px">Ayşe Demir</div>
+      <div style="padding:12px 16px;border-radius:999px;background:#ebddc5;font-size:14px;color:rgba(32,30,29,.5)">+90 5•• ••• 41 82</div>
+    </div>
+  </div>
+  <div style="padding:24px 22px 0">
+    <h5 style="margin:0 0 10px;font-size:14px">Çalıştığın semt</h5>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <sc-for list="{{ tDistricts }}" as="d" hint-placeholder-count="4">
+        <span onClick="{{ d.pick }}" style="padding:9px 16px;font-size:13px;border-radius:999px;cursor:pointer;background: {{ d.bg }};color: {{ d.fg }}">{{ d.label }}</span>
+      </sc-for>
+    </div>
+  </div>
+  <div style="padding:24px 22px 0">
+    <h5 style="margin:0 0 10px;font-size:14px">İşini tek cümleyle anlat</h5>
+    <div style="padding:15px 18px;border-radius:26px;background:#ebddc5;font-size:13px;color:rgba(32,30,29,.5)">Sakin bir stüdyoda geleneksel Thai masajı. Yavaş çalışırım, her derin baskıdan önce sorarım.</div>
+  </div>
+  <div style="height:120px"></div>
+  <div style="position:sticky;bottom:0;padding:14px 22px 30px;background:linear-gradient(to top,#f5ead8 62%,rgba(245,234,216,0))">
+    <button onClick="{{ obNext }}" class="btn btn-primary btn-block" style="padding:15px 0;font-size:15px">Devam</button>
+  </div>
+</div>
+</sc-if>
+
+<sc-if value="{{ ob2 }}" hint-placeholder-val="{{ false }}">
+<div class="scr" style="position:absolute;inset:0;z-index:15;background:#f5ead8;overflow:auto">
+  <div style="display:flex;align-items:center;gap:12px;padding:62px 22px 0">
+    <div onClick="{{ obBack }}" style="width:42px;height:42px;border-radius:999px;background:#ebddc5;display:flex;align-items:center;justify-content:center;cursor:pointer"><svg class="lu" viewBox="0 0 24 24" style="width:20px;height:20px"><path d="m15 18-6-6 6-6"></path></svg></div>
+    <div style="font:600 12px Figtree,sans-serif;color:rgba(32,30,29,.55)">{{ obStepLabel }}</div>
+  </div>
+  <div style="padding:22px 22px 0">
+    <h2 style="font-size:28px;margin:0 0 8px">Hangi disiplinlerde çalışıyorsun?</h2>
+    <p style="font-size:14px;color:rgba(32,30,29,.6);margin:0">Müşteriler disipline göre filtreler; gerçekten uyguladığın her birini seç.</p>
+  </div>
+  <div style="padding:24px 22px 0">
+    <h5 style="margin:0 0 10px;font-size:14px">Disiplinler</h5>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <sc-for list="{{ tDiscOpts }}" as="d" hint-placeholder-count="5">
+        <span onClick="{{ d.pick }}" style="padding:9px 16px;font-size:13px;border-radius:999px;cursor:pointer;background: {{ d.bg }};color: {{ d.fg }}">{{ d.label }}</span>
+      </sc-for>
+    </div>
+    <div style="font-size:12px;color:rgba(32,30,29,.5);margin-top:10px">{{ tDiscSummary }}</div>
+  </div>
+  <div style="padding:24px 22px 0">
+    <h5 style="margin:0 0 10px;font-size:14px">60 dk ücreti</h5>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <sc-for list="{{ tPriceOpts }}" as="p" hint-placeholder-count="4">
+        <span onClick="{{ p.pick }}" style="padding:9px 16px;font-size:13px;border-radius:999px;cursor:pointer;background: {{ p.bg }};color: {{ p.fg }}">{{ p.label }}</span>
+      </sc-for>
+      <div style="display:flex;align-items:center;gap:4px;padding:0 6px 0 16px;border-radius:999px;background:#ebddc5;box-sizing:border-box;border:2px solid {{ tPriceRing }}"><span style="font-size:13px;color:rgba(32,30,29,.6)">₺</span><input value="{{ tPriceCustom }}" onChange="{{ onTPrice }}" inputMode="numeric" placeholder="Kendin yaz" style="width:84px;border:0;outline:none;background:transparent;padding:8px 4px;font:600 13px Figtree,sans-serif;color:#201e1d"></div>
+    </div>
+    <div style="font-size:12px;color:rgba(32,30,29,.5);margin-top:10px">90 ve 120 dakikalık seanslar buna göre hesaplanır. Ücreti müşteri sana nakit öder; uygulama komisyon almaz.</div>
+  </div>
+  <div style="padding:24px 22px 0">
+    <h5 style="margin:0 0 10px;font-size:14px">Kaç yıldır çalışıyorsun?</h5>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <sc-for list="{{ tYearOpts }}" as="y" hint-placeholder-count="3">
+        <span onClick="{{ y.pick }}" style="padding:9px 16px;font-size:13px;border-radius:999px;cursor:pointer;background: {{ y.bg }};color: {{ y.fg }}">{{ y.label }}</span>
+      </sc-for>
+    </div>
+  </div>
+  <div style="height:120px"></div>
+  <div style="position:sticky;bottom:0;padding:14px 22px 30px;background:linear-gradient(to top,#f5ead8 62%,rgba(245,234,216,0))">
+    <button onClick="{{ obNext }}" class="btn btn-primary btn-block" style="padding:15px 0;font-size:15px">Devam</button>
+  </div>
+</div>
+</sc-if>
+
+<sc-if value="{{ ob3 }}" hint-placeholder-val="{{ false }}">
+<div class="scr" style="position:absolute;inset:0;z-index:15;background:#f5ead8;overflow:auto">
+  <div style="display:flex;align-items:center;gap:12px;padding:62px 22px 0">
+    <div onClick="{{ obBack }}" style="width:42px;height:42px;border-radius:999px;background:#ebddc5;display:flex;align-items:center;justify-content:center;cursor:pointer"><svg class="lu" viewBox="0 0 24 24" style="width:20px;height:20px"><path d="m15 18-6-6 6-6"></path></svg></div>
+    <div style="font:600 12px Figtree,sans-serif;color:rgba(32,30,29,.55)">{{ obStepLabel }}</div>
+  </div>
+  <div style="padding:22px 22px 0">
+    <h2 style="font-size:28px;margin:0 0 8px">Nerede ve kime</h2>
+    <p style="font-size:14px;color:rgba(32,30,29,.6);margin:0">Seni kimin görüp isteyebileceğine sen karar verirsin. Bunu uygulama uygular, reddetmek sana kalmaz.</p>
+  </div>
+  <div style="padding:24px 22px 0">
+    <h5 style="margin:0 0 10px;font-size:14px">Hizmet yeri</h5>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <sc-for list="{{ tAreaOpts }}" as="a" hint-placeholder-count="3">
+        <span onClick="{{ a.pick }}" style="padding:9px 16px;font-size:13px;border-radius:999px;cursor:pointer;background: {{ a.bg }};color: {{ a.fg }}">{{ a.label }}</span>
+      </sc-for>
+    </div>
+  </div>
+  <div style="padding:24px 22px 0">
+    <h5 style="margin:0 0 10px;font-size:14px">Ev ziyaretleri için mesafe</h5>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <sc-for list="{{ tRadiusOpts }}" as="r" hint-placeholder-count="3">
+        <span onClick="{{ r.pick }}" style="padding:9px 16px;font-size:13px;border-radius:999px;cursor:pointer;background: {{ r.bg }};color: {{ r.fg }}">{{ r.label }}</span>
+      </sc-for>
+    </div>
+  </div>
+  <div style="padding:24px 22px 0">
+    <h5 style="margin:0 0 10px;font-size:14px">Kabul ettiğin müşteriler</h5>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <sc-for list="{{ tGenderOpts }}" as="g" hint-placeholder-count="3">
+        <span onClick="{{ g.pick }}" style="padding:9px 16px;font-size:13px;border-radius:999px;cursor:pointer;background: {{ g.bg }};color: {{ g.fg }}">{{ g.label }}</span>
+      </sc-for>
+    </div>
+    <div style="margin-top:12px;padding:14px 16px;border-radius:24px;background:#e1eecc;font-size:12px;color:#3d472b">{{ tGenderNote }}</div>
+  </div>
+  <div style="height:120px"></div>
+  <div style="position:sticky;bottom:0;padding:14px 22px 30px;background:linear-gradient(to top,#f5ead8 62%,rgba(245,234,216,0))">
+    <button onClick="{{ obNext }}" class="btn btn-primary btn-block" style="padding:15px 0;font-size:15px">Sertifikalara geç</button>
+  </div>
+</div>
+</sc-if>
+
+<sc-if value="{{ tRequestsTab }}" hint-placeholder-val="{{ false }}">
+<div style="height:100%;display:flex;flex-direction:column">
+  <div style="padding:70px 22px 0">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:10px"><h2 style="font-size:30px;margin:0">İstekler</h2><div onClick="{{ toClient }}" style="display:flex;align-items:center;gap:7px;padding:9px 14px;border-radius:999px;background:#ebddc5;font:600 12px Figtree,sans-serif;color:#8c491a;cursor:pointer"><svg class="lu" viewBox="0 0 24 24" style="width:15px;height:15px"><path d="m16 3 4 4-4 4"></path><path d="M20 7H4"></path><path d="m8 21-4-4 4-4"></path><path d="M4 17h16"></path></svg>Müşteri moduna geç<sc-if value="{{ cBadge }}" hint-placeholder-val="{{ false }}"><span style="min-width:17px;height:17px;padding:0 5px;box-sizing:border-box;border-radius:999px;background:#c67139;color:#f5ead8;font:600 10px Figtree,sans-serif;display:flex;align-items:center;justify-content:center">{{ cBadge }}</span></sc-if></div></div>
+    <div style="font-size:13px;color:rgba(32,30,29,.55);margin-top:4px">{{ inboxHeading }} · 2 saat içinde yanıtla</div>
+  </div>
+  <div class="scr" style="flex:1;min-height:0;overflow:auto;padding:16px 22px 120px;display:flex;flex-direction:column;gap:12px">
+    <sc-if value="{{ inboxEmpty }}" hint-placeholder-val="{{ false }}">
+      <div style="padding:34px 24px;border-radius:30px;background:#ebddc5;text-align:center">
+        <div style="width:66px;height:66px;border-radius:999px;background:#f5ead8;color:#8c491a;display:flex;align-items:center;justify-content:center;margin:0 auto 14px"><svg class="lu" viewBox="0 0 24 24" style="width:28px;height:28px"><path d="M12 20a8 8 0 1 0-6.9-3.95L4 21l4.95-1.1A8 8 0 0 0 12 20"></path></svg></div>
+        <h3 style="margin:0 0 6px;font-size:20px">Şu an istek yok</h3>
+        <p style="margin:0;font-size:13px;color:rgba(32,30,29,.6)">{{ inboxEmptyHint }}</p>
+      </div>
+    </sc-if>
+    <sc-for list="{{ inbox }}" as="q" hint-placeholder-count="3">
+      <div style="flex:none;padding:16px;border-radius:28px;background:#ebddc5;display:flex;flex-direction:column;gap:9px">
+        <div style="display:flex;align-items:center;gap:12px">
+          <div class="ph washed" style="width:48px;height:48px;border-radius:999px;flex:none"><span>face</span></div>
+          <div style="flex:1;min-width:0">
+            <div style="font-family:Corben,serif;font-weight:700;font-size:17px">{{ q.name }}</div>
+            <div style="font-size:12px;color:rgba(32,30,29,.6)">{{ q.treatment }} · {{ q.dur }} · {{ q.price }}</div>
+          </div>
+          <span style="display:inline-flex;padding:4px 11px;border-radius:999px;font-size:11px;background: {{ q.tagBg }};color: {{ q.tagFg }}">{{ q.status }}</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:7px;font:600 13px Figtree,sans-serif"><svg class="lu" viewBox="0 0 24 24" style="width:15px;height:15px;color:#8c491a"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>{{ q.when }}</div>
+        <div style="padding:12px 14px;border-radius:20px;background:#f5ead8;font-size:13px;color:rgba(32,30,29,.75)">{{ q.note }}</div>
+        <sc-if value="{{ q.isNew }}" hint-placeholder-val="{{ true }}">
+          <div style="display:flex;gap:8px;align-items:center">
+            <button onClick="{{ q.accept }}" class="btn btn-primary" style="flex:1;padding:11px 0">Kabul et</button>
+            <button onClick="{{ q.propose }}" class="btn btn-secondary" style="flex:1;padding:11px 0">Başka saat</button>
+            <button onClick="{{ q.decline }}" class="btn btn-secondary" style="padding:11px 16px">Reddet</button>
+          </div>
+        </sc-if>
+        <sc-if value="{{ q.isToday }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex;flex-direction:column;gap:7px">
+            <button onClick="{{ q.finish }}" class="btn btn-primary btn-block" style="padding:12px 0">Seans bitti</button>
+            <div style="font-size:11px;color:rgba(32,30,29,.5);text-align:center">Unutursan bitiş saatinden 3 saat sonra biz bitmiş sayarız.</div>
+          </div>
+        </sc-if>
+        <sc-if value="{{ q.isAccepted }}" hint-placeholder-val="{{ false }}">
+          <div onClick="{{ q.openChat }}" style="display:flex;align-items:center;gap:9px;padding:12px 16px;border-radius:22px;background:#f5ead8;cursor:pointer">
+            <svg class="lu" viewBox="0 0 24 24" style="width:17px;height:17px;color:#8c491a"><path d="M12 20a8 8 0 1 0-6.9-3.95L4 21l4.95-1.1A8 8 0 0 0 12 20"></path></svg>
+            <div style="flex:1;min-width:0"><div style="font:600 13px Figtree,sans-serif">{{ q.chatLabel }}</div><div style="font-size:12px;color:rgba(32,30,29,.55);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ q.chatPreview }}</div></div>
+            <svg class="lu" viewBox="0 0 24 24" style="width:16px;height:16px;color:rgba(32,30,29,.4)"><path d="m9 18 6-6-6-6"></path></svg>
+          </div>
+        </sc-if>
+      </div>
+    </sc-for>
+  </div>
+</div>
+</sc-if>
+
+<sc-if value="{{ tCertsTab }}" hint-placeholder-val="{{ false }}">
+<div style="height:100%;display:flex;flex-direction:column">
+  <div style="padding:70px 22px 0"><h2 style="font-size:30px;margin:0">Sertifikalar</h2></div>
+  <div class="scr" style="flex:1;min-height:0;overflow:auto;padding:16px 22px 120px;display:flex;flex-direction:column;gap:12px">
+    <div style="flex:none;padding:16px 18px;border-radius:28px;display:flex;flex-direction:column;gap:5px;background: {{ liveBg }};color: {{ liveFg }}">
+      <div style="font:600 14px Figtree,sans-serif">{{ liveBanner }}</div>
+      <div style="font-size:12px">{{ liveNote }}</div>
+    </div>
+    <sc-for list="{{ certs }}" as="c" hint-placeholder-count="3">
+      <div style="flex:none;display:flex;gap:13px;padding:15px;border-radius:28px;background:#ebddc5">
+        <div class="ph" style="width:52px;height:66px;border-radius:12px;flex:none"><span>doc</span></div>
+        <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:5px">
+          <div style="font:600 14px Figtree,sans-serif">{{ c.title }}</div>
+          <div style="font-size:12px;color:rgba(32,30,29,.6)">{{ c.school }} · {{ c.issued }}</div>
+          <div><span style="display:inline-flex;padding:4px 11px;border-radius:999px;font-size:11px;background: {{ c.tagBg }};color: {{ c.tagFg }}">{{ c.status }}</span></div>
+          <div style="font-size:12px;color:rgba(32,30,29,.55)">{{ c.note }}</div>
+          <sc-if value="{{ c.rejected }}" hint-placeholder-val="{{ false }}">
+            <button onClick="{{ c.reupload }}" class="btn btn-primary" style="align-self:flex-start;padding:9px 16px;margin-top:3px">Yeniden yükle</button>
+          </sc-if>
+        </div>
+      </div>
+    </sc-for>
+    <button onClick="{{ openUpload }}" class="btn btn-primary btn-block" style="padding:14px 0;font-size:15px">Sertifika ekle</button>
+    <div onClick="{{ experienceReview }}" style="text-align:center;font-size:13px;color:#8c491a;padding:6px 0;cursor:pointer">Sertifikan yok mu? Deneyimine göre inceleme iste</div>
+  </div>
+</div>
+</sc-if>
+
+<sc-if value="{{ tProfileTab }}" hint-placeholder-val="{{ false }}">
+<div class="scr" style="height:100%;overflow:auto">
+  <div style="padding:70px 22px 0;display:flex;align-items:center;gap:14px">
+    <div class="ph" style="width:66px;height:66px;border-radius:999px"><span>face</span></div>
+    <div><h2 style="font-size:26px;margin:0">Ayşe Demir</h2><div style="font-size:13px;color:rgba(32,30,29,.55)">{{ tDistrict }}, Ankara</div></div>
+  </div>
+  <div style="margin:20px 22px 0;padding:5px;border-radius:999px;background:#ebddc5;display:flex;gap:4px">
+    <div onClick="{{ toClient }}" style="flex:1;display:flex;align-items:center;justify-content:center;gap:7px;padding:11px 0;border-radius:999px;font:600 13px Figtree,sans-serif;color:rgba(32,30,29,.6);cursor:pointer">Müşteri<sc-if value="{{ cBadge }}" hint-placeholder-val="{{ false }}"><span style="min-width:18px;height:18px;padding:0 5px;box-sizing:border-box;border-radius:999px;background:#c67139;color:#f5ead8;font:600 11px Figtree,sans-serif;display:flex;align-items:center;justify-content:center">{{ cBadge }}</span></sc-if></div>
+    <div style="flex:1;text-align:center;padding:11px 0;border-radius:999px;font:600 13px Figtree,sans-serif;background:#c67139;color:#f5ead8">Terapist</div>
+  </div>
+  <div style="padding:22px 22px 0;display:flex;flex-direction:column;gap:10px">
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:15px 18px;border-radius:24px;background:#ebddc5"><span style="font-size:14px">Disiplinler</span><span style="font-size:13px;color:rgba(32,30,29,.5)">{{ tDiscSummary }}</span></div>
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:15px 18px;border-radius:24px;background:#ebddc5"><span style="font-size:14px">Ücret · 60 dk</span><span style="font-size:13px;color:rgba(32,30,29,.5)">{{ tPrice }}</span></div>
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:15px 18px;border-radius:24px;background:#ebddc5"><span style="font-size:14px">Hizmet yeri</span><span style="font-size:13px;color:rgba(32,30,29,.5)">{{ tArea }} · {{ tRadius }}</span></div>
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:15px 18px;border-radius:24px;background:#ebddc5"><span style="font-size:14px">Kabul edilen müşteriler</span><span style="font-size:13px;color:rgba(32,30,29,.5)">{{ tGender }}</span></div>
+    <div onClick="{{ openAvail }}" style="display:flex;align-items:center;justify-content:space-between;gap:10px;padding:15px 18px;border-radius:24px;background:#ebddc5;cursor:pointer"><span style="font-size:14px">Çalışma saatleri</span><span style="display:flex;align-items:center;gap:6px;font-size:13px;color:rgba(32,30,29,.5)">{{ availSummary }}<svg class="lu" viewBox="0 0 24 24" style="width:17px;height:17px;color:#8c491a"><path d="m9 18 6-6-6-6"></path></svg></span></div>
+  </div>
+  <div style="height:130px"></div>
+</div>
+</sc-if>
+
+<sc-if value="{{ uploadPick }}" hint-placeholder-val="{{ false }}">
+<div style="position:absolute;inset:0;z-index:35;background:#f5ead8;display:flex;flex-direction:column">
+  <div style="display:flex;align-items:center;gap:12px;padding:62px 22px 0">
+    <div onClick="{{ closeUpload }}" style="width:42px;height:42px;border-radius:999px;background:#ebddc5;display:flex;align-items:center;justify-content:center;cursor:pointer"><svg class="lu" viewBox="0 0 24 24" style="width:20px;height:20px"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg></div>
+    <div style="font:600 12px Figtree,sans-serif;color:rgba(32,30,29,.55)">Yeni sertifika</div>
+  </div>
+  <div style="padding:22px 22px 0">
+    <h2 style="font-size:28px;margin:0 0 8px">Belgeyi göster</h2>
+    <p style="font-size:14px;color:rgba(32,30,29,.6);margin:0">Düz bir yere koy, mühür ve tarih kadrajda olsun. Bilgileri fotoğraftan okuruz, sonraki ekranda sen kontrol edersin.</p>
+  </div>
+  <div style="padding:26px 22px 0;display:flex;flex-direction:column;gap:12px">
+    <div onClick="{{ scan }}" style="display:flex;align-items:center;gap:14px;padding:20px;border-radius:30px;background:#c67139;color:#f5ead8;cursor:pointer">
+      <svg class="lu" viewBox="0 0 24 24" style="width:26px;height:26px"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3z"></path><circle cx="12" cy="13" r="3"></circle></svg>
+      <div><div style="font:600 15px Figtree,sans-serif">Fotoğraf çek</div><div style="font-size:12px;opacity:.85">Kamera belge çerçevesiyle açılır</div></div>
+    </div>
+    <div onClick="{{ scan }}" style="display:flex;align-items:center;gap:14px;padding:20px;border-radius:30px;background:#ebddc5;cursor:pointer">
+      <svg class="lu" viewBox="0 0 24 24" style="width:26px;height:26px;color:#8c491a"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7z"></path><path d="M14 2v4a2 2 0 0 0 2 2h4"></path></svg>
+      <div><div style="font:600 15px Figtree,sans-serif">Dosya seç</div><div style="font-size:12px;color:rgba(32,30,29,.55)">PDF ya da görsel, en fazla 10 MB</div></div>
+    </div>
+  </div>
+  <div style="flex:1"></div>
+  <div style="padding:0 22px 34px">
+    <div style="padding:15px 17px;border-radius:26px;background:#e1eecc;font-size:12px;color:#3d472b">Belgeleri yalnızca yöneticiler görür. Müşterilere gösterilmez; profilinde sadece belgenin adı ve onay tarihi yer alır.</div>
+  </div>
+</div>
+</sc-if>
+
+<sc-if value="{{ uploadExtracted }}" hint-placeholder-val="{{ false }}">
+<div class="scr" style="position:absolute;inset:0;z-index:35;background:#f5ead8;overflow:auto">
+  <div style="display:flex;align-items:center;gap:12px;padding:62px 22px 0">
+    <div onClick="{{ closeUpload }}" style="width:42px;height:42px;border-radius:999px;background:#ebddc5;display:flex;align-items:center;justify-content:center;cursor:pointer"><svg class="lu" viewBox="0 0 24 24" style="width:20px;height:20px"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg></div>
+    <div style="font:600 12px Figtree,sans-serif;color:rgba(32,30,29,.55)">Bilgileri kontrol et</div>
+  </div>
+  <div style="padding:20px 22px 0;display:flex;gap:14px;align-items:flex-start">
+    <div class="ph washed" style="width:104px;height:138px;border-radius:18px;flex:none"><span>scan</span></div>
+    <div style="flex:1;padding:13px 15px;border-radius:24px;background:#e1eecc;font-size:12px;color:#3d472b">Belgeden okundu. Göndermeden önce yanlış olanı düzelt; yöneticiler bu alanları taramayla karşılaştırır.</div>
+  </div>
+  <div style="padding:22px 22px 0;display:flex;flex-direction:column;gap:12px">
+    <div><div style="font-size:12px;color:rgba(32,30,29,.6);margin-bottom:6px">Belge</div><div style="padding:13px 17px;border-radius:999px;background:#ebddc5;font-size:14px">ITM Chiang Mai, Level 4</div></div>
+    <div><div style="font-size:12px;color:rgba(32,30,29,.6);margin-bottom:6px">Veren okul</div><div style="padding:13px 17px;border-radius:999px;background:#ebddc5;font-size:14px">International Training Massage School</div></div>
+    <div><div style="font-size:12px;color:rgba(32,30,29,.6);margin-bottom:6px">Veriliş</div><div style="padding:13px 17px;border-radius:999px;background:#ebddc5;font-size:14px">2022</div></div>
+    <div><div style="font-size:12px;color:rgba(32,30,29,.6);margin-bottom:6px">Sertifika numarası</div><div style="padding:13px 17px;border-radius:999px;background:#ebddc5;font-size:14px;color:rgba(32,30,29,.5)">Bulunamadı. Belgede varsa ekle</div></div>
+  </div>
+  <div style="height:120px"></div>
+  <div style="position:sticky;bottom:0;padding:14px 22px 30px;background:linear-gradient(to top,#f5ead8 62%,rgba(245,234,216,0))">
+    <button onClick="{{ submitCert }}" class="btn btn-primary btn-block" style="padding:15px 0;font-size:15px">İncelemeye gönder</button>
+    <div style="text-align:center;font-size:11px;color:rgba(32,30,29,.5);margin-top:9px">Yöneticiler genellikle 3 gün içinde yanıt verir. Bir sertifika onaylanana kadar profilin gizli kalır.</div>
+  </div>
+</div>
+</sc-if>
+
+<sc-if value="{{ errorBanner }}" hint-placeholder-val="{{ false }}">
+<div style="position:absolute;left:14px;right:14px;bottom:104px;z-index:44;display:flex;align-items:center;gap:11px;padding:13px 16px;border-radius:24px;background:#8c491a;color:#f5ead8;box-shadow:0 8px 22px rgba(46,43,37,.3)">
+  <svg class="lu" viewBox="0 0 24 24" style="width:19px;height:19px;flex:none"><path d="M12 9v4"></path><path d="M12 17h.01"></path><circle cx="12" cy="12" r="9"></circle></svg>
+  <div style="flex:1;min-width:0">
+    <div style="font:600 13px Figtree,sans-serif">{{ errorBanner.title }}</div>
+    <div style="font-size:12px;opacity:.85">{{ errorBanner.body }}</div>
+  </div>
+  <span onClick="{{ retry }}" style="flex:none;padding:7px 14px;border-radius:999px;background:rgba(245,234,216,.2);font:600 12px Figtree,sans-serif;cursor:pointer">Tekrar dene</span>
+</div>
+</sc-if>
+
+<sc-if value="{{ isAdmin }}" hint-placeholder-val="{{ false }}">
+<div style="height:100%;display:flex;flex-direction:column;background:#f5ead8">
+  <div style="flex:none;padding:62px 22px 0">
+    <div style="display:flex;align-items:center;gap:12px">
+      <div onClick="{{ adminExit }}" style="width:40px;height:40px;border-radius:999px;background:#ebddc5;display:flex;align-items:center;justify-content:center;cursor:pointer;flex:none"><svg class="lu" viewBox="0 0 24 24" style="width:19px;height:19px"><path d="m15 18-6-6 6-6"></path></svg></div>
+      <div style="flex:1;min-width:0"><h2 style="font-size:26px;margin:0">İnceleme sırası</h2><div style="font-size:12px;color:rgba(32,30,29,.55)">Nuad Ankara · dahili</div></div>
+    </div>
+    <div style="margin-top:16px;padding:5px;border-radius:999px;background:#ebddc5;display:flex;gap:4px">
+      <div onClick="{{ adminToCerts }}" style="flex:1;display:flex;align-items:center;justify-content:center;gap:7px;padding:11px 0;border-radius:999px;font:600 13px Figtree,sans-serif;cursor:pointer;background: {{ certTabBg }};color: {{ certTabFg }}">Sertifikalar<span style="min-width:18px;height:18px;padding:0 5px;box-sizing:border-box;border-radius:999px;font:600 11px Figtree,sans-serif;display:flex;align-items:center;justify-content:center;background: {{ certPipBg }};color: {{ certPipFg }}">{{ certPending }}</span></div>
+      <div onClick="{{ adminToReports }}" style="flex:1;display:flex;align-items:center;justify-content:center;gap:7px;padding:11px 0;border-radius:999px;font:600 13px Figtree,sans-serif;cursor:pointer;background: {{ repTabBg }};color: {{ repTabFg }}">Hesaplar<span style="min-width:18px;height:18px;padding:0 5px;box-sizing:border-box;border-radius:999px;font:600 11px Figtree,sans-serif;display:flex;align-items:center;justify-content:center;background: {{ repPipBg }};color: {{ repPipFg }}">{{ repPending }}</span></div>
+      <div onClick="{{ adminToStates }}" style="flex:1;text-align:center;padding:11px 0;border-radius:999px;font:600 13px Figtree,sans-serif;cursor:pointer;background: {{ stTabBg }};color: {{ stTabFg }}">Durumlar</div>
+    </div>
+  </div>
+
+  <sc-if value="{{ adminCerts }}" hint-placeholder-val="{{ true }}">
+  <div class="scr" style="flex:1;min-height:0;overflow:auto;padding:16px 22px 30px;display:flex;flex-direction:column;gap:12px">
+    <sc-for list="{{ queue }}" as="c" hint-placeholder-count="3">
+      <div style="flex:none;padding:16px;border-radius:28px;background:#ebddc5;display:flex;flex-direction:column;gap:11px">
+        <div style="display:flex;align-items:center;gap:12px">
+          <div class="ph washed" style="width:44px;height:44px;border-radius:999px;flex:none"><span>face</span></div>
+          <div style="flex:1;min-width:0">
+            <div style="font-family:Corben,serif;font-weight:700;font-size:17px">{{ c.person }}</div>
+            <div style="font-size:12px;color:rgba(32,30,29,.6)">{{ c.submitted }} · {{ c.district }}</div>
+          </div>
+          <span style="display:inline-flex;padding:4px 11px;border-radius:999px;font-size:11px;background: {{ c.tagBg }};color: {{ c.tagFg }}">{{ c.status }}</span>
+        </div>
+        <div class="ph washed" style="height:130px;border-radius:22px"><span>certificate scan</span></div>
+        <div style="display:flex;flex-direction:column;gap:7px">
+          <sc-for list="{{ c.fields }}" as="f" hint-placeholder-count="3">
+            <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding:11px 15px;border-radius:20px;background:#f5ead8">
+              <span style="font-size:12px;color:rgba(32,30,29,.55);flex:none">{{ f.k }}</span>
+              <span style="font:600 13px Figtree,sans-serif;text-align:right">{{ f.v }}</span>
+            </div>
+          </sc-for>
+        </div>
+        <sc-if value="{{ c.flag }}" hint-placeholder-val="{{ false }}">
+          <div style="padding:12px 15px;border-radius:20px;background:#ffe1d0;color:#8c491a;font-size:12px">{{ c.flag }}</div>
+        </sc-if>
+        <sc-if value="{{ c.pending }}" hint-placeholder-val="{{ true }}">
+          <div style="display:flex;gap:8px">
+            <button onClick="{{ c.approve }}" class="btn btn-primary" style="flex:1;padding:11px 0">Onayla</button>
+            <button onClick="{{ c.reject }}" class="btn btn-secondary" style="flex:1;padding:11px 0">Reddet</button>
+          </div>
+          <div style="font-size:11px;color:rgba(32,30,29,.5);text-align:center">{{ c.effect }}</div>
+        </sc-if>
+        <sc-if value="{{ c.settled }}" hint-placeholder-val="{{ false }}">
+          <div style="font-size:12px;color:rgba(32,30,29,.55)">{{ c.settled }}</div>
+        </sc-if>
+      </div>
+    </sc-for>
+    <sc-if value="{{ queueEmpty }}" hint-placeholder-val="{{ false }}">
+      <div style="padding:40px 20px;text-align:center">
+        <div style="width:72px;height:72px;border-radius:999px;background:#e1eecc;color:#56633f;display:flex;align-items:center;justify-content:center;margin:0 auto 16px"><svg class="lu" viewBox="0 0 24 24" style="width:32px;height:32px"><path d="M20 6 9 17l-5-5"></path></svg></div>
+        <h3 style="margin:0 0 6px;font-size:20px">Sıra boş</h3>
+        <p style="margin:0;font-size:13px;color:rgba(32,30,29,.55)">Yeni sertifikalar yüklendikten birkaç dakika sonra buraya düşer.</p>
+      </div>
+    </sc-if>
+  </div>
+  </sc-if>
+
+  <sc-if value="{{ adminStates }}" hint-placeholder-val="{{ false }}">
+  <div class="scr" style="flex:1;min-height:0;overflow:auto;padding:16px 22px 30px;display:flex;flex-direction:column;gap:10px">
+    <div style="padding:14px 16px;border-radius:24px;background:#e1eecc;font-size:12px;color:#3d472b">Yalnızca prototip. Birini aç, panelden çık; akış o durumu gösterir.</div>
+    <sc-for list="{{ toggles }}" as="t" hint-placeholder-count="5">
+      <div onClick="{{ t.flip }}" style="display:flex;align-items:center;gap:13px;padding:15px 17px;border-radius:26px;background:#ebddc5;cursor:pointer">
+        <div style="flex:1;min-width:0">
+          <div style="font:600 14px Figtree,sans-serif">{{ t.label }}</div>
+          <div style="font-size:12px;color:rgba(32,30,29,.55)">{{ t.note }}</div>
+        </div>
+        <div style="width:46px;height:27px;border-radius:999px;flex:none;padding:3px;box-sizing:border-box;display:flex;justify-content: {{ t.justify }};background: {{ t.track }}">
+          <div style="width:21px;height:21px;border-radius:999px;background:#f5ead8"></div>
+        </div>
+      </div>
+    </sc-for>
+  </div>
+  </sc-if>
+
+  <sc-if value="{{ adminReports }}" hint-placeholder-val="{{ false }}">
+  <div class="scr" style="flex:1;min-height:0;overflow:auto;padding:16px 22px 30px;display:flex;flex-direction:column;gap:12px">
+    <sc-for list="{{ reports }}" as="r" hint-placeholder-count="2">
+      <div style="flex:none;padding:16px;border-radius:28px;background:#ebddc5;display:flex;flex-direction:column;gap:11px">
+        <div style="display:flex;align-items:center;gap:12px">
+          <div class="ph washed" style="width:44px;height:44px;border-radius:999px;flex:none"><span>face</span></div>
+          <div style="flex:1;min-width:0">
+            <div style="font-family:Corben,serif;font-weight:700;font-size:17px">{{ r.account }}</div>
+            <div style="font-size:12px;color:rgba(32,30,29,.6)">{{ r.meta }}</div>
+          </div>
+          <span style="display:inline-flex;padding:4px 11px;border-radius:999px;font-size:11px;background: {{ r.tagBg }};color: {{ r.tagFg }}">{{ r.status }}</span>
+        </div>
+        <div style="padding:12px 15px;border-radius:20px;background:#ffe1d0;color:#8c491a;font-size:12px">Bildiren: {{ r.by }} · {{ r.reason }}</div>
+        <div style="display:flex;flex-direction:column;gap:6px;padding:13px 15px;border-radius:20px;background:#f5ead8">
+          <div style="font:600 11px Figtree,sans-serif;color:rgba(32,30,29,.5);letter-spacing:.06em;text-transform:uppercase">Sohbetten</div>
+          <sc-for list="{{ r.excerpt }}" as="m" hint-placeholder-count="2">
+            <div style="font-size:13px;color:rgba(32,30,29,.8)">{{ m.line }}</div>
+          </sc-for>
+        </div>
+        <sc-if value="{{ r.pending }}" hint-placeholder-val="{{ true }}">
+          <div style="display:flex;gap:8px">
+            <button onClick="{{ r.suspend }}" class="btn btn-primary" style="flex:1;padding:11px 0">Askıya al</button>
+            <button onClick="{{ r.warn }}" class="btn btn-secondary" style="flex:1;padding:11px 0">Uyar</button>
+            <button onClick="{{ r.dismiss }}" class="btn btn-secondary" style="padding:11px 14px">Kapat</button>
+          </div>
+          <div style="font-size:11px;color:rgba(32,30,29,.5);text-align:center">{{ r.effect }}</div>
+        </sc-if>
+        <sc-if value="{{ r.settled }}" hint-placeholder-val="{{ false }}">
+          <div style="font-size:12px;color:rgba(32,30,29,.55)">{{ r.settled }}</div>
+        </sc-if>
+      </div>
+    </sc-for>
+    <sc-if value="{{ reportsEmpty }}" hint-placeholder-val="{{ false }}">
+      <div style="padding:40px 20px;text-align:center">
+        <div style="width:72px;height:72px;border-radius:999px;background:#e1eecc;color:#56633f;display:flex;align-items:center;justify-content:center;margin:0 auto 16px"><svg class="lu" viewBox="0 0 24 24" style="width:32px;height:32px"><path d="M20 6 9 17l-5-5"></path></svg></div>
+        <h3 style="margin:0 0 6px;font-size:20px">İncelenecek bir şey yok</h3>
+        <p style="margin:0;font-size:13px;color:rgba(32,30,29,.55)">Sohbetten gelen bildirimler tüm yazışmayla birlikte buraya düşer.</p>
+      </div>
+    </sc-if>
+  </div>
+  </sc-if>
+</div>
+</sc-if>
+
+<sc-if value="{{ detail }}" hint-placeholder-val="{{ false }}">
+<div class="scr" style="position:absolute;inset:0;z-index:25;background:#f5ead8;overflow:auto">
+  <div style="display:flex;align-items:center;gap:12px;padding:62px 22px 0">
+    <div onClick="{{ closeDetail }}" style="width:42px;height:42px;border-radius:999px;background:#ebddc5;display:flex;align-items:center;justify-content:center;cursor:pointer"><svg class="lu" viewBox="0 0 24 24" style="width:20px;height:20px"><path d="m15 18-6-6 6-6"></path></svg></div>
+    <div style="font:600 12px Figtree,sans-serif;color:rgba(32,30,29,.55)">Randevu</div>
+  </div>
+
+  <div style="padding:18px 22px 0;display:flex;align-items:center;gap:14px">
+    <div class="ph washed" style="width:62px;height:62px;border-radius:999px;flex:none"><span>face</span></div>
+    <div style="flex:1;min-width:0">
+      <h2 style="font-size:24px;margin:0">{{ detail.name }}</h2>
+      <div style="font-size:13px;color:rgba(32,30,29,.55)">{{ detail.disc }} · {{ detail.district }}</div>
+    </div>
+  </div>
+
+  <div style="padding:20px 22px 0;display:flex;flex-direction:column;gap:10px">
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:15px 18px;border-radius:24px;background:#ebddc5"><span style="font-size:14px">Ne zaman</span><span style="font:600 13px Figtree,sans-serif">{{ detail.when }}</span></div>
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:15px 18px;border-radius:24px;background:#ebddc5"><span style="font-size:14px">Seans</span><span style="font-size:13px;color:rgba(32,30,29,.6)">{{ detail.dur }} · {{ detail.place }}</span></div>
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:15px 18px;border-radius:24px;background:#ebddc5"><span style="font-size:14px">Ücret</span><span style="font:600 13px Figtree,sans-serif">{{ detail.price }}</span></div>
+  </div>
+
+  <div style="padding:24px 22px 0">
+    <h5 style="margin:0 0 14px;font-size:15px">{{ detail.stateHeading }}</h5>
+    <div style="display:flex;flex-direction:column">
+      <sc-for list="{{ detail.steps }}" as="st" hint-placeholder-count="4">
+        <div style="display:flex;gap:13px;align-items:stretch">
+          <div style="display:flex;flex-direction:column;align-items:center;width:18px;flex:none">
+            <div style="width:14px;height:14px;border-radius:999px;flex:none;margin-top:3px;background: {{ st.dot }};border:2px solid {{ st.ring }}"></div>
+            <div style="flex:1;width:2px;background: {{ st.line }}"></div>
+          </div>
+          <div style="padding-bottom:18px">
+            <div style="font:600 13px Figtree,sans-serif;color: {{ st.fg }}">{{ st.label }}</div>
+            <div style="font-size:12px;color:rgba(32,30,29,.5)">{{ st.note }}</div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+
+  <sc-if value="{{ detail.myReview }}" hint-placeholder-val="{{ false }}">
+    <div style="margin:4px 22px 0;padding:15px 17px;border-radius:26px;background:#e1eecc;color:#3d472b">
+      <div style="font:600 13px Figtree,sans-serif">Değerlendirmen · {{ detail.starText }}</div>
+      <div style="font-size:13px;margin-top:4px">{{ detail.myReview }}</div>
+    </div>
+  </sc-if>
+
+  <div style="padding:22px 22px 34px;display:flex;flex-direction:column;gap:10px">
+    <sc-if value="{{ detail.canReview }}" hint-placeholder-val="{{ false }}">
+      <button onClick="{{ detail.review }}" class="btn btn-primary btn-block" style="padding:15px 0;font-size:15px">Değerlendir</button>
+    </sc-if>
+    <sc-if value="{{ detail.canChat }}" hint-placeholder-val="{{ false }}">
+      <button onClick="{{ detail.openChat }}" class="btn btn-secondary btn-block" style="padding:14px 0;font-size:15px">{{ detail.first }} ile yazış</button>
+    </sc-if>
+    <sc-if value="{{ detail.canCancel }}" hint-placeholder-val="{{ false }}">
+      <div onClick="{{ detail.cancel }}" style="text-align:center;font-size:13px;color:#8c491a;padding:8px 0;cursor:pointer">Randevuyu iptal et</div>
+    </sc-if>
+    <sc-if value="{{ detail.canRebook }}" hint-placeholder-val="{{ false }}">
+      <button onClick="{{ detail.rebook }}" class="btn btn-secondary btn-block" style="padding:14px 0;font-size:15px">{{ detail.first }} ile tekrar randevu al</button>
+    </sc-if>
+  </div>
+</div>
+</sc-if>
+
+<sc-if value="{{ review }}" hint-placeholder-val="{{ false }}">
+<div class="scr" style="position:absolute;inset:0;z-index:38;background:#f5ead8;overflow:auto">
+  <div style="display:flex;align-items:center;gap:12px;padding:62px 22px 0">
+    <div onClick="{{ closeReview }}" style="width:42px;height:42px;border-radius:999px;background:#ebddc5;display:flex;align-items:center;justify-content:center;cursor:pointer"><svg class="lu" viewBox="0 0 24 24" style="width:20px;height:20px"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg></div>
+    <div style="font:600 12px Figtree,sans-serif;color:rgba(32,30,29,.55)">Seanstan sonra</div>
+  </div>
+  <div style="padding:22px 22px 0">
+    <h2 style="font-size:28px;margin:0">{{ review.first }} ile seans nasıldı?</h2>
+    <p style="margin:8px 0 0;font-size:13px;color:rgba(32,30,29,.6)">{{ review.when }} · {{ review.dur }}. Adın değerlendirmeyle birlikte görünür; notu boş bırakabilirsin.</p>
+  </div>
+  <div style="display:flex;gap:10px;padding:22px 22px 0">
+    <sc-for list="{{ review.stars }}" as="st" hint-placeholder-count="5">
+      <div onClick="{{ st.pick }}" style="cursor:pointer"><svg class="lu" viewBox="0 0 24 24" style="width:38px;height:38px;color: {{ st.color }};fill: {{ st.fill }}"><path d="M11.5 3.2a.5.5 0 0 1 .9 0l2.2 4.6 5 .7a.5.5 0 0 1 .3.9l-3.6 3.5.9 5a.5.5 0 0 1-.8.5L12 16l-4.4 2.4a.5.5 0 0 1-.8-.5l.9-5-3.6-3.5a.5.5 0 0 1 .3-.9l5-.7z"></path></svg></div>
+    </sc-for>
+  </div>
+  <div style="padding:8px 22px 0;font-size:13px;color:rgba(32,30,29,.55)">{{ review.starsNote }}</div>
+  <div style="padding:22px 22px 0">
+    <h5 style="margin:0 0 10px;font-size:15px">Öne çıkan ne oldu?</h5>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <sc-for list="{{ review.tags }}" as="t" hint-placeholder-count="5">
+        <span onClick="{{ t.pick }}" style="padding:9px 16px;font-size:13px;border-radius:999px;cursor:pointer;background: {{ t.bg }};color: {{ t.fg }}">{{ t.label }}</span>
+      </sc-for>
+    </div>
+  </div>
+  <div style="padding:22px 22px 0">
+    <textarea value="{{ rNote }}" onChange="{{ onNote }}" placeholder="Bir sonraki kişinin bilmesi gereken bir şey var mı?" style="width:100%;box-sizing:border-box;min-height:104px;padding:15px 18px;border-radius:26px;border:none;background:#ebddc5;font:400 14px Figtree,sans-serif;color:#201e1d;outline:none;resize:none"></textarea>
+  </div>
+  <div style="padding:18px 22px 0">
+    <div style="padding:14px 16px;border-radius:24px;background:#e1eecc;font-size:12px;color:#3d472b">Değerlendirmeler terapistin profilinde kalır. Güvenlikle ilgili bir şey varsa sohbetten yöneticiye bildir.</div>
+  </div>
+  <div style="height:24px"></div>
+  <div style="position:sticky;bottom:0;padding:14px 22px 30px;background:linear-gradient(to top,#f5ead8 62%,rgba(245,234,216,0))">
+    <button onClick="{{ submitReview }}" class="btn btn-primary btn-block" style="padding:15px 0;font-size:15px;opacity: {{ review.ctaOpacity }}">{{ review.cta }}</button>
+  </div>
+</div>
+</sc-if>
+
+<sc-if value="{{ cancelFor }}" hint-placeholder-val="{{ false }}">
+<div onClick="{{ dismissSheet }}" style="position:absolute;inset:0;z-index:46;background:rgba(46,43,37,.5);display:flex;align-items:flex-end">
+  <div style="width:100%;background:#f5ead8;border-radius:34px 34px 0 0;padding:12px 22px 30px;display:flex;flex-direction:column;gap:16px">
+    <div style="width:44px;height:5px;border-radius:999px;background:rgba(32,30,29,.2);align-self:center"></div>
+    <div>
+      <h3 style="margin:0 0 6px;font-size:22px">{{ cancelFor.when }} iptal edilsin mi?</h3>
+      <p style="margin:0;font-size:13px;color:rgba(32,30,29,.6)">{{ cancelFor.first }} hemen bilgilendirilir ve saat yeniden açılır. Neden yazmak isteğe bağlı.</p>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <sc-for list="{{ cancelReasons }}" as="r" hint-placeholder-count="4">
+        <span onClick="{{ r.pick }}" style="padding:9px 16px;font-size:13px;border-radius:999px;background:#ebddc5;cursor:pointer">{{ r.label }}</span>
+      </sc-for>
+    </div>
+    <button onClick="{{ confirmCancel }}" class="btn btn-primary btn-block" style="padding:14px 0;font-size:15px">Randevuyu iptal et</button>
+    <div onClick="{{ dismissAll }}" style="text-align:center;font-size:13px;color:#8c491a;cursor:pointer">Vazgeç</div>
+  </div>
+</div>
+</sc-if>
+
+<sc-if value="{{ chat }}" hint-placeholder-val="{{ false }}">
+<div style="position:absolute;inset:0;z-index:30;background:#f5ead8;display:flex;flex-direction:column">
+  <div style="flex:none;padding:58px 16px 12px;display:flex;align-items:center;gap:11px;background:#ebddc5;border-radius:0 0 28px 28px">
+    <div onClick="{{ closeChat }}" style="width:40px;height:40px;border-radius:999px;background:#f5ead8;display:flex;align-items:center;justify-content:center;cursor:pointer;flex:none"><svg class="lu" viewBox="0 0 24 24" style="width:19px;height:19px"><path d="m15 18-6-6 6-6"></path></svg></div>
+    <div class="ph washed" style="width:40px;height:40px;border-radius:999px;flex:none"><span>face</span></div>
+    <div style="flex:1;min-width:0">
+      <div style="font-family:Corben,serif;font-weight:700;font-size:17px;line-height:1.15">{{ chat.name }}</div>
+      <div style="font-size:11px;color:rgba(32,30,29,.55)">{{ chat.sub }}</div>
+    </div>
+    <div onClick="{{ openChatMenu }}" style="width:40px;height:40px;border-radius:999px;background:#f5ead8;display:flex;align-items:center;justify-content:center;cursor:pointer;flex:none"><svg class="lu" viewBox="0 0 24 24" style="width:19px;height:19px"><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg></div>
+  </div>
+
+  <div style="flex:none;margin:12px 16px 0;padding:13px 15px;border-radius:24px;background:#e1eecc;display:flex;align-items:center;gap:12px">
+    <svg class="lu" viewBox="0 0 24 24" style="width:18px;height:18px;color:#3d472b;flex:none"><rect x="3" y="4" width="18" height="18" rx="2"></rect><path d="M16 2v4"></path><path d="M8 2v4"></path><path d="M3 10h18"></path></svg>
+    <div style="flex:1;min-width:0;color:#3d472b">
+      <div style="font:600 13px Figtree,sans-serif">{{ chat.when }}</div>
+      <div style="font-size:12px">{{ chat.line2 }}</div>
+    </div>
+    <div style="font:600 13px Figtree,sans-serif;color:#3d472b">{{ chat.price }}</div>
+  </div>
+
+  <div class="scr" style="flex:1;min-height:0;overflow:auto;padding:14px 16px 6px;display:flex;flex-direction:column;gap:9px">
+    <sc-for list="{{ chat.msgs }}" as="m" hint-placeholder-count="4">
+      <div style="flex:none;display:flex;flex-direction:column;align-self: {{ m.align }};max-width:80%">
+        <div style="padding: {{ m.pad }};border-radius: {{ m.radius }};font-size: {{ m.size }};line-height:1.45;text-align: {{ m.textAlign }};background: {{ m.bg }};color: {{ m.fg }}">{{ m.text }}</div>
+        <div style="font-size:10px;color:rgba(32,30,29,.42);margin:3px 8px 0;align-self: {{ m.align }}">{{ m.time }}</div>
+      </div>
+    </sc-for>
+  </div>
+
+  <sc-if value="{{ chat.open }}" hint-placeholder-val="{{ true }}">
+  <div style="flex:none;display:flex;gap:8px;overflow:auto;padding:6px 16px 10px">
+    <sc-for list="{{ chat.quick }}" as="r" hint-placeholder-count="3">
+      <span onClick="{{ r.send }}" style="flex:none;padding:9px 15px;border-radius:999px;background:#ebddc5;font-size:13px;white-space:nowrap;cursor:pointer">{{ r.label }}</span>
+    </sc-for>
+  </div>
+  <div style="flex:none;display:flex;align-items:center;gap:9px;padding:0 16px 28px">
+    <div onClick="{{ openAttach }}" style="width:44px;height:44px;border-radius:999px;background:#ebddc5;display:flex;align-items:center;justify-content:center;cursor:pointer;flex:none"><svg class="lu" viewBox="0 0 24 24" style="width:19px;height:19px"><path d="m21.44 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l8.57-8.57A4 4 0 1 1 18 8.84l-8.59 8.57a2 2 0 0 1-2.83-2.83l8.49-8.48"></path></svg></div>
+    <input value="{{ draft }}" onChange="{{ onDraft }}" onKeyDown="{{ onDraftKey }}" placeholder="Mesaj yaz" style="flex:1;min-width:0;padding:13px 18px;border-radius:999px;border:none;background:#ebddc5;font:400 14px Figtree,sans-serif;color:#201e1d;outline:none">
+    <div onClick="{{ sendDraft }}" style="width:44px;height:44px;border-radius:999px;background:#c67139;display:flex;align-items:center;justify-content:center;cursor:pointer;flex:none"><svg class="lu" viewBox="0 0 24 24" style="width:19px;height:19px;color:#f5ead8"><path d="m22 2-7 20-4-9-9-4Z"></path><path d="M22 2 11 13"></path></svg></div>
+  </div>
+  </sc-if>
+
+  <sc-if value="{{ chat.closed }}" hint-placeholder-val="{{ false }}">
+  <div style="flex:none;margin:6px 16px 30px;padding:15px 17px;border-radius:26px;background:#ebddc5;text-align:center">
+    <div style="font:600 13px Figtree,sans-serif">{{ chat.closedTitle }}</div>
+    <div style="font-size:12px;color:rgba(32,30,29,.6);margin-top:4px">{{ chat.closedNote }}</div>
+    <span onClick="{{ chat.reopen }}" style="display:inline-flex;margin-top:12px;padding:9px 18px;border-radius:999px;background:#f5ead8;font:600 13px Figtree,sans-serif;color:#8c491a;cursor:pointer">{{ chat.reopenLabel }}</span>
+  </div>
+  </sc-if>
+</div>
+</sc-if>
+
+<sc-if value="{{ chatMenu }}" hint-placeholder-val="{{ false }}">
+<div onClick="{{ dismissSheet }}" style="position:absolute;inset:0;z-index:46;background:rgba(46,43,37,.5);display:flex;align-items:flex-end">
+  <div style="width:100%;background:#f5ead8;border-radius:34px 34px 0 0;padding:12px 22px 30px;display:flex;flex-direction:column;gap:10px">
+    <div style="width:44px;height:5px;border-radius:999px;background:rgba(32,30,29,.2);align-self:center;margin-bottom:6px"></div>
+    <div onClick="{{ viewBooking }}" style="padding:15px 18px;border-radius:24px;background:#ebddc5;font-size:14px;cursor:pointer">Randevuyu gör</div>
+    <sc-if value="{{ chatIsTherapist }}" hint-placeholder-val="{{ false }}">
+      <sc-if value="{{ canFinishHere }}" hint-placeholder-val="{{ false }}">
+        <div onClick="{{ finishHere }}" style="padding:15px 18px;border-radius:24px;background:#e1eecc;color:#3d472b;font:600 14px Figtree,sans-serif;cursor:pointer">Seansı bitmiş olarak işaretle</div>
+      </sc-if>
+    </sc-if>
+    <sc-if value="{{ canClose }}" hint-placeholder-val="{{ true }}">
+      <div onClick="{{ closeConversation }}" style="padding:15px 18px;border-radius:24px;background:#ebddc5;font-size:14px;cursor:pointer">Sohbeti kapat</div>
+    </sc-if>
+    <div onClick="{{ openBan }}" style="padding:15px 18px;border-radius:24px;background:#ffe1d0;color:#8c491a;font:600 14px Figtree,sans-serif;cursor:pointer">{{ reportLabel }}</div>
+    <div onClick="{{ closeSheet }}" style="text-align:center;font-size:13px;color:#8c491a;padding:8px 0;cursor:pointer">Vazgeç</div>
+  </div>
+</div>
+</sc-if>
+
+<sc-if value="{{ attachOpen }}" hint-placeholder-val="{{ false }}">
+<div onClick="{{ dismissSheet }}" style="position:absolute;inset:0;z-index:46;background:rgba(46,43,37,.5);display:flex;align-items:flex-end">
+  <div style="width:100%;background:#f5ead8;border-radius:34px 34px 0 0;padding:12px 22px 30px;display:flex;flex-direction:column;gap:10px">
+    <div style="width:44px;height:5px;border-radius:999px;background:rgba(32,30,29,.2);align-self:center;margin-bottom:6px"></div>
+    <sc-for list="{{ attachOpts }}" as="a" hint-placeholder-count="3">
+      <div onClick="{{ a.pick }}" style="padding:15px 18px;border-radius:24px;background:#ebddc5;display:flex;flex-direction:column;gap:2px;cursor:pointer">
+        <div style="font:600 14px Figtree,sans-serif">{{ a.label }}</div>
+        <div style="font-size:12px;color:rgba(32,30,29,.55)">{{ a.note }}</div>
+      </div>
+    </sc-for>
+    <div onClick="{{ closeSheet }}" style="text-align:center;font-size:13px;color:#8c491a;padding:8px 0;cursor:pointer">Vazgeç</div>
+  </div>
+</div>
+</sc-if>
+
+<sc-if value="{{ banOpen }}" hint-placeholder-val="{{ false }}">
+<div style="position:absolute;inset:0;z-index:47;background:rgba(46,43,37,.5);display:flex;align-items:flex-end">
+  <div style="width:100%;background:#f5ead8;border-radius:34px 34px 0 0;padding:12px 22px 30px;display:flex;flex-direction:column;gap:16px">
+    <div style="width:44px;height:5px;border-radius:999px;background:rgba(32,30,29,.2);align-self:center"></div>
+    <div>
+      <h3 style="margin:0 0 6px;font-size:22px">{{ banTitle }}</h3>
+      <p style="margin:0;font-size:13px;color:rgba(32,30,29,.6)">{{ banBody }}</p>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <sc-for list="{{ banReasons }}" as="r" hint-placeholder-count="4">
+        <span onClick="{{ r.pick }}" style="padding:9px 16px;font-size:13px;border-radius:999px;background: {{ r.bg }};color: {{ r.fg }};cursor:pointer">{{ r.label }}</span>
+      </sc-for>
+    </div>
+    <div style="padding:14px 16px;border-radius:24px;background:#ebddc5;display:flex;flex-direction:column;gap:8px">
+      <div style="display:flex;align-items:center;gap:12px">
+        <div style="flex:1;font:600 14px Figtree,sans-serif">Ayrıca engelle</div>
+        <div onClick="{{ flipBlock }}" style="flex:none;width:48px;height:28px;border-radius:999px;padding:3px;box-sizing:border-box;display:flex;cursor:pointer;background: {{ blockTrack }};justify-content: {{ blockJustify }}"><div style="width:22px;height:22px;border-radius:999px;background:#f5ead8;box-shadow:0 1px 3px rgba(46,43,37,.25)"></div></div>
+      </div>
+      <div style="font-size:12px;line-height:1.45;color:rgba(32,30,29,.65)">{{ blockNote }}</div>
+    </div>
+    <button onClick="{{ confirmBan }}" class="btn btn-primary btn-block" style="padding:14px 0;font-size:15px">{{ banCta }}</button>
+    <div onClick="{{ closeSheet }}" style="text-align:center;font-size:13px;color:#8c491a;cursor:pointer">Vazgeç</div>
+  </div>
+</div>
+</sc-if>
+
+<sc-if value="{{ declineFor }}" hint-placeholder-val="{{ false }}">
+<div style="position:absolute;inset:0;z-index:45;background:rgba(46,43,37,.5);display:flex;align-items:flex-end">
+  <div style="width:100%;background:#f5ead8;border-radius:34px 34px 0 0;padding:12px 22px 30px;display:flex;flex-direction:column;gap:16px">
+    <div style="width:44px;height:5px;border-radius:999px;background:rgba(32,30,29,.2);align-self:center"></div>
+    <div>
+      <h3 style="margin:0 0 6px;font-size:22px">{{ declineFor.name }} reddedilsin mi?</h3>
+      <p style="margin:0;font-size:13px;color:rgba(32,30,29,.6)">Bir neden yazmak başka birini bulmasına yardım eder ama zorunlu değil.</p>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <sc-for list="{{ declineReasons }}" as="r" hint-placeholder-count="4">
+        <span onClick="{{ r.pick }}" style="padding:9px 16px;font-size:13px;border-radius:999px;background:#ebddc5;cursor:pointer">{{ r.label }}</span>
+      </sc-for>
+    </div>
+    <button onClick="{{ declineNoReason }}" class="btn btn-primary btn-block" style="padding:14px 0;font-size:15px">Neden belirtmeden reddet</button>
+    <div onClick="{{ closeSheet }}" style="text-align:center;font-size:13px;color:#8c491a;cursor:pointer">İsteği tut</div>
+  </div>
+</div>
+</sc-if>
+
+<sc-if value="{{ proposeFor }}" hint-placeholder-val="{{ false }}">
+<div style="position:absolute;inset:0;z-index:45;background:rgba(46,43,37,.5);display:flex;align-items:flex-end">
+  <div style="width:100%;background:#f5ead8;border-radius:34px 34px 0 0;padding:12px 22px 30px;display:flex;flex-direction:column;gap:16px">
+    <div style="width:44px;height:5px;border-radius:999px;background:rgba(32,30,29,.2);align-self:center"></div>
+    <div>
+      <h3 style="margin:0 0 6px;font-size:22px">Başka saat öner</h3>
+      <p style="margin:0;font-size:13px;line-height:1.45;color:rgba(32,30,29,.6)">{{ proposeFor.name }} {{ proposeFor.when }} istedi. Çalışma saatlerine ve diğer seanslarına göre boş olan saatler aşağıda. En fazla 3 tane seç, müşteri birini onaylasın.</p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:9px">
+      <div style="display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:7px">
+        <sc-for list="{{ propDays }}" as="d" hint-placeholder-count="5">
+          <div onClick="{{ d.pick }}" style="padding:9px 0;border-radius:18px;text-align:center;cursor:pointer;background: {{ d.bg }};color: {{ d.fg }};opacity: {{ d.opacity }}">
+            <div style="font-size:11px;opacity:.75">{{ d.dow }}</div>
+            <div style="font:600 16px Figtree,sans-serif">{{ d.num }}</div>
+          </div>
+        </sc-for>
+      </div>
+      <sc-if value="{{ propClosed }}" hint-placeholder-val="{{ false }}">
+        <div style="padding:14px 16px;border-radius:22px;background:#ebddc5;font-size:13px;color:rgba(32,30,29,.6)">Bu gün çalışma saatlerinde kapalı.</div>
+      </sc-if>
+      <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px">
+        <sc-for list="{{ propSlots }}" as="t" hint-placeholder-count="8">
+          <div onClick="{{ t.pick }}" style="padding:10px 0;border-radius:999px;text-align:center;font:600 13px Figtree,sans-serif;cursor:pointer;background: {{ t.bg }};color: {{ t.fg }};opacity: {{ t.opacity }};text-decoration: {{ t.strike }}">{{ t.label }}</div>
+        </sc-for>
+      </div>
+      <sc-if value="{{ propSummary }}" hint-placeholder-val="{{ false }}">
+        <div style="font-size:12px;color:#3d472b">{{ propSummary }}</div>
+      </sc-if>
+      <button onClick="{{ sendProposal }}" disabled="{{ propNone }}" class="btn btn-primary btn-block" style="padding:14px 0;font-size:15px">{{ propCta }}</button>
+    </div>
+    <div onClick="{{ closeSheet }}" style="text-align:center;font-size:13px;color:#8c491a;cursor:pointer">Vazgeç</div>
+  </div>
+</div>
+</sc-if>
+
+<sc-if value="{{ tNav }}" hint-placeholder-val="{{ false }}">
+<div style="position:absolute;left:0;right:0;bottom:0;z-index:10;display:flex;justify-content:space-around;align-items:center;padding:12px 18px 26px;background:#ebddc5;border-top:1px solid rgba(32,30,29,.08)">
+  <div onClick="{{ goRequests }}" style="display:flex;flex-direction:column;align-items:center;gap:5px;cursor:pointer;color: {{ reqColor }}"><svg class="lu" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"></rect><path d="M16 2v4"></path><path d="M8 2v4"></path><path d="M3 10h18"></path></svg><div style="font:600 11px Figtree,sans-serif">İstekler</div></div>
+  <div onClick="{{ goCerts }}" style="display:flex;flex-direction:column;align-items:center;gap:5px;cursor:pointer;color: {{ certColor }}"><svg class="lu" viewBox="0 0 24 24"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7z"></path><path d="M14 2v4a2 2 0 0 0 2 2h4"></path><path d="m9 15 2 2 4-4"></path></svg><div style="font:600 11px Figtree,sans-serif">Sertifikalar</div></div>
+  <div onClick="{{ goProfile }}" style="display:flex;flex-direction:column;align-items:center;gap:5px;cursor:pointer;color: {{ profColor }}"><svg class="lu" viewBox="0 0 24 24"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg><div style="font:600 11px Figtree,sans-serif">Profil</div></div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isClient }}" hint-placeholder-val="{{ true }}">
+<div style="position:absolute;left:0;right:0;bottom:0;z-index:10;display:flex;justify-content:space-around;align-items:center;padding:12px 18px 26px;background:#ebddc5;border-top:1px solid rgba(32,30,29,.08)">
+  <div onClick="{{ goHome }}" style="display:flex;flex-direction:column;align-items:center;gap:5px;cursor:pointer;color: {{ homeColor }}"><svg class="lu" viewBox="0 0 24 24"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"></path><path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg><div style="font:600 11px Figtree,sans-serif">Ana sayfa</div></div>
+  <div onClick="{{ goMap }}" style="display:flex;flex-direction:column;align-items:center;gap:5px;cursor:pointer;color: {{ mapColor }}"><svg class="lu" viewBox="0 0 24 24"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"></path><circle cx="12" cy="10" r="3"></circle></svg><div style="font:600 11px Figtree,sans-serif">Harita</div></div>
+  <div onClick="{{ goBookings }}" style="position:relative;display:flex;flex-direction:column;align-items:center;gap:5px;cursor:pointer;color: {{ bookingsColor }}"><sc-if value="{{ bookingsDot }}" hint-placeholder-val="{{ false }}"><span style="position:absolute;top:-3px;right:4px;min-width:16px;height:16px;padding:0 4px;box-sizing:border-box;border-radius:999px;background:#c67139;color:#f5ead8;font:600 10px Figtree,sans-serif;display:flex;align-items:center;justify-content:center">{{ bookingsDot }}</span></sc-if><svg class="lu" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"></rect><path d="M16 2v4"></path><path d="M8 2v4"></path><path d="M3 10h18"></path></svg><div style="font:600 11px Figtree,sans-serif">Randevular</div></div>
+  <div onClick="{{ goYou }}" style="display:flex;flex-direction:column;align-items:center;gap:5px;cursor:pointer;color: {{ youColor }}"><svg class="lu" viewBox="0 0 24 24"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg><div style="font:600 11px Figtree,sans-serif">Sen</div></div>
+</div>
+</sc-if>
+
+<sc-if value="{{ availOpen }}" hint-placeholder-val="{{ false }}">
+<div class="scr" style="position:absolute;inset:0;z-index:35;background:#f5ead8;overflow:auto">
+  <div style="display:flex;align-items:center;gap:12px;padding:62px 22px 0">
+    <div onClick="{{ closeAvail }}" style="width:42px;height:42px;border-radius:999px;background:#ebddc5;display:flex;align-items:center;justify-content:center;cursor:pointer;flex:none"><svg class="lu" viewBox="0 0 24 24" style="width:20px;height:20px"><path d="m15 18-6-6 6-6"></path></svg></div>
+    <div style="font:600 12px Figtree,sans-serif;color:rgba(32,30,29,.55)">Çalışma saatleri</div>
+  </div>
+  <div style="padding:20px 22px 0">
+    <h2 style="font-size:28px;margin:0 0 8px">Ne zaman çalışıyorsun?</h2>
+    <p style="font-size:14px;line-height:1.5;color:rgba(32,30,29,.62);margin:0">Müşteriler yalnızca bu saatlerin içindeki boşlukları görür. Kabul ettiğin bir seans o saati kendiliğinden kapatır.</p>
+  </div>
+  <div style="margin:20px 22px 0;padding:16px 18px;border-radius:26px;display:flex;align-items:center;gap:14px;background: {{ pauseBg }}">
+    <div style="flex:1;min-width:0">
+      <div style="font:600 14px Figtree,sans-serif">Bugün kapalıyım</div>
+      <div style="font-size:12px;line-height:1.45;color:rgba(32,30,29,.62);margin-top:3px">{{ pauseNote }}</div>
+    </div>
+    <div onClick="{{ flipPause }}" style="flex:none;width:48px;height:28px;border-radius:999px;padding:3px;box-sizing:border-box;display:flex;cursor:pointer;background: {{ pauseTrack }};justify-content: {{ pauseJustify }}"><div style="width:22px;height:22px;border-radius:999px;background:#f5ead8;box-shadow:0 1px 3px rgba(46,43,37,.25)"></div></div>
+  </div>
+
+  <h5 style="margin:26px 22px 10px;font-size:14px">Haftalık</h5>
+  <div style="padding:0 22px;display:flex;flex-direction:column;gap:8px">
+    <sc-for list="{{ weekDays }}" as="d" hint-placeholder-count="7">
+      <div style="padding:12px 14px 12px 18px;border-radius:24px;background:#ebddc5;display:flex;flex-direction:column;gap:8px">
+        <div style="display:flex;align-items:center;gap:10px">
+          <div style="width:96px;flex:none;font:600 14px Figtree,sans-serif;color: {{ d.fg }}">{{ d.label }}</div>
+          <div style="flex:1;min-width:0">
+            <sc-if value="{{ d.on }}" hint-placeholder-val="{{ true }}">
+              <span onClick="{{ d.edit }}" style="display:inline-flex;align-items:center;gap:6px;padding:7px 13px;border-radius:999px;background:#f5ead8;font:600 13px Figtree,sans-serif;cursor:pointer">{{ d.range }}<svg class="lu" viewBox="0 0 24 24" style="width:13px;height:13px;color:#8c491a"><path d="m6 9 6 6 6-6"></path></svg></span>
+            </sc-if>
+            <sc-if value="{{ d.off }}" hint-placeholder-val="{{ false }}">
+              <span style="font-size:13px;color:rgba(32,30,29,.5)">Kapalı</span>
+            </sc-if>
+          </div>
+          <div onClick="{{ d.flip }}" style="flex:none;width:48px;height:28px;border-radius:999px;padding:3px;box-sizing:border-box;display:flex;cursor:pointer;background: {{ d.track }};justify-content: {{ d.justify }}"><div style="width:22px;height:22px;border-radius:999px;background:#f5ead8;box-shadow:0 1px 3px rgba(46,43,37,.25)"></div></div>
+        </div>
+        <sc-if value="{{ d.warn }}" hint-placeholder-val="{{ false }}">
+          <div style="padding:10px 13px;border-radius:18px;background:#ffe1d0;font-size:12px;line-height:1.45;color:#643312">{{ d.warn }}</div>
+        </sc-if>
+      </div>
+    </sc-for>
+  </div>
+
+  <h5 style="margin:26px 22px 4px;font-size:14px">Kapattığın günler</h5>
+  <p style="margin:0 22px 10px;font-size:12px;color:rgba(32,30,29,.55)">İzin, tatil ya da tek seferlik bir iş. Haftalık saatlerin değişmez.</p>
+  <div style="padding:0 22px;display:flex;flex-direction:column;gap:8px">
+    <sc-for list="{{ offDays }}" as="o" hint-placeholder-count="1">
+      <div style="padding:12px 12px 12px 18px;border-radius:24px;background:#ebddc5;display:flex;flex-direction:column;gap:8px">
+        <div style="display:flex;align-items:center;gap:10px">
+          <div style="flex:1;min-width:0"><div style="font:600 14px Figtree,sans-serif">{{ o.label }}</div><div style="font-size:12px;color:rgba(32,30,29,.55)">Tüm gün</div></div>
+          <div onClick="{{ o.remove }}" style="width:36px;height:36px;border-radius:999px;background:#f5ead8;display:flex;align-items:center;justify-content:center;cursor:pointer;color:#8c491a"><svg class="lu" viewBox="0 0 24 24" style="width:16px;height:16px"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg></div>
+        </div>
+        <sc-if value="{{ o.warn }}" hint-placeholder-val="{{ false }}">
+          <div style="padding:10px 13px;border-radius:18px;background:#ffe1d0;font-size:12px;line-height:1.45;color:#643312">{{ o.warn }}</div>
+        </sc-if>
+      </div>
+    </sc-for>
+    <button onClick="{{ openOffSheet }}" class="btn btn-secondary btn-block" style="padding:13px 0">Bir gün kapat</button>
+  </div>
+
+  <h5 style="margin:28px 22px 12px;font-size:14px">Rezervasyon kuralları</h5>
+  <div style="padding:0 22px;display:flex;flex-direction:column;gap:18px">
+    <sc-for list="{{ ruleGroups }}" as="g" hint-placeholder-count="3">
+      <div>
+        <div style="font:600 13px Figtree,sans-serif;margin-bottom:8px">{{ g.title }}</div>
+        <div style="display:flex;gap:7px;flex-wrap:wrap">
+          <sc-for list="{{ g.opts }}" as="c" hint-placeholder-count="4">
+            <span onClick="{{ c.pick }}" style="padding:8px 15px;font-size:13px;border-radius:999px;cursor:pointer;background: {{ c.bg }};color: {{ c.fg }}">{{ c.label }}</span>
+          </sc-for>
+        </div>
+        <div style="font-size:12px;line-height:1.45;color:rgba(32,30,29,.55);margin-top:8px">{{ g.note }}</div>
+      </div>
+    </sc-for>
+  </div>
+  <div style="margin:26px 22px 40px;padding:14px 17px;border-radius:24px;background:#e1eecc;font-size:12px;line-height:1.45;color:#3d472b">Değişiklikler hemen geçerli olur. Zaten kabul ettiğin seanslar hiçbir ayardan etkilenmez.</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ hoursSheet }}" hint-placeholder-val="{{ false }}">
+<div style="position:absolute;inset:0;z-index:45;background:rgba(46,43,37,.5);display:flex;align-items:flex-end">
+  <div style="width:100%;background:#f5ead8;border-radius:34px 34px 0 0;padding:12px 22px 30px;display:flex;flex-direction:column;gap:16px">
+    <div style="width:44px;height:5px;border-radius:999px;background:rgba(32,30,29,.2);align-self:center"></div>
+    <div>
+      <h3 style="margin:0 0 6px;font-size:22px">{{ hoursSheet.label }}</h3>
+      <p style="margin:0;font-size:13px;color:rgba(32,30,29,.6)">İlk seansın başlayabileceği ve son seansın bitmesi gereken saat.</p>
+    </div>
+    <div>
+      <div style="font:600 13px Figtree,sans-serif;margin-bottom:8px">Başlangıç</div>
+      <div style="display:flex;gap:7px;flex-wrap:wrap">
+        <sc-for list="{{ fromOpts }}" as="c" hint-placeholder-count="5">
+          <span onClick="{{ c.pick }}" style="padding:8px 14px;font-size:13px;border-radius:999px;cursor:pointer;background: {{ c.bg }};color: {{ c.fg }}">{{ c.label }}</span>
+        </sc-for>
+      </div>
+    </div>
+    <div>
+      <div style="font:600 13px Figtree,sans-serif;margin-bottom:8px">Bitiş</div>
+      <div style="display:flex;gap:7px;flex-wrap:wrap">
+        <sc-for list="{{ toOpts }}" as="c" hint-placeholder-count="6">
+          <span onClick="{{ c.pick }}" style="padding:8px 14px;font-size:13px;border-radius:999px;cursor:pointer;background: {{ c.bg }};color: {{ c.fg }}">{{ c.label }}</span>
+        </sc-for>
+      </div>
+    </div>
+    <button onClick="{{ closeHours }}" class="btn btn-primary btn-block" style="padding:14px 0;font-size:15px">Tamam</button>
+    <div onClick="{{ copyToAll }}" style="text-align:center;font-size:13px;color:#8c491a;cursor:pointer">Bu saatleri tüm açık günlere uygula</div>
+  </div>
+</div>
+</sc-if>
+
+<sc-if value="{{ offSheet }}" hint-placeholder-val="{{ false }}">
+<div style="position:absolute;inset:0;z-index:45;background:rgba(46,43,37,.5);display:flex;align-items:flex-end">
+  <div style="width:100%;background:#f5ead8;border-radius:34px 34px 0 0;padding:12px 22px 30px;display:flex;flex-direction:column;gap:16px">
+    <div style="width:44px;height:5px;border-radius:999px;background:rgba(32,30,29,.2);align-self:center"></div>
+    <div>
+      <h3 style="margin:0 0 6px;font-size:22px">Hangi gün?</h3>
+      <p style="margin:0;font-size:13px;color:rgba(32,30,29,.6)">O gün arama sonuçlarında görünmezsin ve yeni istek almazsın.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:7px">
+      <sc-for list="{{ offOpts }}" as="c" hint-placeholder-count="10">
+        <div onClick="{{ c.pick }}" style="padding:10px 0;border-radius:18px;text-align:center;cursor:pointer;background: {{ c.bg }};color: {{ c.fg }}">
+          <div style="font-size:11px;opacity:.75">{{ c.dow }}</div>
+          <div style="font:600 16px Figtree,sans-serif">{{ c.day }}</div>
+        </div>
+      </sc-for>
+    </div>
+    <div onClick="{{ closeOffSheet }}" style="text-align:center;font-size:13px;color:#8c491a;cursor:pointer">Vazgeç</div>
+  </div>
+</div>
+</sc-if>
+
+<sc-if value="{{ authWelcome }}" hint-placeholder-val="{{ false }}">
+<div style="position:absolute;inset:0;z-index:60;background:#f5ead8;display:flex;flex-direction:column">
+  <div style="position:relative;height:47%;flex:none">
+    <div class="ph washed" style="position:absolute;inset:0;border-radius:0 0 46px 46px"><span style="padding-top:120px">hero — hands, warm light</span></div>
+    <div style="position:absolute;top:62px;left:24px;font-family:Corben,serif;font-weight:700;font-size:26px;color:#201e1d">Nuad</div>
+  </div>
+  <div style="padding:28px 24px 0;flex:1;display:flex;flex-direction:column">
+    <h1 style="font-size:34px;line-height:1.08;margin:0 0 10px;max-width:290px">Güvenebileceğin eller</h1>
+    <p style="font-size:15px;line-height:1.5;color:rgba(32,30,29,.65);margin:0;max-width:310px">Ankara'da sertifikası kontrol edilmiş masaj terapistleri. Stüdyoda ya da evinde.</p>
+    <div style="flex:1"></div>
+    <div style="display:flex;flex-direction:column;gap:10px;padding-bottom:16px">
+      <button onClick="{{ withPhone }}" class="btn btn-primary btn-block" style="padding:15px 0;font-size:15px">Telefon numarasıyla devam et</button>
+      <button onClick="{{ withApple }}" class="btn btn-block" style="padding:15px 0;font-size:15px;background:#201e1d;color:#f5ead8;border-color:#201e1d;display:flex;align-items:center;justify-content:center;gap:10px"><svg viewBox="0 0 24 24" style="width:19px;height:19px;flex:none" fill="currentColor"><path d="M16.37 12.6c-.02-2.2 1.8-3.26 1.88-3.31-1.03-1.5-2.62-1.7-3.18-1.73-1.35-.14-2.64.8-3.33.8-.69 0-1.74-.78-2.87-.76-1.47.02-2.83.86-3.59 2.18-1.53 2.66-.39 6.6 1.1 8.76.73 1.06 1.6 2.24 2.73 2.2 1.1-.04 1.51-.71 2.84-.71 1.32 0 1.7.71 2.86.69 1.18-.02 1.93-1.07 2.65-2.13.83-1.23 1.18-2.42 1.2-2.48-.03-.01-2.3-.88-2.32-3.5zM14.2 6.13c.6-.73 1.01-1.75.9-2.76-.87.04-1.92.58-2.54 1.31-.56.64-1.05 1.67-.92 2.66.97.08 1.96-.49 2.56-1.21z"></path></svg>Apple ile devam et</button>
+      <button onClick="{{ withGoogle }}" class="btn btn-secondary btn-block" style="padding:15px 0;font-size:15px;display:flex;align-items:center;justify-content:center;gap:10px"><svg viewBox="0 0 48 48" style="width:18px;height:18px;flex:none"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"></path><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"></path><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"></path><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"></path></svg>Google ile devam et</button>
+    </div>
+    <div style="text-align:center;font-size:12px;color:rgba(32,30,29,.5);padding-bottom:34px">Hesabın yoksa aynı adımlarla oluşturulur.</div>
+  </div>
+</div>
+</sc-if>
+
+<sc-if value="{{ authPhone }}" hint-placeholder-val="{{ false }}">
+<div style="position:absolute;inset:0;z-index:60;background:#f5ead8;display:flex;flex-direction:column">
+  <div style="display:flex;align-items:center;gap:12px;padding:62px 22px 0"><div onClick="{{ authBack }}" style="width:42px;height:42px;border-radius:999px;background:#ebddc5;display:flex;align-items:center;justify-content:center;cursor:pointer;flex:none"><svg class="lu" viewBox="0 0 24 24" style="width:20px;height:20px"><path d="m15 18-6-6 6-6"></path></svg></div><div style="font:600 12px Figtree,sans-serif;color:rgba(32,30,29,.55)">Adım 1 / 3</div></div>
+  <div style="padding:22px 22px 0">
+    <h2 style="font-size:28px;margin:0 0 8px">Telefon numaran</h2>
+    <p style="font-size:14px;line-height:1.5;color:rgba(32,30,29,.62);margin:0">Bu numaraya 6 haneli bir kod göndereceğiz.</p>
+  </div>
+  <sc-if value="{{ linkedVia }}" hint-placeholder-val="{{ false }}">
+    <div style="margin:18px 22px 0;padding:14px 17px;border-radius:24px;background:#e1eecc;font-size:13px;line-height:1.45;color:#3d472b">{{ linkedVia }} hesabın bağlandı. Terapistler kapına geleceği için telefon numaranı da doğruluyoruz.</div>
+  </sc-if>
+  <div style="padding:22px 22px 0;display:flex;gap:8px">
+    <div style="flex:none;height:56px;padding:0 18px;border-radius:999px;background:#ebddc5;display:flex;align-items:center;font:600 15px Figtree,sans-serif">+90</div>
+    <input value="{{ phoneShown }}" onChange="{{ onPhone }}" type="tel" inputMode="numeric" placeholder="5XX XXX XX XX" style="flex:1;min-width:0;height:56px;box-sizing:border-box;border:2px solid {{ phoneRing }};border-radius:999px;background:#ebddc5;padding:0 20px;font:600 17px Figtree,sans-serif;letter-spacing:.03em;color:#201e1d;outline:none">
+  </div>
+  <sc-if value="{{ phoneErr }}" hint-placeholder-val="{{ false }}">
+    <div style="padding:9px 30px 0;font-size:12px;color:#8c491a">{{ phoneErr }}</div>
+  </sc-if>
+  <div style="flex:1"></div>
+  <div style="padding:0 22px 34px;display:flex;flex-direction:column;gap:12px">
+    <div style="font-size:12px;line-height:1.45;color:rgba(32,30,29,.55)">Numaran terapistlerle paylaşılmaz. Bütün yazışma uygulama içinde kalır.</div>
+    <button onClick="{{ sendCode }}" disabled="{{ phoneInvalid }}" class="btn btn-primary btn-block" style="padding:15px 0;font-size:15px">Kod gönder</button>
+  </div>
+</div>
+</sc-if>
+
+<sc-if value="{{ authCode }}" hint-placeholder-val="{{ false }}">
+<div style="position:absolute;inset:0;z-index:60;background:#f5ead8;display:flex;flex-direction:column">
+  <div style="display:flex;align-items:center;gap:12px;padding:62px 22px 0"><div onClick="{{ authBack }}" style="width:42px;height:42px;border-radius:999px;background:#ebddc5;display:flex;align-items:center;justify-content:center;cursor:pointer;flex:none"><svg class="lu" viewBox="0 0 24 24" style="width:20px;height:20px"><path d="m15 18-6-6 6-6"></path></svg></div><div style="font:600 12px Figtree,sans-serif;color:rgba(32,30,29,.55)">Adım 1 / 3</div></div>
+  <div style="padding:22px 22px 0">
+    <h2 style="font-size:28px;margin:0 0 8px">Kodu gir</h2>
+    <p style="font-size:14px;line-height:1.5;color:rgba(32,30,29,.62);margin:0">+90 {{ phoneShown }} numarasına gönderdik. <span onClick="{{ authBack }}" style="color:#8c491a;font-weight:600;cursor:pointer">Numarayı değiştir</span></p>
+  </div>
+  <div style="position:relative;margin:24px 22px 0">
+    <div style="display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px">
+      <sc-for list="{{ codeBoxes }}" as="b" hint-placeholder-count="6">
+        <div style="height:60px;border-radius:20px;background:#ebddc5;display:flex;align-items:center;justify-content:center;font:600 24px Figtree,sans-serif;box-sizing:border-box;border:2px solid {{ b.ring }}">{{ b.ch }}</div>
+      </sc-for>
+    </div>
+    <input value="{{ code }}" onChange="{{ onCode }}" type="tel" inputMode="numeric" autoComplete="one-time-code" autoFocus="{{ true }}" style="position:absolute;inset:0;width:100%;height:100%;opacity:0;font-size:16px;border:0;cursor:text">
+  </div>
+  <sc-if value="{{ codeErr }}" hint-placeholder-val="{{ false }}">
+    <div style="padding:12px 30px 0;font-size:13px;color:#8c491a">{{ codeErr }}</div>
+  </sc-if>
+  <div style="padding:22px 22px 0;display:flex;flex-direction:column;gap:10px">
+    <sc-if value="{{ resendWait }}" hint-placeholder-val="{{ true }}">
+      <div style="font-size:13px;color:rgba(32,30,29,.55)">Kod gelmediyse {{ resendWait }} sonra tekrar isteyebilirsin.</div>
+    </sc-if>
+    <sc-if value="{{ resendReady }}" hint-placeholder-val="{{ false }}">
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <span onClick="{{ resend }}" style="padding:9px 16px;border-radius:999px;background:#ebddc5;font:600 13px Figtree,sans-serif;color:#8c491a;cursor:pointer">Kodu tekrar gönder</span>
+        <span onClick="{{ resendVoice }}" style="padding:9px 16px;border-radius:999px;background:#ebddc5;font:600 13px Figtree,sans-serif;color:#8c491a;cursor:pointer">Sesli arama ile al</span>
+      </div>
+    </sc-if>
+    <sc-if value="{{ resentNote }}" hint-placeholder-val="{{ false }}">
+      <div style="font-size:13px;color:#3d472b">{{ resentNote }}</div>
+    </sc-if>
+  </div>
+  <div style="flex:1"></div>
+  <div style="margin:0 22px 34px;padding:12px 16px;border-radius:20px;background:rgba(32,30,29,.06);font-size:11px;color:rgba(32,30,29,.55)">Prototip: doğru kod 123456. Başka bir kod hatayı gösterir.</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ authConsent }}" hint-placeholder-val="{{ false }}">
+<div class="scr" style="position:absolute;inset:0;z-index:60;background:#f5ead8;display:flex;flex-direction:column;overflow:auto">
+  <div style="display:flex;align-items:center;gap:12px;padding:62px 22px 0"><div onClick="{{ authBack }}" style="width:42px;height:42px;border-radius:999px;background:#ebddc5;display:flex;align-items:center;justify-content:center;cursor:pointer;flex:none"><svg class="lu" viewBox="0 0 24 24" style="width:20px;height:20px"><path d="m15 18-6-6 6-6"></path></svg></div><div style="font:600 12px Figtree,sans-serif;color:rgba(32,30,29,.55)">Adım 2 / 3</div></div>
+  <div style="padding:22px 22px 0">
+    <h2 style="font-size:28px;margin:0 0 8px">Başlamadan önce</h2>
+    <p style="font-size:14px;line-height:1.5;color:rgba(32,30,29,.62);margin:0">İlk ikisi zorunlu. Bir metni onaylamak için önce açıp okuman gerekiyor. İsteğe bağlı olanları sonra Ayarlar'dan değiştirebilirsin.</p>
+  </div>
+  <div style="padding:20px 22px 0;display:flex;flex-direction:column;gap:10px">
+    <sc-for list="{{ consents }}" as="c" hint-placeholder-count="4">
+      <div style="padding:15px 16px;border-radius:24px;background:#ebddc5;display:flex;gap:13px;align-items:flex-start">
+        <div onClick="{{ c.flip }}" style="flex:none;width:28px;height:28px;border-radius:999px;box-sizing:border-box;display:flex;align-items:center;justify-content:center;cursor:pointer;color:#f5ead8;background: {{ c.bg }};border:2px solid {{ c.ring }}"><sc-if value="{{ c.on }}" hint-placeholder-val="{{ false }}"><svg class="lu" viewBox="0 0 24 24" style="width:15px;height:15px"><path d="M20 6 9 17l-5-5"></path></svg></sc-if></div>
+        <div style="flex:1;min-width:0">
+          <div style="font-size:14px;line-height:1.45">{{ c.text }}</div>
+          <div style="display:flex;gap:10px;align-items:center;margin-top:6px;flex-wrap:wrap">
+            <span style="font:600 11px Figtree,sans-serif;color: {{ c.reqFg }}">{{ c.req }}</span>
+            <sc-if value="{{ c.read }}" hint-placeholder-val="{{ false }}">
+              <span onClick="{{ c.read }}" style="display:inline-flex;align-items:center;gap:5px;padding:5px 12px;border-radius:999px;background:#f5ead8;font:600 12px Figtree,sans-serif;color:#8c491a;cursor:pointer">{{ c.readLabel }}</span>
+            </sc-if>
+          </div>
+        </div>
+      </div>
+    </sc-for>
+  </div>
+  <div style="flex:1;min-height:24px"></div>
+  <div style="padding:0 22px 34px">
+    <sc-if value="{{ consentBlocked }}" hint-placeholder-val="{{ true }}">
+      <div style="padding:15px 18px;border-radius:999px;background:#ebddc5;text-align:center;font:600 14px Figtree,sans-serif;color:#643312">{{ consentLeft }}</div>
+    </sc-if>
+    <sc-if value="{{ consentReady }}" hint-placeholder-val="{{ false }}">
+      <button onClick="{{ acceptConsent }}" class="btn btn-primary btn-block" style="padding:15px 0;font-size:15px;box-shadow:0 8px 20px rgba(198,113,57,.35)">Kabul et ve devam et</button>
+    </sc-if>
+  </div>
+</div>
+</sc-if>
+
+<sc-if value="{{ authName }}" hint-placeholder-val="{{ false }}">
+<div style="position:absolute;inset:0;z-index:60;background:#f5ead8;display:flex;flex-direction:column">
+  <div style="display:flex;align-items:center;gap:12px;padding:62px 22px 0"><div onClick="{{ authBack }}" style="width:42px;height:42px;border-radius:999px;background:#ebddc5;display:flex;align-items:center;justify-content:center;cursor:pointer;flex:none"><svg class="lu" viewBox="0 0 24 24" style="width:20px;height:20px"><path d="m15 18-6-6 6-6"></path></svg></div><div style="font:600 12px Figtree,sans-serif;color:rgba(32,30,29,.55)">Adım 3 / 3</div></div>
+  <div style="padding:22px 22px 0">
+    <h2 style="font-size:28px;margin:0 0 8px">Sana nasıl hitap edelim?</h2>
+    <p style="font-size:14px;line-height:1.5;color:rgba(32,30,29,.62);margin:0">Terapistler yalnızca adını görür. Soyadın ve numaran gizli kalır.</p>
+  </div>
+  <div style="padding:22px 22px 0">
+    <input value="{{ firstName }}" onChange="{{ onName }}" placeholder="Adın" style="width:100%;height:56px;box-sizing:border-box;border:0;border-radius:999px;background:#ebddc5;padding:0 22px;font:600 17px Figtree,sans-serif;color:#201e1d;outline:none">
+  </div>
+  <h5 style="margin:24px 22px 10px;font-size:14px">Hangi semttesin?</h5>
+  <div style="padding:0 22px;display:flex;gap:8px;flex-wrap:wrap">
+    <sc-for list="{{ homeDistricts }}" as="d" hint-placeholder-count="5">
+      <span onClick="{{ d.pick }}" style="padding:9px 16px;font-size:13px;border-radius:999px;cursor:pointer;background: {{ d.bg }};color: {{ d.fg }}">{{ d.label }}</span>
+    </sc-for>
+  </div>
+  <div style="padding:10px 22px 0;font-size:12px;color:rgba(32,30,29,.55)">Yakındaki terapistleri sıralamak için. Konum iznini haritayı ilk açtığında soracağız.</div>
+  <div style="flex:1"></div>
+  <div style="padding:0 22px 34px">
+    <button onClick="{{ finishAuth }}" disabled="{{ nameBlocked }}" class="btn btn-primary btn-block" style="padding:15px 0;font-size:15px">Başla</button>
+  </div>
+</div>
+</sc-if>
+
+<sc-if value="{{ legalDoc }}" hint-placeholder-val="{{ false }}">
+<div style="position:absolute;inset:0;z-index:70;background:rgba(46,43,37,.5);display:flex;align-items:flex-end">
+  <div class="scr" style="width:100%;max-height:82%;overflow:auto;background:#f5ead8;border-radius:34px 34px 0 0;padding:12px 22px 30px;box-sizing:border-box;display:flex;flex-direction:column;gap:14px">
+    <div style="width:44px;height:5px;border-radius:999px;background:rgba(32,30,29,.2);align-self:center;flex:none"></div>
+    <h3 style="margin:0;font-size:22px">{{ legalDoc.title }}</h3>
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <sc-for list="{{ legalDoc.points }}" as="p" hint-placeholder-count="4">
+        <div style="padding:13px 16px;border-radius:22px;background:#ebddc5">
+          <div style="font:600 12px Figtree,sans-serif;color:#8c491a;margin-bottom:3px">{{ p.k }}</div>
+          <div style="font-size:13px;line-height:1.45">{{ p.v }}</div>
+        </div>
+      </sc-for>
+    </div>
+    <div style="padding:12px 16px;border-radius:20px;background:rgba(32,30,29,.06);font-size:11px;line-height:1.45;color:rgba(32,30,29,.6)">Özet. Tam metin avukat onayından sonra buraya gelecek.</div>
+    <button onClick="{{ agreeLegal }}" class="btn btn-primary btn-block" style="padding:14px 0;font-size:15px;flex:none">Okudum, onaylıyorum</button>
+    <div onClick="{{ closeLegal }}" style="text-align:center;font-size:13px;color:#8c491a;cursor:pointer">Onaylamadan kapat</div>
+  </div>
+</div>
+</sc-if>
+
+</div>
+</x-import>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:402,&quot;height&quot;:874}}">
+const DATA = [
+  { id:'chalisa', name:'Chalisa Rojana', short:'Chalisa', disciplines:['Thai','Tetik nokta'], price:'₺900', dist:'600 m', rating:'4.9', visits:'212', next:'Şimdi müsait', nextRank:0, district:'Çankaya', years:'12 yıl', visitCount:3, place:'Stüdyo',
+    credentials:[{title:'Wat Pho Traditional Medical School',meta:'Sertifika onayı 12 Mart 2026'},{title:'Sağlık Bakanlığı belgesi',meta:'Kimlik doğrulandı 14 Mart 2026'}],
+    review:'Chalisa ile üçüncü seansım. Sırtımın nerede tutulduğunu hatırlıyor, iki kez sormadan çözüyor.' },
+  { id:'mert', name:'Mert Kaya', short:'Mert', disciplines:['Derin doku','Tetik nokta'], price:'₺1.200', dist:'1,4 km', rating:'4.8', visits:'96', next:'16:30', nextRank:1, district:'Kızılay', years:'8 yıl', visitCount:11, place:'Ev ziyareti',
+    credentials:[{title:'ITM Chiang Mai, Level 4',meta:'Sertifika onayı 2 Şubat 2026'},{title:'Spor masajı diploması, Hacettepe',meta:'Sertifika onayı 2 Şubat 2026'}],
+    review:'Derin çalışıyor, boş laf yok. Maratondan sonra gittim, ertesi sabah merdivenden inebildim.' },
+  { id:'zeynep', name:'Zeynep Arslan', short:'Zeynep', disciplines:['Shiatsu','Yumeiho'], price:'₺750', dist:'1,8 km', rating:'4.9', visits:'340', next:'18:00', nextRank:2, district:'Bahçelievler', years:'6 yıl', visitCount:2, place:'Stüdyo',
+    credentials:[{title:'Yumeiho Enstitüsü, Ankara',meta:'Sertifika onayı 20 Ocak 2026'},{title:'Shiatsu uygulayıcı, 500 saat',meta:'Sertifika onayı 20 Ocak 2026'}],
+    review:'Yumeiho benim için yeniydi, her hareketi önceden anlattı. Sakin oda, sonunda acele yok.' },
+  { id:'aylin', name:'Aylin Şen', short:'Aylin', disciplines:['Thai','Shiatsu'], price:'₺1.050', dist:'2,3 km', rating:'4.7', visits:'58', next:'Yarın', nextRank:3, district:'Gaziosmanpaşa', years:'4 yıl', visitCount:1, place:'Ev ziyareti',
+    credentials:[{title:'Wat Pho Traditional Medical School',meta:'Sertifika onayı 8 Nisan 2026'}],
+    review:'Son dakika ev ziyareti istedim. Kendi matını getirdi, evi bulduğu gibi bıraktı.' }
+];
+const DISCIPLINES = ['Tümü','Thai','Tetik nokta','Derin doku','Shiatsu','Yumeiho'];
+const PIN_POS = [{left:'96px',top:'268px'},{left:'238px',top:'348px'},{left:'126px',top:'436px'},{left:'250px',top:'486px'}];
+const ACC = '#c67139', INK = '#201e1d', CREAM = '#f5ead8', SAND = '#ebddc5';
+
+class Component extends DCLogic {
+  state = {
+    auth:'welcome', linkedVia:null, phone:'', code:'', codeErr:null, codeTries:0, resendIn:0, resentNote:null,
+    cons:{ terms:false, kvkk:false, health:false, ads:false }, readDocs:{}, legal:null, firstName:'', homeDistrict:null,
+    propDay:'Cmt 13', propPicks:[], availOpen:false, hoursFor:null, offSheet:false, pausedToday:false, lead:'2 saat', buffer:'30 dk', horizon:'2 hafta',
+    week:[['Pazartesi',1],['Salı',1],['Çarşamba',1],['Perşembe',1],['Cuma',1],['Cumartesi',1],['Pazar',0]].map(([d,on]) => ({ d, on:!!on, from:'10:00', to: d === 'Cumartesi' ? '16:00' : '20:00' })),
+    timeOff:[{ id:'Cum 19', label:'Cuma 19 Eylül' }],
+    mode:'client', obStep:1, tTab:'requests', upload:null, declineFor:null, proposeFor:null,
+    chatId:null, chatMenu:false, attachOpen:false, banOpen:false, banReason:null, draft:'',
+    threads:{
+      q3: [
+        { from:'system', text:'Bu isteği 6 Eylül’de kabul ettin. Sohbet seanstan 24 saat sonrasına kadar açık kalır.' },
+        { from:'them', text:'Geçen ayki gibi lütfen, sağ omzum yine tutuldu.', time:'19:02' },
+        { from:'me', text:'Not aldım. Omza geçmeden önce boyundan başlayıp gevşeteceğim.', time:'19:10' },
+        { from:'them', text:'Harika. Kapı kodu 4417, ikinci kat.', time:'19:11' }
+      ],
+      r1: [
+        { from:'system', text:'Mert isteğini kabul etti. Sohbet seanstan 24 saat sonrasına kadar açık kalır.' },
+        { from:'them', text:'Perşembe 19:00 onaylandı. Apartman mı, müstakil mi?', time:'12:20' },
+        { from:'me', text:'Apartman, dördüncü kat, asansör var.', time:'12:24' }
+      ]
+    },
+    tDistrict:'Çankaya', tDisc:['Thai'], tPrice:'₺900', tPriceCustom:'', tYears:'4–7', tArea:'İkisi de', tRadius:'5 km', tGender:'Herkes',
+    certs:[
+      { id:'c1', title:'Wat Pho Traditional Medical School', school:'Bangkok, Thailand', issued:'2019’da verildi', status:'Onaylandı', note:'12 Mart 2026’da onaylandı · profilinde görünüyor' },
+      { id:'c2', title:'Shiatsu uygulayıcı, 500 saat', school:'Anadolu Shiatsu, Ankara', issued:'2023’te verildi', status:'İncelemede', note:'2 gün önce gönderildi · yöneticiler genellikle 3 gün içinde yanıt verir' },
+      { id:'c3', title:'Spor masajı diploması', school:'Hacettepe Üniversitesi', issued:'2021’de verildi', status:'Reddedildi', note:'Fotoğrafın alt kısmı kesik; mühür ve tarih okunmuyor.' }
+    ],
+    inbox:[
+      { id:'q1', name:'Selin Kaya', treatment:'Derin doku', when:'Cmt 13 Eyl · 14:00', dur:'90 dk', price:'₺1.260', note:'Belim salıdan beri tutuk. Omuzlarda nazik olun lütfen.', status:'Yeni' },
+      { id:'q2', name:'Emre Doğan', treatment:'Thai', when:'Paz 14 Eyl · 11:00', dur:'60 dk', price:'₺900', note:'İlk kez. Ev ziyareti, Çankaya, asansör var.', status:'Yeni' },
+      { id:'q0', name:'Aylin Şen', treatment:'Thai', when:'Bugün · 17:30', dur:'60 dk', price:'₺1.050', note:'Ev ziyareti, Gaziosmanpaşa. Dördüncü kat, asansör var.', status:'Kabul edildi', today:true, mirrors:'r0' },
+      { id:'q3', name:'Deniz Yalçın', treatment:'Tetik nokta', when:'Pzt 15 Eyl · 19:30', dur:'60 dk', price:'₺900', note:'Düzenli müşteri. Geçen ayki gibi, sağ omuz.', status:'Kabul edildi' }
+    ],
+    aTab:'certs', fxEmptyList:false, fxNoBookings:false, fxNoRequests:false, fxOffline:false, fxSendFail:false,
+    aQueue:[
+      { id:'a1', person:'Ayşe Demir', district:'Çankaya', submitted:'2 saat önce yüklendi', status:'Bekliyor', live:false,
+        fields:[{k:'Başlık',v:'Thai masajı, 300 saat'},{k:'Okul',v:'Wat Pho, Bangkok'},{k:'Veriliş',v:'Mart 2024'},{k:'Sahibi',v:'Ayşe Demir'}] },
+      { id:'a2', person:'Burak Yılmaz', district:'Kızılay', submitted:'Dün yüklendi', status:'Bekliyor', live:true,
+        fields:[{k:'Başlık',v:'Spor masajı diploması'},{k:'Okul',v:'Hacettepe Üniversitesi'},{k:'Veriliş',v:'Okunmuyor'},{k:'Sahibi',v:'B. Yılmaz'}],
+        flag:'Taramadaki ad kısaltılmış, veriliş tarihi kesik. Onaylamadan önce tam sayfa fotoğraf iste.' },
+      { id:'a3', person:'Elif Kurt', district:'Bahçelievler', submitted:'3 gün önce yüklendi', status:'Onaylandı', live:true,
+        fields:[{k:'Başlık',v:'Shiatsu uygulayıcı, 500 saat'},{k:'Okul',v:'Yumeiho Enstitüsü, Ankara'},{k:'Veriliş',v:'Ocak 2023'},{k:'Sahibi',v:'Elif Kurt'}] }
+    ],
+    aReports:[
+      { id:'p1', account:'Deniz Yalçın', meta:'Müşteri · 14 seans · 2024’ten beri', status:'Açık', by:'Ayşe Demir (terapist)', reason:'Cinsel talep',
+        excerpt:[{line:'“Seanstan sonra ekstra bir şey yapıyor musun?”'},{line:'“Bu konuda bana bir daha yazmamanı istemiştim.”'}] },
+      { id:'p2', account:'Onur Ateş', meta:'Müşteri · 2 seans · geçen ay katıldı', status:'Açık', by:'Selin Kaya (terapist)', reason:'Hakaret',
+        excerpt:[{line:'“Beni iptal ettin, bu kabul edilemez.”'},{line:'“Ateşim vardı. Sana ertesi sabahı önerdim.”'}] }
+    ],
+    tab:'home', discs:[], pMin:500, pMax:1500, avail:'Her zaman', price:'Fark etmez', place:'Her yer',
+    filtersOpen:false, profileId:null, bookingId:null, mapSelId:'chalisa',
+    treatment:null, bNote:'', dur:'60 dk', day:'Cmt 13', slot:'14:00', sent:null,
+    detailId:null, cancelFor:null, reviewFor:null, stars:0, rTags:[], rNote:'',
+    requests:[
+      { id:'r0', name:'Aylin Şen', price:'₺1.050', when:'Bugün · 17:30', dur:'60 dk', disc:'Thai', district:'Gaziosmanpaşa', place:'Ev ziyareti', status:'Yolda' },
+      { id:'r1', name:'Mert Kaya', price:'₺1.200', when:'Per 11 Eyl · 19:00', dur:'90 dk', disc:'Derin doku', district:'Kızılay', place:'Ev ziyareti', status:'Onaylandı' },
+      { id:'r2', name:'Zeynep Arslan', price:'₺750', when:'Paz 14 Eyl · 11:00', dur:'60 dk', disc:'Yumeiho', district:'Bahçelievler', place:'Stüdyo', status:'Onay bekliyor' },
+      { id:'r3', name:'Chalisa Rojana', price:'₺900', when:'Cmt 30 Ağu · 16:00', dur:'60 dk', disc:'Thai', district:'Çankaya', place:'Stüdyo', status:'Tamamlandı' },
+      { id:'r4', name:'Zeynep Arslan', price:'₺750', when:'Cmt 16 Ağu · 11:00', dur:'60 dk', disc:'Shiatsu', district:'Bahçelievler', place:'Stüdyo', status:'Değerlendirildi', stars:5, note:'Sakin oda, sonunda acele yok.' }
+    ]
+  };
+
+  pill(active) { return active ? { bg: ACC, fg: CREAM } : { bg: SAND, fg: INK }; }
+
+  filtered() {
+    const s = this.state;
+    if (s.fxEmptyList) return [];
+    return DATA.filter(t =>
+      (!s.discs.length || t.disciplines.some(d => s.discs.includes(d))) &&
+      (s.avail === 'Her zaman' || (s.avail === 'Bugün' ? t.nextRank < 3 : t.nextRank === 0)) &&
+      (n => n >= s.pMin && n <= s.pMax)(parseInt(t.price.replace(/\D/g, ''), 10)) &&
+      (s.place === 'Her yer' || t.place === s.place)
+    );
+  }
+
+  decorate(t) {
+    return Object.assign({}, t, {
+      discText: t.disciplines.join(' & '),
+      meta: t.rating + ' · ' + t.visits + ' visits · ' + t.dist,
+      nextLine: t.nextRank === 0 ? 'Şimdi müsait · ' + t.price : 'İlk boşluk ' + t.next + ' · ' + t.price,
+      visitLine: t.visitCount === 1 ? '1 ziyaret' : t.visitCount + ' ziyaret',
+      open: () => this.setState({ profileId: t.id, filtersOpen: false }),
+      request: () => this.setState({ profileId: t.id })
+    });
+  }
+
+  componentDidMount() {
+    this._tick = setInterval(() => { if (this.state.resendIn > 0) this.setState(st => ({ resendIn: st.resendIn - 1 })); }, 1000);
+  }
+  componentWillUnmount() { clearInterval(this._tick); }
+
+  renderVals() {
+    const s = this.state;
+    if (s.auth) return this.authVals();
+    if (s.mode === 'admin') return this.aVals();
+    const base = s.mode === 'therapist' ? Object.assign(this.tVals(), this.availVals()) : this.cVals();
+    return Object.assign(base, this.chatVals(), { signOut: () => this.setState({ auth:'welcome', phone:'', code:'', codeErr:null, linkedVia:null, mode:'client', tab:'home' }) });
+  }
+
+  authVals() {
+    const s = this.state;
+    const d = s.phone;
+    const shown = [d.slice(0,3), d.slice(3,6), d.slice(6,8), d.slice(8,10)].filter(Boolean).join(' ');
+    const phoneErr = d.length && d[0] !== '5' ? 'Cep telefonu numarası 5 ile başlar.' : null;
+    const steps = { phone:'welcome', code:'phone', consent:'code', name:'consent' };
+    const mm = n => '0:' + String(n).padStart(2, '0');
+    const C = [
+      ['terms', 'Kullanım Koşulları’nı okudum ve kabul ediyorum.', true, 'terms'],
+      ['kvkk', 'KVKK Aydınlatma Metni’ni okudum. Kişisel verilerimin nasıl işlendiğini biliyorum.', true, 'kvkk'],
+      ['health', 'Randevu notuma yazdığım sağlık bilgilerinin (ağrı, sakatlık, hamilelik) yalnızca seçtiğim terapistle paylaşılmasına açık rıza veriyorum.', false, 'health'],
+      ['ads', 'Kampanya ve yenilikler için SMS ve e-posta almak istiyorum.', false, null]
+    ];
+    const DOCS = {
+      terms: { title:'Kullanım Koşulları', points:[
+        { k:'Nuad ne yapar', v:'Müşteriyi bağımsız çalışan terapistle buluşturur. Seansı terapist verir; Nuad seansın tarafı değildir.' },
+        { k:'Ödeme', v:'Pilot süresince ücret seans sonunda terapiste nakit ödenir. Uygulama ödeme almaz ve komisyon kesmez.' },
+        { k:'İptal', v:'Seansa kısa süre kala yapılan tekrarlı iptaller hesabın incelenmesine yol açabilir.' },
+        { k:'Davranış', v:'Cinsel içerikli talep, taciz ya da hakaret hesabın kapatılmasına neden olur. Terapistler bunu sohbetten bildirebilir.' }
+      ]},
+      kvkk: { title:'KVKK Aydınlatma Metni', points:[
+        { k:'Veri sorumlusu', v:'Nuad (şirket unvanı ve adresi eklenecek).' },
+        { k:'Hangi veriler', v:'Ad, telefon numarası, semt, seans adresi, randevu geçmişi, mesajlar ve değerlendirmeler. Terapistler için ayrıca sertifika görüntüleri.' },
+        { k:'Neden', v:'Randevuyu eşleştirmek ve yürütmek, güvenlik ve şikâyetleri incelemek, yasal yükümlülükleri yerine getirmek.' },
+        { k:'Kimlerle', v:'Yalnızca randevu aldığın terapistle, gerekli bilgiler kadar. SMS sağlayıcısı ve barındırma hizmeti gibi altyapı sağlayıcılarıyla.' },
+        { k:'Hakların', v:'KVKK 11. madde kapsamında verilerine erişebilir, düzeltilmesini ya da silinmesini isteyebilirsin.' }
+      ]},
+      health: { title:'Sağlık bilgisi için açık rıza', points:[
+        { k:'Neyi kapsar', v:'Randevu notuna kendi yazdığın ağrı, sakatlık, ameliyat ya da hamilelik bilgisi.' },
+        { k:'Kim görür', v:'Yalnızca o randevunun terapisti. Diğer terapistler ve öteki kullanıcılar görmez.' },
+        { k:'Vermezsen', v:'Uygulamayı kullanmaya devam edersin; yalnızca randevu notu alanı kapalı kalır.' },
+        { k:'Geri almak', v:'Ayarlar’dan istediğin zaman geri alabilirsin. Geçmiş notlar terapistten gizlenir.' }
+      ]}
+    };
+    return {
+      authWelcome: s.auth === 'welcome', authPhone: s.auth === 'phone', authCode: s.auth === 'code', authConsent: s.auth === 'consent', authName: s.auth === 'name',
+      withPhone: () => this.setState({ auth:'phone', linkedVia:null }),
+      withApple: () => this.setState({ auth:'phone', linkedVia:'Apple' }),
+      withGoogle: () => this.setState({ auth:'phone', linkedVia:'Google' }),
+      authBack: () => this.setState({ auth: steps[s.auth], code:'', codeErr:null, resentNote:null }),
+      linkedVia: s.linkedVia,
+      phoneShown: shown,
+      onPhone: e => this.setState({ phone: e.target.value.replace(/\D/g, '').replace(/^0/, '').slice(0, 10) }),
+      phoneErr, phoneRing: phoneErr ? '#c67139' : 'transparent',
+      phoneInvalid: d.length !== 10 || d[0] !== '5',
+      sendCode: () => this.setState({ auth:'code', code:'', codeErr:null, codeTries:0, resendIn:45, resentNote:null }),
+      code: s.code,
+      codeBoxes: [0,1,2,3,4,5].map(i => ({ ch: s.code[i] || '', ring: s.codeErr ? '#c67139' : i === s.code.length ? '#c67139' : 'transparent' })),
+      onCode: e => {
+        const v = e.target.value.replace(/\D/g, '').slice(0, 6);
+        if (v.length < 6) return this.setState({ code:v, codeErr:null });
+        if (v === '123456') return this.setState({ code:v, auth:'consent' });
+        const tries = s.codeTries + 1;
+        this.setState({ code:'', codeTries:tries, codeErr: tries >= 5 ? 'Çok fazla yanlış deneme. 15 dakika sonra yeni kod isteyebilirsin.' : 'Kod eşleşmedi. ' + (5 - tries) + ' deneme hakkın kaldı.' });
+      },
+      codeErr: s.codeErr,
+      resendWait: s.resendIn > 0 ? mm(s.resendIn) : null,
+      resendReady: s.resendIn === 0,
+      resend: () => this.setState({ resendIn:45, code:'', codeErr:null, resentNote:'Yeni kod gönderildi. Eski kod artık geçersiz.' }),
+      resendVoice: () => this.setState({ resendIn:45, code:'', codeErr:null, resentNote:'Birkaç saniye içinde aranacaksın. Kodu sesli okuyacağız.' }),
+      resentNote: s.resentNote,
+      consents: C.map(([k, text, req, doc]) => ({
+        text, on: s.cons[k], req: req ? 'Zorunlu' : 'İsteğe bağlı', reqFg: req ? '#8c491a' : 'rgba(32,30,29,.5)',
+        bg: s.cons[k] ? '#c67139' : '#f5ead8', ring: s.cons[k] ? '#c67139' : 'rgba(32,30,29,.35)',
+        flip: () => (doc && !s.readDocs[doc] && !s.cons[k]) ? this.setState({ legal: doc }) : this.setState({ cons: Object.assign({}, s.cons, { [k]: !s.cons[k] }) }),
+        read: doc ? () => this.setState({ legal: doc }) : null,
+        readLabel: doc && s.readDocs[doc] ? 'Okundu · tekrar aç' : 'Metni oku'
+      })),
+      consentBlocked: !(s.cons.terms && s.cons.kvkk),
+      consentReady: !!(s.cons.terms && s.cons.kvkk),
+      consentLeft: (n => n === 2 ? 'Devam etmek için iki zorunlu metni oku ve onayla' : 'Bir zorunlu metin kaldı')(2 - (s.cons.terms ? 1 : 0) - (s.cons.kvkk ? 1 : 0)),
+      agreeLegal: () => this.setState({ legal:null, readDocs: Object.assign({}, s.readDocs, { [s.legal]: true }), cons: Object.assign({}, s.cons, { [s.legal]: true }) }),
+      acceptConsent: () => this.setState({ auth:'name' }),
+      legalDoc: s.legal ? DOCS[s.legal] : null,
+      closeLegal: () => this.setState({ legal:null }),
+      firstName: s.firstName,
+      onName: e => this.setState({ firstName: e.target.value.slice(0, 30) }),
+      homeDistricts: ['Çankaya','Kızılay','Bahçelievler','Gaziosmanpaşa','Başka bir semt'].map(x => Object.assign({ label:x, pick: () => this.setState({ homeDistrict:x }) }, this.pill(s.homeDistrict === x))),
+      nameBlocked: !s.firstName.trim() || !s.homeDistrict,
+      finishAuth: () => this.setState({ auth:null, tab:'home' })
+    };
+  }
+
+  availVals() {
+    const s = this.state;
+    const tg = on => ({ track: on ? '#c67139' : 'rgba(32,30,29,.22)', justify: on ? 'flex-end' : 'flex-start' });
+    const setDay = (i, patch) => this.setState({ week: s.week.map((d, j) => j === i ? Object.assign({}, d, patch) : d) });
+    const hd = s.hoursFor != null ? s.week[s.hoursFor] : null;
+    const on = s.week.filter(d => d.on);
+    const sameHours = on.every(d => d.from === on[0].from && d.to === on[0].to);
+    const DAYS = [['Cmt','13'],['Paz','14'],['Pzt','15'],['Sal','16'],['Çar','17'],['Per','18'],['Cum','19'],['Cmt','20'],['Paz','21'],['Pzt','22']];
+    const LONG = { Cmt:'Cumartesi', Paz:'Pazar', Pzt:'Pazartesi', Sal:'Salı', Çar:'Çarşamba', Per:'Perşembe', Cum:'Cuma' };
+    const rule = (title, key, opts, note) => ({ title, note, opts: opts.map(o => Object.assign({ label:o, pick: () => this.setState({ [key]: o }) }, this.pill(s[key] === o))) });
+    const pt = tg(s.pausedToday);
+    return {
+      availSummary: s.pausedToday ? 'Bugün kapalı' : on.length + ' gün · ' + (sameHours && on.length ? on[0].from + '–' + on[0].to : 'farklı saatler'),
+      openAvail: () => this.setState({ availOpen:true }),
+      closeAvail: () => this.setState({ availOpen:false }),
+      availOpen: s.availOpen,
+      tNav: s.obStep === 0 && !s.upload && !s.availOpen,
+      pauseTrack: pt.track, pauseJustify: pt.justify,
+      pauseBg: s.pausedToday ? '#ffe1d0' : '#ebddc5',
+      pauseNote: s.pausedToday ? 'Bugün arama sonuçlarında görünmüyorsun. Gece yarısı kendiliğinden açılır.' : 'Hastaysan ya da günün doluysa. Kabul ettiğin seanslar etkilenmez.',
+      flipPause: () => this.setState({ pausedToday: !s.pausedToday }),
+      weekDays: s.week.map((d, i) => Object.assign({
+        label: d.d, on: d.on, off: !d.on, range: d.from + '–' + d.to,
+        fg: d.on ? '#201e1d' : 'rgba(32,30,29,.45)',
+        edit: () => this.setState({ hoursFor: i }),
+        flip: () => setDay(i, { on: !d.on }),
+        warn: i === 0 && !d.on ? 'Bu gün kabul ettiğin bir seans var: Deniz Yalçın, Pzt 15 Eyl 19:30. Günü kapatmak onu iptal etmez; değiştirmek istersen ona mesaj at.'
+          : i === 0 && d.on && d.to < '20:30' ? 'Deniz Yalçın ile Pzt 15 Eyl 19:30 seansın bu saatin dışında kalıyor. Seans yerinde duruyor; yeni istekler yalnızca yeni saatlere gelir.' : null
+      }, tg(d.on))),
+      hoursSheet: hd ? { label: hd.d } : null,
+      fromOpts: ['08:00','09:00','10:00','11:00','12:00','14:00'].map(t => Object.assign({ label:t, pick: () => setDay(s.hoursFor, { from:t }) }, this.pill(hd && hd.from === t))),
+      toOpts: ['16:00','18:00','19:00','20:00','21:00','22:00'].map(t => Object.assign({ label:t, pick: () => setDay(s.hoursFor, { to:t }) }, this.pill(hd && hd.to === t))),
+      closeHours: () => this.setState({ hoursFor:null }),
+      copyToAll: () => this.setState({ hoursFor:null, week: s.week.map(d => d.on ? Object.assign({}, d, { from: hd.from, to: hd.to }) : d) }),
+      offDays: s.timeOff.map(o => ({
+        label: o.label,
+        remove: () => this.setState({ timeOff: s.timeOff.filter(x => x.id !== o.id) }),
+        warn: o.id === 'Pzt 15' ? 'Bu gün Deniz Yalçın ile 19:30 seansın var. Kapatmak onu iptal etmez; gelemeyeceksen ona mesaj at.' : null
+      })),
+      openOffSheet: () => this.setState({ offSheet:true }),
+      closeOffSheet: () => this.setState({ offSheet:false }),
+      offSheet: s.offSheet,
+      offOpts: DAYS.map(([dow, day]) => {
+        const id = dow + ' ' + day, taken = s.timeOff.some(x => x.id === id);
+        return Object.assign({ dow, day, pick: () => this.setState({ offSheet:false, timeOff: taken ? s.timeOff : s.timeOff.concat({ id, label: LONG[dow] + ' ' + day + ' Eylül' }) }) }, this.pill(taken));
+      }),
+      ruleGroups: [
+        rule('En erken ne zaman', 'lead', ['1 saat','2 saat','4 saat','1 gün'], 'Müşteri en az ' + s.lead + ' sonrası için istek gönderebilir.'),
+        rule('Seanslar arası boşluk', 'buffer', ['Yok','15 dk','30 dk','60 dk'], s.buffer === 'Yok' ? 'Seanslar arka arkaya dizilebilir. Ev ziyareti yapıyorsan yol süresini düşün.' : 'Her seanstan sonra ' + s.buffer + ' boş kalır. Ev ziyaretlerinde yol için.'),
+        rule('En fazla ne kadar ileri', 'horizon', ['1 hafta','2 hafta','1 ay'], 'Takviminde ' + s.horizon + ' sonrasına kadar boşluk görünür.')
+      ]
+    };
+  }
+
+  aVals() {
+    const s = this.state;
+    const tint = st => st === 'Onaylandı' ? { tagBg:'#e1eecc', tagFg:'#3d472b' }
+      : st === 'Reddedildi' || st === 'Askıya alındı' ? { tagBg:'#ffe1d0', tagFg:'#8c491a' }
+      : st === 'Uyarıldı' ? { tagBg:'#f2e2c4', tagFg:'#7a5a22' }
+      : st === 'Kapatıldı' ? { tagBg:'#eee7db', tagFg:'#645c50' }
+      : { tagBg:'#c67139', tagFg:'#f5ead8' };
+    const setQ = (id, status) => this.setState({ aQueue: s.aQueue.map(c => c.id === id ? Object.assign({}, c, { status }) : c) });
+    const setR = (id, status) => this.setState({ aReports: s.aReports.map(r => r.id === id ? Object.assign({}, r, { status }) : r) });
+    const pending = s.aQueue.filter(c => c.status === 'Bekliyor').length;
+    const repPending = s.aReports.filter(r => r.status === 'Açık').length;
+    const on = b => b ? { bg:'#c67139', fg:'#f5ead8' } : { bg:'transparent', fg:'rgba(32,30,29,.6)' };
+    const certs = s.aTab === 'certs';
+    return {
+      isAdmin: true, isClient: false, isTherapist: false, errorBanner: null,
+      adminStates: s.aTab === 'states',
+      adminToStates: () => this.setState({ aTab:'states' }),
+      stTabBg: on(s.aTab === 'states').bg, stTabFg: on(s.aTab === 'states').fg,
+      toggles: [
+        ['fxEmptyList','Eşleşen terapist yok','Müşteri ana sayfası ve harita boş döner'],
+        ['fxNoBookings','Randevu yok','Müşteri randevu listesi boş'],
+        ['fxNoRequests','İstek yok','Terapist gelen kutusu boş'],
+        ['fxOffline','Bağlantı koptu','Her ekranda tekrar dene düğmeli hata bandı'],
+        ['fxSendFail','İstekler gönderilemiyor','Randevu ve mesajlar gönderilmek yerine hata verir']
+      ].map(t => ({
+        label: t[1], note: t[2],
+        flip: () => this.setState({ [t[0]]: !s[t[0]] }),
+        track: s[t[0]] ? '#c67139' : 'rgba(32,30,29,.22)',
+        justify: s[t[0]] ? 'flex-end' : 'flex-start'
+      })),
+      adminExit: () => this.setState({ mode:'client' }),
+      adminToCerts: () => this.setState({ aTab:'certs' }),
+      adminToReports: () => this.setState({ aTab:'reports' }),
+      adminCerts: certs, adminReports: s.aTab === 'reports',
+      certTabBg: on(certs).bg, certTabFg: on(certs).fg,
+      repTabBg: on(s.aTab === 'reports').bg, repTabFg: on(s.aTab === 'reports').fg,
+      certPending: String(pending), repPending: String(repPending),
+      certPipBg: certs ? 'rgba(245,234,216,.28)' : 'rgba(32,30,29,.1)', certPipFg: certs ? '#f5ead8' : 'rgba(32,30,29,.6)',
+      repPipBg: s.aTab === 'reports' ? 'rgba(245,234,216,.28)' : 'rgba(32,30,29,.1)', repPipFg: s.aTab === 'reports' ? '#f5ead8' : 'rgba(32,30,29,.6)',
+      queueEmpty: s.aQueue.length === 0,
+      reportsEmpty: s.aReports.length === 0,
+      queue: s.aQueue.map(c => Object.assign({}, c, tint(c.status), {
+        pending: c.status === 'Bekliyor',
+        approve: () => setQ(c.id, 'Onaylandı'),
+        reject: () => setQ(c.id, 'Reddedildi'),
+        effect: c.live ? 'Başka bir sertifikayla zaten görünür. Reddetmek profili gizlemez.' : 'Onaylarsan ' + c.person.split(' ')[0] + ' ilk kez haritada görünür olur.',
+        settled: c.status === 'Onaylandı' ? 'Onaylandı · profil yayında' : c.status === 'Reddedildi' ? 'Reddedildi · daha net bir tarama yükleyebilir' : null
+      })),
+      reports: s.aReports.map(r => Object.assign({}, r, tint(r.status), {
+        pending: r.status === 'Açık',
+        suspend: () => setR(r.id, 'Askıya alındı'),
+        warn: () => setR(r.id, 'Uyarıldı'),
+        dismiss: () => setR(r.id, 'Kapatıldı'),
+        effect: 'Askıya almak hesabın tüm açık randevularını kapatır.',
+        settled: r.status === 'Askıya alındı' ? 'Hesap askıya alındı · iki taraf da bilgilendirildi' : r.status === 'Uyarıldı' ? 'Uyarı gönderildi · sonraki bildirim üst seviyeye çıkar' : r.status === 'Kapatıldı' ? 'Kapatıldı · hesaba işlem yapılmadı' : null
+      }))
+    };
+  }
+
+  chatVals() {
+    const s = this.state;
+    const isT = s.mode === 'therapist';
+    const src = isT ? s.inbox.find(q => q.id === s.chatId) : s.requests.find(r => r.id === s.chatId);
+    const thread = s.threads[s.chatId] || [];
+    let ban = false, closed = false;
+    thread.forEach(m => { if (m.st === 'closed') closed = true; if (m.st === 'open') closed = false; if (m.st === 'ban') ban = true; if (m.st === 'unban') { ban = false; closed = false; } });
+    const push = m => this.setState({
+      threads: Object.assign({}, s.threads, { [s.chatId]: (s.threads[s.chatId] || []).concat(m) }),
+      draft: '', attachOpen: false, chatMenu: false, banOpen: false, banReason: null, blockToo: null
+    });
+    const blockToo = s.blockToo == null ? isT : s.blockToo;
+    const say = text => push({ from:'me', text, time:'now' });
+    const quick = (isT
+      ? ['Görüşmek üzere','Tam adresi gönderebilir misin?','Masa ve yağları ben getiriyorum','10 dakika gecikeceğim']
+      : ['Tamam, görüşmek üzere','Kapı kodu 4417','Ne hazırlamalıyım?','30 dakika ileri alabilir miyiz?']
+    ).map(label => ({ label, send: () => this.setState({ draft: label }) }));
+
+    return {
+      chat: s.chatId && src ? {
+        name: src.name,
+        sub: isT ? (src.treatment + ' · ' + src.dur) : (src.disc + ' · ' + src.district),
+        when: src.when,
+        line2: isT ? ('Kabul edildi · ' + src.dur) : ('Onaylandı · ' + src.dur),
+        price: src.price,
+        open: !ban && !closed,
+        closed: ban || closed,
+        closedTitle: ban ? (isT ? 'Bu müşteriyi engelledin' : 'Bu terapisti engelledin') : 'Sohbeti kapattın',
+        closedNote: ban
+          ? (isT ? src.name + ' sana yazamaz ve senden seans isteyemez. Bildirimin yöneticide.' : src.name + ' sana yazamaz. Randevun olduğu gibi duruyor.')
+          : 'Artık ikiniz de mesaj gönderemezsiniz. Randevu değişmez. İstediğin zaman yeniden açabilirsin.',
+        reopenLabel: ban ? 'Engeli kaldır' : 'Sohbeti yeniden aç',
+        reopen: () => push(ban ? { from:'system', text:'Engeli kaldırdın. Sohbet yeniden açık.', st:'unban' } : { from:'system', text:'Sohbeti yeniden açtın.', st:'open' }),
+        quick,
+        msgs: thread.map((m, i) => m.from === 'system'
+          ? { text:m.text, time:'', align:'center', bg:'transparent', fg:'rgba(32,30,29,.5)', pad:'2px 10px', radius:'0', size:'11px', textAlign:'center' }
+          : m.from === 'me'
+            ? { text:m.text, time:m.time, align:'flex-end', bg:'#c67139', fg:'#f5ead8', pad:'11px 15px', radius:'22px 22px 6px 22px', size:'14px', textAlign:'left' }
+            : { text:m.text, time:m.time, align:'flex-start', bg:'#ebddc5', fg:'#201e1d', pad:'11px 15px', radius:'22px 22px 22px 6px', size:'14px', textAlign:'left' })
+      } : null,
+      chatMenu: s.chatMenu,
+      closeSheet: () => this.setState({ declineFor:null, proposeFor:null, chatMenu:false, attachOpen:false, banOpen:false, banReason:null, cancelFor:null }),
+      dismissSheet: e => { if (e.target === e.currentTarget) this.setState({ declineFor:null, proposeFor:null, chatMenu:false, attachOpen:false, banOpen:false, banReason:null, cancelFor:null }); },
+      chatIsTherapist: !!s.chatId && isT,
+      chatIsClient: !!s.chatId && !isT,
+      closeChat: () => this.setState({ chatId:null, chatMenu:false, attachOpen:false, banOpen:false, draft:'' }),
+      openChatMenu: () => this.setState({ chatMenu:true }),
+      canFinishHere: !!(isT && src && src.today && src.status === 'Kabul edildi'),
+      finishHere: () => { this.setState({ chatMenu:false }); this.finishSession(s.chatId); },
+      viewBooking: () => this.setState({ chatMenu:false, chatId:null, tab: isT ? 'requests' : 'bookings', tTab:'requests' }),
+      closeConversation: () => push({ from:'system', text:'Sohbeti kapattın.', st:'closed' }),
+      canClose: !ban && !closed,
+      reportLabel: isT ? 'Bu müşteriyi bildir' : 'Bu terapisti bildir',
+      openBan: () => this.setState({ chatMenu:false, banOpen:true, blockToo:null, banReason:null }),
+      banOpen: s.banOpen,
+      banTitle: (src ? src.name : '') + ' bildirilsin mi?',
+      banBody: 'Bir yönetici tüm yazışmayı okur ve bir gün içinde inceler. Ne olduğunu seçersen neye bakacağını bilir.',
+      blockToo,
+      blockTrack: blockToo ? '#c67139' : 'rgba(32,30,29,.22)', blockJustify: blockToo ? 'flex-end' : 'flex-start',
+      flipBlock: () => this.setState({ blockToo: !blockToo }),
+      blockNote: blockToo
+        ? 'Gönderdiğinde bu sohbet kapanır ve ' + (src ? src.name.split(' ')[0] : '') + (isT ? ' senden bir daha seans isteyemez.' : ' sana bir daha yazamaz.') + ' Engeli sonra kaldırabilirsin.'
+        : 'Sohbet açık kalır. Yazışmaya devam edebilirsin.',
+      banCta: blockToo ? 'Bildir ve engelle' : 'Bildir',
+      banReasons: ['Taciz','Cinsel talep','Hakaret','Başka bir şey'].map(r => Object.assign({ label:r, pick: () => this.setState({ banReason:r }) }, this.pill(s.banReason === r))),
+      confirmBan: () => push(blockToo
+        ? { from:'system', text: isT ? 'Bu müşteriyi bildirdin ve engelledin.' : 'Bu terapisti bildirdin ve engelledin.', st:'ban' }
+        : { from:'system', text: 'Yöneticiye bildirdin. Sohbet açık.', st:'report' }),
+      draft: s.draft,
+      onDraft: e => this.setState({ draft: e.target.value }),
+      onDraftKey: e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); if (!s.draft.trim()) return; if (s.fxSendFail) { this.setState({ fxOffline:true }); return; } say(s.draft.trim()); } },
+      sendDraft: () => { if (!s.draft.trim()) return; if (s.fxSendFail) { this.setState({ fxOffline:true }); return; } say(s.draft.trim()); },
+      openAttach: () => this.setState({ attachOpen:true }),
+      attachOpen: s.attachOpen,
+      attachOpts: [
+        { label:'Fotoğraf', note:'Galerinden', text:'Fotoğraf · IMG_2291.jpg' },
+        { label:'Konum', note:'Seansın yapılacağı yer', text:'Konum · Tunalı Hilmi Cd. 78, Çankaya' },
+        { label:'Randevu bilgileri', note:'Onaylanan bilgileri yeniden gönder', text:'Randevu · ' + (src ? src.when + ' · ' + src.price : '') }
+      ].map(a => ({ label:a.label, note:a.note, pick: () => say(a.text) }))
+    };
+  }
+
+  cVals() {
+    const s = this.state;
+    const find = id => s.requests.find(b => b.id === id) || null;
+    const det = find(s.detailId), cf = find(s.cancelFor), rv = find(s.reviewFor);
+    const list = this.filtered().map(t => this.decorate(t));
+    const byId = id => { const t = DATA.find(x => x.id === id); return t ? this.decorate(t) : null; };
+    const profile = s.profileId ? byId(s.profileId) : null;
+    const booking = s.bookingId ? byId(s.bookingId) : null;
+    const durMult = { '60 dk':1, '90 dk':1.4, '120 dk':1.8 }[s.dur];
+    const base = booking ? parseInt(booking.price.replace(/\D/g,''), 10) : 0;
+    const total = booking ? '₺' + Math.round(base * durMult).toLocaleString('tr-TR') : '';
+    const treatment = s.treatment || (booking ? booking.disciplines[0] : '');
+
+    const opt = (label, current, key) => Object.assign({ label, pick: () => this.setState({ [key]: label }) }, this.pill(current === label));
+
+    return {
+      isClient: true,
+      listEmpty: list.length === 0,
+      emptyHint: s.fxEmptyList ? 'Şu an Ankara’da istek alan kimse yok. Biraz sonra tekrar dene.' : 'Alanı genişlet ya da başka bir saat seç; müsaitlik saatten saate değişir.',
+      bookingsEmpty: s.fxNoBookings || s.requests.length === 0,
+      bookingsDot: (n => n && !s.fxNoBookings ? String(n) : null)(s.requests.filter(b => b.status === 'Tamamlandı').length),
+      errorBanner: s.fxOffline ? { title:'Bağlantı yok', body:'Müsaitlik bilgisi güncel olmayabilir.' } : null,
+      retry: () => this.setState({ fxOffline:false }),
+      hasTherapist: s.obStep === 0,
+      isAdmin: false,
+      toAdmin: () => this.setState({ mode:'admin', profileId:null, bookingId:null, detailId:null, chatId:null, sent:null }),
+      noTherapist: s.obStep !== 0,
+      tBadge: (n => n ? String(n) : null)(s.inbox.filter(q => q.status === 'Yeni').length),
+      toTherapist: () => this.setState({ mode:'therapist', profileId:null, bookingId:null, sent:null, detailId:null, chatId:null }),
+      isHome: s.tab === 'home', isMap: s.tab === 'map', isBookings: s.tab === 'bookings', isYou: s.tab === 'you',
+      homeColor: s.tab === 'home' ? '#8c491a' : 'rgba(32,30,29,.5)',
+      mapColor: s.tab === 'map' ? '#8c491a' : 'rgba(32,30,29,.5)',
+      bookingsColor: s.tab === 'bookings' ? '#8c491a' : 'rgba(32,30,29,.5)',
+      youColor: s.tab === 'you' ? '#8c491a' : 'rgba(32,30,29,.5)',
+      goHome: () => this.setState({ tab:'home', profileId:null, bookingId:null, sent:null }),
+      goMap: () => this.setState({ tab:'map', profileId:null, bookingId:null, sent:null }),
+      goBookings: () => this.setState({ tab:'bookings', profileId:null, bookingId:null, sent:null }),
+      goYou: () => this.setState({ tab:'you', profileId:null, bookingId:null, sent:null }),
+
+      chips: DISCIPLINES.map(d => Object.assign({ label:d, pick: () => this.setState({ discs: d === 'Tümü' ? [] : (s.discs.includes(d) ? s.discs.filter(x => x !== d) : s.discs.concat(d)) }) }, this.pill(d === 'Tümü' ? !s.discs.length : s.discs.includes(d)))),
+      availOpts: ['Her zaman','Bugün','Şimdi müsait'].map(a => opt(a, s.avail, 'avail')),
+      pMin: s.pMin, pMax: s.pMax,
+      pMinLabel: '₺' + s.pMin.toLocaleString('tr-TR'), pMaxLabel: s.pMax >= 1500 ? '₺1.500+' : '₺' + s.pMax.toLocaleString('tr-TR'),
+      onPMin: e => { const v = +e.target.value; this.setState({ pMin: Math.min(v, s.pMax - 100) }); },
+      onPMax: e => { const v = +e.target.value; this.setState({ pMax: Math.max(v, s.pMin + 100) }); },
+      placeOpts: ['Her yer','Stüdyo','Ev ziyareti'].map(p => opt(p, s.place, 'place')),
+      discHeading: !s.discs.length ? 'Yakınındaki müsait terapistler' : s.discs.join(', ') + ' · yakınında',
+      listCount: list.length === 1 ? '1 terapist' : list.length + ' terapist',
+      verifiedCount: DATA.length * 4 + 2,
+      list,
+      regulars: DATA.slice().sort((a,b) => b.visitCount - a.visitCount).map(t => this.decorate(t)),
+
+      pins: this.filtered().map((t, i) => Object.assign({
+        short: t.short,
+        pick: () => this.setState({ mapSelId: t.id })
+      }, PIN_POS[i % 4], t.id === s.mapSelId
+        ? { bg: ACC, fg: CREAM, ring: ACC, size:'56px', opacity:1, shadow:'0 8px 20px rgba(46,43,37,.32)' }
+        : { bg: CREAM, fg: INK, ring: CREAM, size:'46px', opacity: t.nextRank === 3 ? .62 : 1, shadow:'0 3px 10px rgba(46,43,37,.2)' })),
+      mapSel: this.filtered().some(t => t.id === s.mapSelId) ? byId(s.mapSelId) : null,
+      showMapList: () => this.setState({ tab:'home' }),
+
+      filtersOpen: s.filtersOpen,
+      openFilters: () => this.setState({ filtersOpen:true }),
+      applyFilters: () => this.setState({ filtersOpen:false }),
+      resetFilters: () => this.setState({ discs:[], avail:'Her zaman', pMin:500, pMax:1500, place:'Her yer' }),
+
+      profile,
+      closeProfile: () => this.setState({ profileId:null }),
+      startBooking: () => this.setState({ bookingId: s.profileId, treatment: null }),
+
+      booking: booking ? Object.assign({}, booking, { dur: s.dur, total, treatment, whenLine: s.day + ' · ' + s.slot }) : null,
+      closeBooking: () => this.setState({ bookingId:null }),
+      treatments: booking ? booking.disciplines.map(d => opt(d, treatment, 'treatment')) : [],
+      durations: ['60 dk','90 dk','120 dk'].map(d => opt(d, s.dur, 'dur')),
+      days: [['Cum','12'],['Cmt','13'],['Paz','14'],['Pzt','15'],['Sal','16']].map(([dow,num]) => {
+        const label = dow + ' ' + num;
+        return Object.assign({ dow, num, pick: () => this.setState({ day: label }) }, this.pill(s.day === label));
+      }),
+      slots: ['10:00','11:30','13:00','14:00','15:30','17:00','18:30','20:00'].map((label, i) => {
+        const free = i !== 1 && i !== 5;
+        const st = this.pill(s.slot === label && free);
+        return { label, bg: st.bg, fg: st.fg, opacity: free ? '1' : '0.4', pick: () => { if (free) this.setState({ slot: label }); } };
+      }),
+      sendRequest: () => {
+        if (s.fxSendFail) { this.setState({ fxOffline:true }); return; }
+        const r = { note: s.bNote.trim() || undefined, id: 'r' + Date.now(), name: booking.name, price: total, when: s.day + ' Eyl · ' + s.slot, dur: s.dur, disc: treatment, district: booking.district, status: 'Onay bekliyor' };
+        this.setState({ bNote:'', requests: [r].concat(s.requests), bookingId:null, profileId:null, sent: { line: booking.name + ' onaylamak için 2 saate sahip: ' + s.day + ' · ' + s.slot + '. Ücreti seans sonunda nakit ödersin.' } });
+      },
+      sent: s.sent,
+      bNote: s.bNote,
+      onBNote: e => this.setState({ bNote: e.target.value.slice(0, 400) }),
+
+      requests: (s.fxNoBookings ? [] : s.requests).map(b => Object.assign({}, b, this.bookingTint(b.status), {
+        canChat: b.status === 'Onaylandı' || b.status === 'Yolda',
+        openChat: e => { if (e && e.stopPropagation) e.stopPropagation(); this.setState({ chatId: b.id }); },
+        canReview: b.status === 'Tamamlandı',
+        review: e => { if (e && e.stopPropagation) e.stopPropagation(); this.setState({ reviewFor: b.id, stars: 0, rTags: [], rNote: '' }); },
+        reviewed: b.status === 'Değerlendirildi',
+        starText: '★'.repeat(b.stars || 0),
+        open: () => this.setState({ detailId: b.id })
+      })),
+
+      detail: det && Object.assign({}, det, {
+        first: det.name.split(' ')[0],
+        starText: '★'.repeat(det.stars || 0),
+        myReview: det.status === 'Değerlendirildi' ? (det.note || 'Not bırakılmadı.') : null,
+        stateHeading: det.status === 'İptal edildi' ? 'Bu randevuyu iptal ettin' : det.status === 'Yolda' ? 'Bugün' : 'Son durum',
+        steps: this.steps(det),
+        canChat: det.status === 'Onaylandı' || det.status === 'Yolda',
+        openChat: () => this.setState({ chatId: det.id }),
+        canReview: det.status === 'Tamamlandı',
+        review: () => this.setState({ reviewFor: det.id, stars: 0, rTags: [], rNote: '' }),
+        canCancel: det.status === 'Onay bekliyor' || det.status === 'Onaylandı',
+        cancel: () => this.setState({ cancelFor: det.id }),
+        canRebook: det.status === 'Değerlendirildi' || det.status === 'İptal edildi',
+        rebook: () => {
+          const t = DATA.find(x => x.name === det.name);
+          this.setState(t
+            ? { detailId:null, tab:'home', profileId: t.id, treatment: null, dur: det.dur, sent: null }
+            : { detailId:null, tab:'home' });
+        }
+      }),
+      closeDetail: () => this.setState({ detailId:null }),
+
+      cancelFor: cf && { when: cf.when, first: cf.name.split(' ')[0] },
+      cancelReasons: ['Bir işim çıktı','Başka bir saat buldum','Kendimi iyi hissetmiyorum','Söylemek istemiyorum']
+        .map(r => ({ label:r, pick: () => this.cancelBooking() })),
+      confirmCancel: () => this.cancelBooking(),
+      dismissAll: () => this.setState({ cancelFor:null }),
+
+      review: rv && {
+        first: rv.name.split(' ')[0], when: rv.when, dur: rv.dur,
+        stars: [1,2,3,4,5].map(n => ({
+          pick: () => this.setState({ stars: n }),
+          color: n <= s.stars ? ACC : 'rgba(32,30,29,.3)',
+          fill: n <= s.stars ? ACC : 'none'
+        })),
+        starsNote: ['Puanlamak için bir yıldıza dokun','Umduğun gibi değildi','Beklentinin altında','İyiydi, söylenecek bir şey yok','İyi bir seans','Düşünmeden yeniden randevu alırım'][s.stars],
+        tags: ['Zamanında','Doğru baskı','Sakin oda','Her şeyi anlattı','Sınırlara saygılı','Yine giderim']
+          .map(t => Object.assign({ label:t, pick: () => this.setState({ rTags: s.rTags.includes(t) ? s.rTags.filter(x => x !== t) : s.rTags.concat(t) }) }, this.pill(s.rTags.includes(t)))),
+        cta: s.stars ? 'Değerlendirmeyi paylaş' : 'Önce puan ver',
+        ctaOpacity: s.stars ? 1 : .45
+      },
+      rNote: s.rNote,
+      onNote: e => this.setState({ rNote: e.target.value }),
+      closeReview: () => this.setState({ reviewFor:null }),
+      submitReview: () => { if (!s.stars) return; this.setState({
+        reviewFor:null, detailId:null,
+        requests: s.requests.map(b => b.id === s.reviewFor
+          ? Object.assign({}, b, { status:'Değerlendirildi', stars: s.stars, note: s.rNote.trim() || s.rTags.join(' · ') })
+          : b)
+      }); }
+    };
+  }
+
+  bookingTint(st) {
+    return st === 'Onaylandı' ? { tagBg:'#e1eecc', tagFg:'#3d472b' }
+      : st === 'Yolda' ? { tagBg:'#c67139', tagFg:'#f5ead8' }
+      : st === 'Onay bekliyor' ? { tagBg:'#ffe1d0', tagFg:'#643312' }
+      : st === 'İptal edildi' ? { tagBg:'#ffe1d0', tagFg:'#8c491a' }
+      : { tagBg:'#eee7db', tagFg:'#645c50' };
+  }
+
+  steps(b) {
+    const first = b.name.split(' ')[0];
+    const plan = b.status === 'İptal edildi'
+      ? [['İstendi', 'İstediğin saat: ' + b.when], ['İptal edildi', 'İptal ettin. ' + first + ' bilgilendirildi.']]
+      : [
+        ['İstendi', 'İstediğin saat: ' + b.when],
+        ['Onaylandı', first + ' kabul etti. Sohbet açık.'],
+        ['Yolda', b.place === 'Stüdyo' ? first + ' stüdyoda seni bekliyor' : first + ' sana doğru yolda'],
+        ['Seans bitti', b.dur + ' · ' + b.price],
+        ['Değerlendirildi', 'Puanın ' + first + ' profilinde']
+      ];
+    const order = ['Onay bekliyor','Onaylandı','Yolda','Tamamlandı','Değerlendirildi'];
+    const at = b.status === 'İptal edildi' ? 1 : order.indexOf(b.status);
+    return plan.map((p, i) => {
+      const done = i < at, now = i === at;
+      return {
+        label: p[0], note: done || now ? p[1] : '',
+        dot: done ? '#7a8a5e' : now ? ACC : 'transparent',
+        ring: done ? '#7a8a5e' : now ? ACC : 'rgba(32,30,29,.22)',
+        line: i < at ? '#7a8a5e' : 'rgba(32,30,29,.14)',
+        fg: done || now ? INK : 'rgba(32,30,29,.4)'
+      };
+    });
+  }
+
+  finishSession(qid) {
+    const s = this.state;
+    const q = s.inbox.find(x => x.id === qid);
+    if (!q) return;
+    const prior = s.threads[qid] || [];
+    this.setState({
+      inbox: s.inbox.map(x => x.id === qid ? Object.assign({}, x, { status:'Tamamlandı', today:false }) : x),
+      requests: q.mirrors ? s.requests.map(b => b.id === q.mirrors ? Object.assign({}, b, { status:'Tamamlandı' }) : b) : s.requests,
+      threads: Object.assign({}, s.threads, { [qid]: prior.concat({ from:'system', text:'Seansı bitmiş olarak işaretledin. ' + q.name.split(' ')[0] + ' artık değerlendirme yapabilir.' }) })
+    });
+  }
+
+  cancelBooking() {
+    const s = this.state;
+    this.setState({
+      cancelFor:null, detailId:null,
+      requests: s.requests.map(b => b.id === s.cancelFor ? Object.assign({}, b, { status:'İptal edildi' }) : b)
+    });
+  }
+
+  tVals() {
+    const s = this.state;
+    const opt = (label, current, key) => Object.assign({ label, pick: () => this.setState({ [key]: label }) }, this.pill(current === label));
+    const multi = (label, arr, key) => Object.assign({ label, pick: () => this.setState({ [key]: arr.includes(label) ? arr.filter(x => x !== label) : arr.concat(label) }) }, this.pill(arr.includes(label)));
+    const setStatus = (id, status) => this.setState({ inbox: s.inbox.map(q => q.id === id ? Object.assign({}, q, { status }) : q), declineFor:null, proposeFor:null });
+    const statusTint = st => st === 'Onaylandı' || st === 'Kabul edildi' ? { tagBg:'#e1eecc', tagFg:'#3d472b' }
+      : st === 'Reddedildi' || st === 'Reddedildi' ? { tagBg:'#ffe1d0', tagFg:'#8c491a' }
+      : st === 'Yeni' ? { tagBg:'#c67139', tagFg:'#f5ead8' }
+      : { tagBg:'#eee7db', tagFg:'#645c50' };
+    const live = s.certs.some(c => c.status === 'Onaylandı');
+
+    return {
+      isClient: false, isTherapist: true,
+      inboxEmpty: s.fxNoRequests || s.inbox.length === 0,
+      inboxEmptyHint: s.tGender === 'Herkes' ? 'Şurada görünüyorsun: ' + s.tDistrict + '. İstekler geldikçe burada görünür.' : 'Görünürsün: ' + s.tGender.toLowerCase() + ', ' + s.tDistrict + '. Bunu genişletmek daha çok istek getirir.',
+      errorBanner: s.fxOffline ? { title:'Bağlantı yok', body:'Tekrar bağlanana kadar yeni istek gelmez.' } : null,
+      retry: () => this.setState({ fxOffline:false }),
+      toClient: () => this.setState({ mode:'client', chatId:null, tTab:'requests' }),
+      cBadge: (n => n ? String(n) : null)(s.requests.filter(b => b.status === 'Tamamlandı').length),
+      ob1: s.obStep === 1, ob2: s.obStep === 2, ob3: s.obStep === 3,
+      tNav: s.obStep === 0 && !s.upload,
+      tDistrict: s.tDistrict, tPrice: s.tPrice, tArea: s.tArea, tRadius: s.tRadius, tGender: s.tGender,
+      obStepLabel: 'Adım ' + s.obStep + ' / 3',
+      obNext: () => this.setState(st => ({ obStep: st.obStep === 3 ? 0 : st.obStep + 1, tTab: st.obStep === 3 ? 'certs' : st.tTab, upload: st.obStep === 3 ? 'pick' : null })),
+      obBack: () => this.setState(st => st.obStep === 1 ? { mode:'client' } : { obStep: st.obStep - 1 }),
+
+      tDistricts: ['Çankaya','Kızılay','Bahçelievler','Gaziosmanpaşa'].map(d => opt(d, s.tDistrict, 'tDistrict')),
+      tDiscOpts: ['Thai','Tetik nokta','Derin doku','Shiatsu','Yumeiho'].map(d => multi(d, s.tDisc, 'tDisc')),
+      tPriceOpts: ['₺750','₺900','₺1.050','₺1.200'].map(p => Object.assign({ label:p, pick: () => this.setState({ tPrice:p, tPriceCustom:'' }) }, this.pill(!s.tPriceCustom && s.tPrice === p))),
+      tPriceCustom: s.tPriceCustom,
+      onTPrice: e => { const v = e.target.value.replace(/\D/g, '').slice(0, 5); this.setState(v ? { tPriceCustom:v, tPrice:'₺' + Number(v).toLocaleString('tr-TR') } : { tPriceCustom:'', tPrice:'₺900' }); },
+      tPriceRing: s.tPriceCustom ? '#c67139' : 'transparent',
+      tYearOpts: ['1–3 yıl','4–7 yıl','8+ yıl'].map(y => opt(y, s.tYears, 'tYears')),
+      tAreaOpts: ['Yalnızca stüdyo','Ev ziyareti','İkisi de'].map(a => opt(a, s.tArea, 'tArea')),
+      tRadiusOpts: ['3 km','5 km','10 km'].map(r => opt(r, s.tRadius, 'tRadius')),
+      tGenderOpts: ['Herkes','Yalnızca kadınlar','Yalnızca erkekler'].map(g => opt(g, s.tGender, 'tGender')),
+      tGenderNote: s.tGender === 'Herkes' ? 'Herkes senden seans isteyebilir.' : s.tGender === 'Yalnızca kadınlar' ? 'Seni yalnızca kadınlar bulup isteyebilir. Diğer müşterilerden gelen istekler sana hiç gösterilmez.' : 'Seni yalnızca erkekler bulup isteyebilir. Diğer müşterilerden gelen istekler sana hiç gösterilmez.',
+      tDiscSummary: s.tDisc.length ? s.tDisc.join(' · ') : 'En az birini seç',
+
+      tRequestsTab: s.obStep === 0 && s.tTab === 'requests',
+      tCertsTab: s.obStep === 0 && s.tTab === 'certs',
+      tProfileTab: s.obStep === 0 && s.tTab === 'profile',
+      goRequests: () => this.setState({ tTab:'requests' }),
+      goCerts: () => this.setState({ tTab:'certs' }),
+      goProfile: () => this.setState({ tTab:'profile' }),
+      reqColor: s.tTab === 'requests' ? '#8c491a' : 'rgba(32,30,29,.5)',
+      certColor: s.tTab === 'certs' ? '#8c491a' : 'rgba(32,30,29,.5)',
+      profColor: s.tTab === 'profile' ? '#8c491a' : 'rgba(32,30,29,.5)',
+
+      liveBanner: live ? 'Aramada görünüyorsun' : 'Bir sertifika onaylanana kadar gizlisin',
+      liveNote: live ? 'Ankara’daki müşteriler seni bulabilir. Profilinde yalnızca onaylı sertifikalar görünür.' : 'Profilin henüz müşterilere gösterilmiyor. Bir sertifika yükle ya da deneyimine göre inceleme iste.',
+      liveBg: live ? '#e1eecc' : '#ffe1d0',
+      liveFg: live ? '#3d472b' : '#643312',
+      newCount: s.inbox.filter(q => q.status === 'Yeni').length,
+      inboxHeading: (n => n === 1 ? '1 yeni istek' : n + ' yeni istek')(s.inbox.filter(q => q.status === 'Yeni').length),
+
+      inbox: (s.fxNoRequests ? [] : s.inbox).map(q => Object.assign({}, q, statusTint(q.status), {
+        isNew: q.status === 'Yeni',
+        isAccepted: q.status === 'Kabul edildi' || q.status === 'Tamamlandı',
+        isToday: q.status === 'Kabul edildi' && q.today,
+        finish: () => this.finishSession(q.id),
+        chatLabel: 'Mesaj: ' + q.name.split(' ')[0],
+        chatPreview: (t => t && t.length ? (t[t.length-1].from === 'me' ? 'Sen: ' : '') + t[t.length-1].text : 'Merhaba de, adresi teyit et')(s.threads[q.id]),
+        openChat: () => this.setState({ chatId: q.id }),
+        accept: () => this.setState({
+          inbox: s.inbox.map(x => x.id === q.id ? Object.assign({}, x, { status:'Kabul edildi' }) : x),
+          declineFor:null, proposeFor:null,
+          threads: Object.assign({}, s.threads, s.threads[q.id] ? {} : { [q.id]: [{ from:'system', text:'Bu isteği kabul ettin. Sohbet seanstan 24 saat sonrasına kadar açık kalır.' }] })
+        }),
+        decline: () => this.setState({ declineFor: q.id }),
+        propose: () => this.setState({ proposeFor: q.id })
+      })),
+
+      declineFor: s.declineFor ? s.inbox.find(q => q.id === s.declineFor) : null,
+      declineReasons: ['O saat dolu','Ev ziyareti için çok uzak','Disiplinlerimin dışında','Bu istek bana uygun değil'].map(r => ({ label: r, pick: () => setStatus(s.declineFor, 'Reddedildi') })),
+      declineNoReason: () => setStatus(s.declineFor, 'Reddedildi'),
+      closeSheet: () => this.setState({ declineFor:null, proposeFor:null }),
+      proposeFor: s.proposeFor ? s.inbox.find(q => q.id === s.proposeFor) : null,
+      ...(() => {
+        const pq = s.inbox.find(q => q.id === s.proposeFor);
+        const PD = [['Cmt','13',5],['Paz','14',6],['Pzt','15',0],['Sal','16',1],['Çar','17',2]];
+        const BUSY = { 'Pzt 15 · 19:00':1, 'Pzt 15 · 20:00':1, 'Paz 14 · 11:00':1 };
+        const cur = PD.find(p => p[0] + ' ' + p[1] === s.propDay) || PD[0];
+        const wd = s.week[cur[2]], off = !wd.on || s.timeOff.some(o => o.id === s.propDay);
+        const durH = pq ? (parseInt(pq.dur, 10) / 60) : 1;
+        const hrs = [];
+        if (!off) for (let h = parseInt(wd.from, 10); h + durH <= parseInt(wd.to, 10); h++) hrs.push(String(h).padStart(2, '0') + ':00');
+        const asked = pq ? pq.when.replace(' Eyl', '') : '';
+        const max = s.propPicks.length >= 3;
+        return {
+          propDays: PD.map(([dow, num, wi]) => { const id = dow + ' ' + num, closed = !s.week[wi].on || s.timeOff.some(o => o.id === id); return Object.assign({ dow, num, opacity: closed ? .45 : 1, pick: () => this.setState({ propDay:id }) }, this.pill(s.propDay === id)); }),
+          propClosed: off,
+          propSlots: hrs.map(h => { const key = s.propDay + ' · ' + h, busy = BUSY[key] || key === asked, on = s.propPicks.includes(key);
+            return Object.assign({ label:h, opacity: busy || (max && !on) ? .4 : 1, strike: busy ? 'line-through' : 'none',
+              pick: () => { if (busy) return; this.setState({ propPicks: on ? s.propPicks.filter(x => x !== key) : max ? s.propPicks : s.propPicks.concat(key) }); } }, this.pill(on)); }),
+          propSummary: s.propPicks.length ? 'Seçtiklerin: ' + s.propPicks.join(', ') : null,
+          propNone: !s.propPicks.length,
+          propCta: s.propPicks.length ? s.propPicks.length + ' saat öner' : 'Saat seç',
+          sendProposal: () => { setStatus(s.proposeFor, 'Saat önerildi'); this.setState({ propPicks:[] }); }
+        };
+      })(),
+
+      certs: s.certs.map(c => Object.assign({}, c, statusTint(c.status), { rejected: c.status === 'Reddedildi', reupload: () => this.setState({ upload:'extracted' }) })),
+      openUpload: () => this.setState({ upload:'pick' }),
+      upload: s.upload,
+      uploadPick: s.upload === 'pick',
+      uploadExtracted: s.upload === 'extracted',
+      closeUpload: () => this.setState({ upload:null }),
+      scan: () => this.setState({ upload:'extracted' }),
+      submitCert: () => this.setState({
+        upload:null, tTab:'certs',
+        certs: [{ id:'c'+Date.now(), title:'ITM Chiang Mai, Level 4', school:'International Training Massage School', issued:'2022’de verildi', status:'İncelemede', note:'Az önce gönderildi · yöneticiler genellikle 3 gün içinde yanıt verir' }].concat(s.certs)
+      }),
+      experienceReview: () => this.setState({
+        upload:null, tTab:'certs',
+        certs: s.certs.concat([{ id:'e'+Date.now(), title:'Deneyim incelemesi', school:'8+ yıl deneyim · sertifika yok', issued:'Az önce istendi', status:'İncelemede', note:'Bir yönetici belge yerine geçmişine ve referanslarına bakacak.' }])
+      })
+    };
+  }
+}
+
+</script>
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/organic-76e4e2f1-163a-4b01-b1db-cf1fb5b41500/styles.css">
+<script src="_ds/organic-76e4e2f1-163a-4b01-b1db-cf1fb5b41500/_ds_bundle.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Corben:wght@700&family=Figtree:wght@400;600;700&display=swap">
+<style>
+  body { margin:0; background:#f5ead8; }
+  a { color:#8c491a; }
+  a:hover { color:#c67139; }
+</style>
+</helmet>
+
+<div lang="tr" style="max-width:860px;margin:0 auto;padding:56px 28px 90px;font-family:Figtree,system-ui,sans-serif;color:#201e1d">
+  <div style="font:600 12px Figtree,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#8c491a">Nuad Ankara · saha notları</div>
+  <h1 style="font-family:Corben,serif;font-weight:700;font-size:clamp(32px,5vw,48px);line-height:1.08;margin:12px 0 0;max-width:20ch">Terapistlerle görüşmede sorulacaklar</h1>
+  <p style="max-width:62ch;font-size:16px;line-height:1.55;color:rgba(32,30,29,.72);margin:16px 0 0;text-wrap:pretty">Her başlıkta prototipte şu an ne olduğu, sonra sorulacak sorular var. Cevapları sağdaki boşluğa ya da kâğıda yazın; dönüşte ekranları buna göre düzeltiriz.</p>
+
+  <div style="display:flex;flex-direction:column;gap:18px;margin-top:40px">
+    <sc-for list="{{ topics }}" as="t" hint-placeholder-count="6">
+      <div style="padding:24px 26px;border-radius:30px;background:#ebddc5">
+        <div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap">
+          <span style="font:700 13px Figtree,sans-serif;color:#8c491a">{{ t.n }}</span>
+          <h2 style="font-family:Corben,serif;font-weight:700;font-size:22px;margin:0">{{ t.title }}</h2>
+        </div>
+        <div style="margin-top:12px;padding:12px 16px;border-radius:20px;background:#f5ead8;font-size:13px;line-height:1.5;color:rgba(32,30,29,.75)"><b style="color:#201e1d">Şu an:</b> {{ t.now }}</div>
+        <ol style="margin:16px 0 0;padding-left:22px;display:flex;flex-direction:column;gap:9px">
+          <sc-for list="{{ t.qs }}" as="q" hint-placeholder-count="4">
+            <li style="font-size:15px;line-height:1.5;padding-left:4px">{{ q }}</li>
+          </sc-for>
+        </ol>
+      </div>
+    </sc-for>
+  </div>
+
+  <h2 style="font-family:Corben,serif;font-weight:700;font-size:26px;margin:56px 0 6px">Sonraya bırakılanlar</h2>
+  <p style="font-size:14px;color:rgba(32,30,29,.6);margin:0 0 18px">Görüşmede çıkarsa not alın; MVP için gerekmiyor.</p>
+  <div style="display:flex;flex-direction:column;gap:10px">
+    <sc-for list="{{ later }}" as="l" hint-placeholder-count="3">
+      <div style="padding:16px 20px;border-radius:24px;background:#e1eecc;color:#2f3a20">
+        <div style="font:600 15px Figtree,sans-serif">{{ l.title }}</div>
+        <div style="font-size:13px;line-height:1.5;margin-top:4px;color:#3d472b">{{ l.note }}</div>
+      </div>
+    </sc-for>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    const T = (title, now, qs) => ({ title, now, qs });
+    const topics = [
+      T('Disiplinler', 'Thai, Tetik nokta, Derin doku, Shiatsu, Yumeiho listesinden çoklu seçim. Müşteri bu listeye göre filtreler.', [
+        'Hangi masaj türlerini uyguluyorsunuz? Müşteriye kendinizi nasıl tanıtıyorsunuz?',
+        'Bu liste eksik mi? Ankara’da müşterilerin en çok istediği hangileri (klasik, aromaterapi, refleksoloji, hamile masajı, spor masajı)?',
+        'Bir disiplini seçmek için sertifika şart olmalı mı, yoksa deneyim yeterli mi?',
+        'Disiplin başına farklı ücret alıyor musunuz?',
+        'Seans süreleri sizde nasıl: 60/90/120 dk mı, yoksa 45 ya da 75 dk de var mı?'
+      ]),
+      T('Nerede ve kime', 'Stüdyo / ev ziyareti / ikisi; ev ziyareti için 3, 5, 10 km; herkes / yalnızca kadınlar / yalnızca erkekler.', [
+        'Stüdyonuz var mı, yoksa sadece eve mi gidiyorsunuz? Otel ya da ofise gider misiniz?',
+        'Eve giderken mesafeyi km ile mi, semt ile mi düşünüyorsunuz?',
+        'Ev ziyaretinde ekstra ücret (yol, masa taşıma) alıyor musunuz?',
+        'Müşteri cinsiyetine göre sınır koymak istiyor musunuz? Başka bir sınır var mı (ilk kez gelen müşteri, yorumu olmayan müşteri)?',
+        'Eve gitmeden önce müşteriden ne bilmek istersiniz (kat, asansör, evcil hayvan, evde başka biri var mı)?'
+      ]),
+      T('Ücret', 'Hazır seçenekler (₺750–₺1.200) ya da serbest giriş. 90 ve 120 dk otomatik hesaplanıyor. Ödeme seans sonunda nakit.', [
+        'Şu an 60 dakikaya ne kadar alıyorsunuz?',
+        'Uzun seansta indirim yapıyor musunuz, yoksa dakika başı mı?',
+        'Nakit dışında IBAN ya da kart isteyen müşteri oluyor mu?',
+        'İleride uygulama komisyon alsa, hangi oran makul gelir?'
+      ]),
+      T('Müsaitlik ve rezervasyon', 'Haftalık saatler, kapalı günler, en erken kaç saat sonrası, seanslar arası boşluk, ne kadar ileri.', [
+        'Haftanızı nasıl planlıyorsunuz? Sabit saatler mi, her hafta değişiyor mu?',
+        'Müşteri en az kaç saat önceden istek atmalı?',
+        'Bir isteğe kaç saat içinde yanıt verebilirsiniz? (Şu an 2 saat varsayıyoruz.)',
+        'Son dakika iptal size ne kadar sorun oluyor? Kaç saat kala iptal “geç” sayılmalı?',
+        'Müşteri saatini değiştirmek istediğinde nasıl ilerliyorsunuz?'
+      ]),
+      T('Müşterinin filtreleri', 'Müsaitlik: her zaman / bugün / şimdi müsait. Ücret: alt ve üst sınır. Yer: stüdyo / ev.', [
+        'Müşteriler sizi genelde ne kadar önceden arıyor: aynı gün mü, birkaç gün önce mi?',
+        '“Şimdi müsait” anlamlı mı, yoksa “bu akşam”, “hafta sonu” gibi seçenekler mi daha doğru?',
+        'Müşteriler en çok neyi soruyor: fiyat, yer, cinsiyet, deneyim?'
+      ]),
+      T('Sohbet ve hazır mesajlar', 'Kabulden sonra sohbet açılıyor. Alttaki hazır mesajlar yazı kutusuna geliyor, gönderilmeden önce düzenlenebiliyor.', [
+        'Müşteriye en sık yazdığınız mesajlar neler? (Adres, kapı kodu, gecikme, ne getirmeli…)',
+        'Hazır mesaj işinize yarar mı, yoksa gereksiz mi?',
+        'Rahatsız edici mesajla karşılaştınız mı? O an ne yapmak isterdiniz?'
+      ]),
+      T('Sertifika', 'Fotoğraf ya da dosya yükleniyor, bilgiler okunuyor, yönetici 3 gün içinde onaylıyor. Onaylanana kadar profil gizli.', [
+        'Hangi belgeleriniz var? (Okul sertifikası, MEB onaylı belge, Sağlık Bakanlığı belgesi)',
+        'Belgesi olmayan ama deneyimli terapist çok mu? Onları nasıl doğrulamalıyız?',
+        '3 gün beklemek kabul edilebilir mi?'
+      ])
+    ];
+    return {
+      topics: topics.map((t, i) => Object.assign({ n: String(i + 1).padStart(2, '0') }, t)),
+      later: [
+        { title:'Hazır mesajların nasıl seçileceği', note:'Sabit liste mi, seansın durumuna göre mi (seanstan önce / sonra), yoksa terapistin kendi yazdığı kısa mesajlar mı? Görüşme cevaplarına göre karar verilecek; gerekmezse tamamen kaldırılabilir.' },
+        { title:'Onay sonrası hoş geldin anı', note:'Sertifika yükleyip terapist paneline ilk girişte kısa bir “hoş geldin / tebrikler” animasyonu. Şu an ekran doğrudan profile geçiyor.' },
+        { title:'İngilizce dil seçeneği', note:'Metin listesi hazır; geliştirme sırasında dil değiştirme eklenecek.' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>
